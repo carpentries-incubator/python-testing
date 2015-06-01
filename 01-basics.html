@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Testing</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">Testing</h1>
+          <h2 class="subtitle">Basics of testing</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Understand the place of testing in a scientific workflow.</li>
+<li>Understand that testing has many forms.</li>
+</ul>
+</div>
+</section>
+<p>Testing should be a seamless part of scientific software development process. The purpose of the software should be clear to anyone reading the tests. For this reason, the purpose of the software must be clear the person writing the test. Thus, tests should be created aroudnd the same time as the code in qustion. Similarly, the author of the original software is often the best person to write the tests for that software.</p>
+<p>At the beginning of a new project, tests can be used to help guide the overall architecture of the project. This is analogous to experiment design in the experimental science world. The act of writing tests can help clarify how the software should be performing. Taking this idea to the extreme you could start to write the tests <em>before</em> you even write the software that will be tested. Such a practice is called <em>test-driven development</em>, which we will discuss in greater detail <a href="09-tdd.html">later in the lesson</a>.</p>
+<blockquote>
+<h3>What Kinds of Tests Exist</h3>
+<p>There are many ways to test software, such as:</p>
+<ul>
+<li>Exceptions</li>
+<li>Unit Tests</li>
+<li>Regresson Tests</li>
+<li>Integration Tests</li>
+</ul>
+</blockquote>
+<p><em>Exceptions and Assertions</em>: While writing code, <code>exceptions</code> and <code>assertions</code> can be added to sound an alarm as runtime problems come up. These kinds of tests, are embedded in the software iteself and handle, as their name implies, exceptional cases rather than the norm.</p>
+<p><em>Unit Tests</em>: Unit tests investigate the behavior of units of code (such as functions, classes, or data structures). By validating each software unit across the valid range of its input and output parameters, tracking down unexpected behavior that may appear when the units are combined is made vastly simpler.</p>
+<p><em>Regression Tests</em>: Regression tests defend against new bugs, or regressions, which might appear due to new software and updates.</p>
+<p><em>Integration Tests</em>: Integration tests check that various pieces of the software work together as expected.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pushpin"></span>Wrap-up</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Tests compare that the result observed from running code is the same as what was expected ahead of time.</li>
+<li>Tests should be written at the same time as the code they are testing is written.</li>
+<li>The person best suited to write a test is the author of the original code.</li>
+<li>Assertions and exceptions are like alarm systems embedded in the software, guarding against exceptional bahavior.</li>
+<li><ul>
+<li>Unit tests try to test the smallest pieces of code possible, usually functions and methods.</li>
+</ul></li>
+<li><ul>
+<li>Integration tests make sure that code units work together properly.</li>
+</ul></li>
+<li><ul>
+<li>Regression tests ensure that everything works the same today as it did yesterday.</li>
+</ul></li>
+</ul>
+</div>
+</aside>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/git-novice">Source</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
