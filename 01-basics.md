@@ -52,7 +52,7 @@ which might appear due to new software and updates.
 software work together as expected. 
 
 
-> ## Wrap-up {.callout}
+> ## Key Ideas {.callout}
 > 
 > * Tests compare that the result observed from running code is the same as what was
   expected ahead of time.

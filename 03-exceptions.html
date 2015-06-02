@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: Version Control with Git</title>
+    <title>Software Carpentry: Testing</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -26,52 +26,62 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title">Version Control with Git</h1>
-          <h2 class="subtitle">Creating a Repository</h2>
+          <h1 class="title">Testing</h1>
+          <h2 class="subtitle">Exceptions</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
-<li>Create a local Git repository.</li>
+<li>Understand that exceptions are effectively specialized runtime tests</li>
+<li>Learn when to use exceptions and what exceptions are available</li>
 </ul>
 </div>
 </section>
-<p>Once Git is configured, we can start using it. Let’s create a directory for our work and then move into that directory:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> planets
-$ <span class="kw">cd</span> planets</code></pre>
-<p>Then we tell Git to make <code>planets</code> a <a href="reference.html#repository">repository</a>—a place where Git can store versions of our files:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> init</code></pre>
-<p>If we use <code>ls</code> to show the directory’s contents, it appears that nothing has changed:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre>
-<p>But if we add the <code>-a</code> flag to show everything, we can see that Git has created a hidden directory within <code>planets</code> called <code>.git</code>:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -a</code></pre>
-<pre class="output"><code>.   ..  .git</code></pre>
-<p>Git stores information about the project in this special sub-directory. If we ever delete it, we will lose the project’s history.</p>
-<p>We can check that everything is set up correctly by asking Git to tell us the status of our project:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
-<pre class="output"><code># On branch master
-#
-# Initial commit
-#
-nothing to commit (create/copy files and use &quot;git add&quot; to track)</code></pre>
+<p>Exceptions are more sophisticated than assertions. They are the standard error messaging system in most modern programming languages. Fundamentally, when an error is encountered, an informative exception is ‘thrown’ or ‘raised’.</p>
+<p>For example, instead of the assertion in the case before, an exception can be used.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+    <span class="kw">if</span> <span class="dt">len</span>(num_list) == <span class="dv">0</span> :
+      <span class="kw">raise</span> <span class="ot">Exception</span>(<span class="st">&quot;The algebraic mean of an empty list is undefined. \</span>
+<span class="st">      Please provide a list of numbers&quot;</span>)
+    <span class="kw">else</span> :
+      <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)</code></pre>
+<p>Once an exception is raised, it will be passed upward in the program scope. An exception be used to trigger additional error messages or an alternative behavior. rather than immediately halting code execution, the exception can be ‘caught’ upstream with a try-except block. When wrapped in a try-except block, the exception can be intercepted before it reaches global scope and halts execution.</p>
+<p>To add information or replace the message before it is passed upstream, the try-catch block can be used to catch-and-reraise the exception:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+    <span class="kw">try</span>:
+        <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)
+    <span class="kw">except</span> <span class="ot">ZeroDivisionError</span> <span class="ch">as</span> detail :
+        msg = <span class="st">&quot;The algebraic mean of an empty list is undefined. Please provide a list of numbers.&quot;</span>
+        <span class="kw">raise</span> <span class="ot">ZeroDivisionError</span>(detail.<span class="ot">__str__</span>() + <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> +  msg)</code></pre>
+<p>Alternatively, the exception can simply be handled intelligently. If an alternative behavior is preferred, the exception can be disregarded and a responsive behavior can be implemented like so:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+    <span class="kw">try</span>:
+        <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)
+    <span class="kw">except</span> <span class="ot">ZeroDivisionError</span> :
+        <span class="kw">return</span> Infinity</code></pre>
+<p>If a single function might raise more than one type of exception, each can be caught and handled separately.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+    <span class="kw">try</span>:
+        <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)
+    <span class="kw">except</span> <span class="ot">ZeroDivisionError</span> :
+        <span class="kw">return</span> Infinity
+    <span class="kw">except</span> <span class="ot">TypeError</span> <span class="ch">as</span> detail :
+        msg = <span class="st">&quot;The algebraic mean of an non-numerical list is undefined. Please provide a list of numbers.&quot;</span>
+        <span class="kw">raise</span> <span class="ot">TypeError</span>(detail.<span class="ot">__str__</span>() + <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> +  msg)</code></pre>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Places to Create Git Repositories</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>What Else Can Go Wrong?</h2>
 </div>
 <div class="panel-body">
-<p>Dracula starts a new project, <code>moons</code>, related to his <code>planets</code> project. Despite Wolfman’s concerns, he enters the following sequence of commands to create one Git repository inside another:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span>             <span class="co"># return to home directory</span>
-<span class="kw">mkdir</span> planets  <span class="co"># make a new directory planets</span>
-<span class="kw">cd</span> planets     <span class="co"># go into planets</span>
-<span class="kw">git</span> init       <span class="co"># make the planets directory a Git repository</span>
-<span class="kw">mkdir</span> moons    <span class="co"># make a sub-directory planets/moons</span>
-<span class="kw">cd</span> moons       <span class="co"># go into planets/moons</span>
-<span class="kw">git</span> init       <span class="co"># make the moons sub-directory a Git repository</span></code></pre>
-<p>Why is it a bad idea to do this? How can Dracula “undo” his last <code>git init</code>?</p>
+<ol style="list-style-type: decimal">
+<li>Think of some other type of exception that could be raised by the try block.</li>
+<li>Guard against it by adding an except clause.</li>
+</ol>
 </div>
 </section>
+<p>Exceptions have the advantage of being simple to include and powerfully helpful to the user. However, not all behaviors can or should be found with runtime exceptions. Most behaviors should be validated with unit tests.</p>
         </div>
       </div>
       </article>

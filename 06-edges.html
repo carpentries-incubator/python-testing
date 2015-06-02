@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <h1 class="title">Testing</h1>
-          <h2 class="subtitle">Edge Cases</h2>
+          <h2 class="subtitle">Edge and Corner Cases</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
@@ -35,45 +35,92 @@
 <div class="panel-body">
 <ul>
 <li>Understand that edge cases are at the limit of the function’s behavior</li>
-<li>Write a test for an edge case.</li>
+<li>Write a test for an edge case</li>
+<li>Understand that corner cases are where two edge cases meet</li>
+<li>Write a test for a corner case</li>
 </ul>
 </div>
 </section>
-<p>The fibonacci sequence is valid for all positive integers. To believe that a fibonacci sequence function is accurate throughout that space, is it necessary to check every expected output value of the fibonacci sequence? Given that the sequence is infinite, let’s hope not.</p>
-<p>Indeed, what we should probably do is test a few values within the typical scope of the function,</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> planets
-$ <span class="kw">cd</span> planets</code></pre>
-<p>Then we tell Git to make <code>planets</code> a <a href="reference.html#repository">repository</a>—a place where Git can store versions of our files:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> init</code></pre>
-<p>If we use <code>ls</code> to show the directory’s contents, it appears that nothing has changed:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre>
-<p>But if we add the <code>-a</code> flag to show everything, we can see that Git has created a hidden directory within <code>planets</code> called <code>.git</code>:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -a</code></pre>
-<pre class="output"><code>.   ..  .git</code></pre>
-<p>Git stores information about the project in this special sub-directory. If we ever delete it, we will lose the project’s history.</p>
-<p>We can check that everything is set up correctly by asking Git to tell us the status of our project:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
-<pre class="output"><code># On branch master
-#
-# Initial commit
-#
-nothing to commit (create/copy files and use &quot;git add&quot; to track)</code></pre>
-<section class="challenge panel panel-success">
+<p>What we saw in the tests for the mean function are called <em>interior</em> tests. The precise points that we tested did not matter. The mean function should have behaved as expected when it is within the valid range.</p>
+<h2 id="edge-cases">Edge Cases</h2>
+<p>The situation where the test examines either the beginning or the end of a range, but not the middle, is called an <em>edge case</em>. In a simple, one-dimensional problem, the two edge cases should always be tested along with at least one internal point. This ensures that you have good <em>coverage</em> over the range of values.</p>
+<p>Anecdotally, it is important to test edges cases because this is where errors tend to arise. Qualitatively different behavior happens at boundaries. As such, they tend to have special code dedicated to them in the implementation.</p>
+<aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Places to Create Git Repositories</h2>
+<h2><span class="glyphicon glyphicon-pushpin"></span>Consider the fibonacci sequence</h2>
 </div>
 <div class="panel-body">
-<p>Dracula starts a new project, <code>moons</code>, related to his <code>planets</code> project. Despite Wolfman’s concerns, he enters the following sequence of commands to create one Git repository inside another:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span>             <span class="co"># return to home directory</span>
-<span class="kw">mkdir</span> planets  <span class="co"># make a new directory planets</span>
-<span class="kw">cd</span> planets     <span class="co"># go into planets</span>
-<span class="kw">git</span> init       <span class="co"># make the planets directory a Git repository</span>
-<span class="kw">mkdir</span> moons    <span class="co"># make a sub-directory planets/moons</span>
-<span class="kw">cd</span> moons       <span class="co"># go into planets/moons</span>
-<span class="kw">git</span> init       <span class="co"># make the moons sub-directory a Git repository</span></code></pre>
-<p>Why is it a bad idea to do this? How can Dracula “undo” his last <code>git init</code>?</p>
+<p>Take a moment to recall everything you know about the Fibonacci sequence.</p>
+<p>The fibonacci sequence is valid for all positive integers. To believe that a fibonacci sequence function is accurate throughout that space, is it necessary to check every expected output value of the fibonacci sequence? Given that the sequence is infinite, let’s hope not.</p>
+<p>Indeed, what we should probably do is test a few values within the typical scope of the function, and then test values at the limit of the function’s behavior.</p>
 </div>
-</section>
+</aside>
+<p>Consider the following simple Fibonacci function:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fib(n):
+    <span class="kw">if</span> n == <span class="dv">0</span> or n == <span class="dv">1</span>:
+        <span class="kw">return</span> <span class="dv">1</span>
+    <span class="kw">else</span>:
+        <span class="kw">return</span> fib(n - <span class="dv">1</span>) + fib(n - <span class="dv">2</span>)</code></pre>
+<p>This function has two edge cases: zero and one. For these values of <code>n</code>, the <code>fib()</code> function does something special that does not apply to any other values. Such cases should be tested explicitly. A minimally sufficient test suite for this function would be:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> nose.tools <span class="ch">import</span> assert_equal
+
+<span class="ch">from</span> mod <span class="ch">import</span> fib
+
+<span class="kw">def</span> test_fib0():
+    <span class="co"># test edge 0</span>
+    obs = fib(<span class="dv">0</span>)
+    assert_equal(<span class="dv">1</span>, obs)
+
+<span class="kw">def</span> test_fib1():
+    <span class="co"># test edge 1</span>
+    obs = fib(<span class="dv">1</span>)
+    assert_equal(<span class="dv">1</span>, obs)
+
+<span class="kw">def</span> test_fib6():
+    <span class="co"># test internal point</span>
+    obs = fib(<span class="dv">6</span>)
+    assert_equal(<span class="dv">13</span>, obs)</code></pre>
+<p>Different functions will have different edge cases. Often, you need not test for cases that are outside the valid range, unless you want to test that the function fails. In the <code>fib()</code> function negative and noninteger values are not valid inputs. You do not need to have tests for these classes of numbers, unless you want to make sure that the function fails as expected, which is actually quite a good idea. Edge cases are not where the story ends, though, as we will see next.</p>
+<h2 id="corner-cases">Corner Cases</h2>
+<p>When two or more edge cases are combined, it is called a <em>corner case</em>. If a function is parametrized by two linear and independent variables, a test that is at the extreme of both variables is in a corner. As a demonstration, consider the case of the function <code>(sin(x) / x) * (sin(y) / y)</code>, presented here:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> numpy <span class="ch">as</span> np
+
+<span class="kw">def</span> sinc2d(x, y):
+    <span class="kw">if</span> x == <span class="fl">0.0</span> and y == <span class="fl">0.0</span>:
+        <span class="kw">return</span> <span class="fl">1.0</span>
+    <span class="kw">elif</span> x == <span class="fl">0.0</span>:
+        <span class="kw">return</span> np.sin(y) / y
+    <span class="kw">elif</span> y == <span class="fl">0.0</span>:
+        <span class="kw">return</span> np.sin(x) / x
+    <span class="kw">else</span>:
+        <span class="kw">return</span> (np.sin(x) / x) * (np.sin(y) / y)</code></pre>
+<p>The function <code>sin(x)/x</code> is called the <code>sinc()</code> function. We know that at the point where <code>x = 0</code>, then <code>sinc(x) == 1.0</code>. In the code just shown, <code>sinc2d()</code> is a two-dimensional version of this function. When both <code>x</code> and <code>y</code> are zero, it is a corner case because it requires a special value for both variables. If either <code>x</code> or <code>y</code> but not both are zero, these are edge cases. If neither is zero, this is a regular internal point.</p>
+<p>A minimal test suite for this function would include a separate test for the each of the edge cases, and an internal point. For example:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> numpy <span class="ch">as</span> np
+<span class="ch">from</span> nose.tools <span class="ch">import</span> assert_equal
+
+<span class="ch">from</span> mod <span class="ch">import</span> sinc2d
+
+<span class="kw">def</span> test_internal():
+    exp = (<span class="fl">2.0</span> / np.pi) * (-<span class="fl">2.0</span> / (<span class="fl">3.0</span> * np.pi))
+    obs = sinc2d(np.pi / <span class="fl">2.0</span>, <span class="fl">3.0</span> * np.pi / <span class="fl">2.0</span>)
+    assert_equal(exp, obs)
+
+<span class="kw">def</span> test_edge_x():
+    exp = (-<span class="fl">2.0</span> / (<span class="fl">3.0</span> * np.pi))
+    obs = sinc2d(<span class="fl">0.0</span>, <span class="fl">3.0</span> * np.pi / <span class="fl">2.0</span>)
+    assert_equal(exp, obs)
+
+<span class="kw">def</span> test_edge_y():
+    exp = (<span class="fl">2.0</span> / np.pi)
+    obs = sinc2d(np.pi / <span class="fl">2.0</span>, <span class="fl">0.0</span>)
+    assert_equal(exp, obs)</code></pre>
+<blockquote>
+<h2>Write a corner case</h2>
+<p>The sinc2d example will also need a test for the corner case, where both x and y are 0.0. 1. Insert the sinc2d function code (above) into a file called mod.py. 2. Add the edge and internal case tests (above) to a test_sinc2d.py file. 3. Invent and implement a corner case test in that file. 4. Run all of the tests using <code>nosetests</code> on the command line.</p>
+</blockquote>
+<p>Corner cases can be even trickier to find and debug than edge cases because of their increased complexity. This complexity, however, makes them even more important to explicitly test.</p>
+<p>Whether internal, edge, or corner cases, we have started to build up a classification system for the tests themselves. In the following sections, we will build this system up even more based on the role that the tests have in the software architecture.</p>
         </div>
       </div>
       </article>

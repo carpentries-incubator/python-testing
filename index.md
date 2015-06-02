@@ -38,11 +38,6 @@ claims in a publication) will result.
 This is not to say that scientists have a monopoly on software testing, simply
 that software cannot be called _scientific_ unless it has been validated.
 
-> ## Effective Computation In Physics {.callout}
-> Note that this testing lesson was adapted from the Testing chapter in 
-> ''Effective Computation In Physics'' by Anthony Scopatz and Kathryn Huff. 
-> It is often quoted directly.
-
 > ## Why Untested Code is Legacy Code {.callout}
 >
 > In ''Working Effectively with Legacy Code,'' Michael Feathers defines legacy 
@@ -57,8 +52,8 @@ world: it lets the scientist trust their own work on a fundamental level and
 helps others to understand and trust their work as well. 
 Furthermore, tests help you to never fix a bug a second time. Once a bug has
 been caught and a test has been written, that particular bug can never again
-re-enter the codebase unnoticed. So, both principled and lazy scientists can
-benefit from testing.
+re-enter the codebase unnoticed. So, whether motivated by principles or a 
+desire to work more efficiently, all scientists can benefit from testing.
 
 > ## Prerequisites {.prereq}
 >
@@ -67,6 +62,11 @@ benefit from testing.
 > prerequisite.
 > Some previous experience with the shell is expected,
 > *but isn't mandatory*.
+
+> ## Effective Computation In Physics {.callout}
+> Note that this testing lesson was adapted from the Testing chapter in 
+> ''Effective Computation In Physics'' by Anthony Scopatz and Kathryn Huff. 
+> It is often quoted directly.
 
 
 > ## Getting ready {.getready}

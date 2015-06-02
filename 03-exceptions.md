@@ -1,79 +1,82 @@
 ---
 layout: page
-title: Version Control with Git
-subtitle: Creating a Repository
+title: Testing
+subtitle: Exceptions
 minutes: 10
 ---
+
 > ## Learning Objectives {.objectives}
 > 
-> *   Create a local Git repository.
+> *   Understand that exceptions are effectively specialized runtime tests
+> *   Learn when to use exceptions and what exceptions are available
 
-Once Git is configured,
-we can start using it.
-Let's create a directory for our work and then move into that directory:
+Exceptions are more sophisticated than assertions. They are the standard error 
+messaging system in most modern programming languages.  Fundamentally, when an 
+error is encountered, an informative exception is 'thrown' or 'raised'.
 
-~~~ {.bash}
-$ mkdir planets
-$ cd planets
+For example, instead of the assertion in the case before, an exception can be
+used.
+
+~~~ {.python}
+def mean(num_list):
+    if len(num_list) == 0 :
+      raise Exception("The algebraic mean of an empty list is undefined. \
+      Please provide a list of numbers")
+    else :
+      return sum(num_list)/len(num_list)
 ~~~
 
-Then we tell Git to make `planets` a [repository](reference.html#repository)&mdash;a place where
-Git can store versions of our files:
+Once an exception is raised, it will be passed upward in the program scope.
+An exception be used to trigger additional error messages or an alternative
+behavior. rather than immediately halting code
+execution, the exception can be 'caught' upstream with a try-except block.
+When wrapped in a try-except block, the exception can be intercepted before it reaches
+global scope and halts execution.
 
-~~~ {.bash}
-$ git init
+To add information or replace the message before it is passed upstream, the try-catch
+block can be used to catch-and-reraise the exception:
+
+~~~ {.python}
+def mean(num_list):
+    try:
+        return sum(num_list)/len(num_list)
+    except ZeroDivisionError as detail :
+        msg = "The algebraic mean of an empty list is undefined. Please provide a list of numbers."
+        raise ZeroDivisionError(detail.__str__() + "\n" +  msg)
 ~~~
 
-If we use `ls` to show the directory's contents,
-it appears that nothing has changed:
+Alternatively, the exception can simply be handled intelligently. If an
+alternative behavior is preferred, the exception can be disregarded and a
+responsive behavior can be implemented like so:
 
-~~~ {.bash}
-$ ls
+
+~~~ {.python}
+def mean(num_list):
+    try:
+        return sum(num_list)/len(num_list)
+    except ZeroDivisionError :
+        return Infinity
 ~~~
 
-But if we add the `-a` flag to show everything,
-we can see that Git has created a hidden directory within `planets` called `.git`:
+If a single function might raise more than one type of exception, each can be
+caught and handled separately.
 
-~~~ {.bash}
-$ ls -a
-~~~
-~~~ {.output}
-.	..	.git
-~~~
-
-Git stores information about the project in this special sub-directory.
-If we ever delete it,
-we will lose the project's history.
-
-We can check that everything is set up correctly
-by asking Git to tell us the status of our project:
-
-~~~ {.bash}
-$ git status
-~~~
-~~~ {.output}
-# On branch master
-#
-# Initial commit
-#
-nothing to commit (create/copy files and use "git add" to track)
+~~~ {.python}
+def mean(num_list):
+    try:
+        return sum(num_list)/len(num_list)
+    except ZeroDivisionError :
+        return Infinity
+    except TypeError as detail :
+        msg = "The algebraic mean of an non-numerical list is undefined. Please provide a list of numbers."
+        raise TypeError(detail.__str__() + "\n" +  msg)
 ~~~
 
-> ## Places to Create Git Repositories {.challenge}
->
-> Dracula starts a new project, `moons`, related to his `planets` project.
-> Despite Wolfman's concerns, he enters the following sequence of commands to
-> create one Git repository inside another:
-> 
-> ~~~ {.bash}
-> cd             # return to home directory
-> mkdir planets  # make a new directory planets
-> cd planets     # go into planets
-> git init       # make the planets directory a Git repository
-> mkdir moons    # make a sub-directory planets/moons
-> cd moons       # go into planets/moons
-> git init       # make the moons sub-directory a Git repository
-> ~~~
-> 
-> Why is it a bad idea to do this?
-> How can Dracula "undo" his last `git init`?
+> ## What Else Can Go Wrong? {.challenge}
+> 1. Think of some other type of exception that could be raised by the try 
+> block.
+> 2. Guard against it by adding an except clause.
+
+Exceptions have the advantage of being simple to include and powerfully helpful
+to the user. However, not all behaviors can or should be found with runtime
+exceptions. Most behaviors should be validated with unit tests.

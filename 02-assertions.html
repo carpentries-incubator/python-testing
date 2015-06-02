@@ -40,38 +40,47 @@
 </ul>
 </div>
 </section>
-<p>The following python code <sub>~</sub> {.bash} $ mkdir planets $ cd planets <sub>~</sub></p>
-<p>Then we tell Git to make <code>planets</code> a <a href="reference.html#repository">repository</a>—a place where Git can store versions of our files:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> init</code></pre>
-<p>If we use <code>ls</code> to show the directory’s contents, it appears that nothing has changed:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre>
-<p>But if we add the <code>-a</code> flag to show everything, we can see that Git has created a hidden directory within <code>planets</code> called <code>.git</code>:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -a</code></pre>
-<pre class="output"><code>.   ..  .git</code></pre>
-<p>Git stores information about the project in this special sub-directory. If we ever delete it, we will lose the project’s history.</p>
-<p>We can check that everything is set up correctly by asking Git to tell us the status of our project:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
-<pre class="output"><code># On branch master
-#
-# Initial commit
-#
-nothing to commit (create/copy files and use &quot;git add&quot; to track)</code></pre>
+<p>Assertions are the simplest type of test. They are used as a tool for bounding acceptable behavior during runtime. The assert keyword in python has the following behavior:</p>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">assert</span> <span class="ot">True</span> == <span class="ot">False</span></code></pre>
+<pre class="output"><code>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  AssertionError</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">  &gt;&gt;&gt; <span class="kw">assert</span> <span class="ot">True</span> == <span class="ot">True</span></code></pre>
+<pre class="output"><code>  &gt;&gt;&gt;</code></pre>
+<p>That is, assertions halt code execution instantly if the comparison is false. It does nothing at all if the comparison is true. These are therefore a very good tool for guarding the function against foolish (e.g. human) input:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+    <span class="kw">assert</span> <span class="dt">len</span>(num_list) != <span class="dv">0</span>
+    <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)</code></pre>
+<p>The advantage of assertions is their ease of use. They are rarely more than one line of code. The disadvantage is that assertions halt execution indiscriminately and the helpfulness of the resulting error message is usually quite limited.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Places to Create Git Repositories</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Insert an Assertion</h2>
 </div>
 <div class="panel-body">
-<p>Dracula starts a new project, <code>moons</code>, related to his <code>planets</code> project. Despite Wolfman’s concerns, he enters the following sequence of commands to create one Git repository inside another:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span>             <span class="co"># return to home directory</span>
-<span class="kw">mkdir</span> planets  <span class="co"># make a new directory planets</span>
-<span class="kw">cd</span> planets     <span class="co"># go into planets</span>
-<span class="kw">git</span> init       <span class="co"># make the planets directory a Git repository</span>
-<span class="kw">mkdir</span> moons    <span class="co"># make a sub-directory planets/moons</span>
-<span class="kw">cd</span> moons       <span class="co"># go into planets/moons</span>
-<span class="kw">git</span> init       <span class="co"># make the moons sub-directory a Git repository</span></code></pre>
-<p>Why is it a bad idea to do this? How can Dracula “undo” his last <code>git init</code>?</p>
+<p>In the following code, insert an assertion that checks whether the list is made of numbers.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+  <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)</code></pre>
 </div>
 </section>
+<p>Assertions are also helpful for catching abnormal behaviors, such as those that arise with floating point arithmetic.</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pencil"></span>Check a Floating Point Error</h2>
+</div>
+<div class="panel-body">
+<p>a = 401.0/200.0</p>
+<ol style="list-style-type: decimal">
+<li><p>Using the <code>assert</code> keyword, how could you test whether <code>a</code> is the same as int (a) to within 2 decimal places?</p></li>
+<li><p>How about within an error of 0.003?</p></li>
+</ol>
+</div>
+</section>
+<p>To help with situations such as those above, there are classes of more helpful assertions that we will use often in later parts of this testing lesson as the building blocks of our tests. The nose testing package contains many of them.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> nose.tools <span class="ch">import</span> assert_almost_equal
+&gt; a = <span class="dv">401</span>./<span class="dv">200</span>.
+&gt; assert_almost_equal(a, <span class="dt">int</span>(a), places=<span class="dv">2</span>)
+&gt; assert_almost_equal(a, <span class="dt">int</span>(a), delta=<span class="fl">0.003</span>)</code></pre>
+<p>These assertions give much more helpful error messages and have much more powerful features than the simple assert keyword. An even more powerful sibling of the assertion is the <em>exception</em>. We’ll learn about those in the next lesson.</p>
         </div>
       </div>
       </article>

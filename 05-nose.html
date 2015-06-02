@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: Version Control with Git</title>
+    <title>Software Carpentry: Testing</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -26,52 +26,78 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title">Version Control with Git</h1>
-          <h2 class="subtitle">Creating a Repository</h2>
+          <h1 class="title">Testing</h1>
+          <h2 class="subtitle">Running Tests with Nose</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
-<li>Create a local Git repository.</li>
+<li>Understand how to run a test suite using the nose framework</li>
 </ul>
 </div>
 </section>
-<p>Once Git is configured, we can start using it. Let’s create a directory for our work and then move into that directory:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> planets
-$ <span class="kw">cd</span> planets</code></pre>
-<p>Then we tell Git to make <code>planets</code> a <a href="reference.html#repository">repository</a>—a place where Git can store versions of our files:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> init</code></pre>
-<p>If we use <code>ls</code> to show the directory’s contents, it appears that nothing has changed:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre>
-<p>But if we add the <code>-a</code> flag to show everything, we can see that Git has created a hidden directory within <code>planets</code> called <code>.git</code>:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -a</code></pre>
-<pre class="output"><code>.   ..  .git</code></pre>
-<p>Git stores information about the project in this special sub-directory. If we ever delete it, we will lose the project’s history.</p>
-<p>We can check that everything is set up correctly by asking Git to tell us the status of our project:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
-<pre class="output"><code># On branch master
-#
-# Initial commit
-#
-nothing to commit (create/copy files and use &quot;git add&quot; to track)</code></pre>
+<p>Recall that we created a suite of tests for our mean function.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> mean <span class="ch">import</span> *
+
+<span class="kw">def</span> test_ints():
+  num_list=[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]
+  obs = mean(num_list)
+  exp = <span class="dv">3</span>
+  <span class="kw">assert</span> obs == exp
+
+<span class="kw">def</span> test_zero():
+  num_list=[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>]
+  obs = mean(num_list)
+  exp = <span class="dv">3</span>
+  <span class="kw">assert</span> obs == exp
+
+<span class="kw">def</span> test_double():
+  num_list=[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
+  obs = mean(num_list)
+  exp = <span class="fl">2.5</span>
+  <span class="kw">assert</span> obs == exp
+
+<span class="kw">def</span> test_long():
+  big = <span class="dv">100000000</span>
+  obs = mean(<span class="dt">range</span>(<span class="dv">1</span>,big))
+  exp = big/<span class="fl">2.0</span>
+  <span class="kw">assert</span> obs == exp</code></pre>
+<p>Once these tests are written in a file called <code>test_mean.py</code>, the command “nosetests” can be called from the directory containing the tests:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nosetests</span></code></pre>
+<pre class="output"><code>..F.
+FAIL: test_mean.test_double
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/Users/khuff/anaconda/lib/python2.7/site-packages/nose/case.py&quot;, line 197, in runTest
+    self.test(*self.arg)
+  File &quot;/Users/khuff/repos/book-code/tests/test_mean.py&quot;, line 20, in test_double
+    assert obs == exp
+AssertionError
+
+----------------------------------------------------------------------
+Ran 4 tests in 3.062s
+
+FAILED (failures=1)</code></pre>
+<p>In the above case, the python nose package ‘sniffed-out’ the tests in the directory and ran them together to produce a report of the sum of the files and functions matching the regular expression <code>[Tt]est[-_]*</code>.</p>
+<p>The major boon a testing framework provides is exactly that, a utility to find and run the tests automatically. With <code>nose</code>, this is the command-line tool called <em>nosetests</em>. When <em>nosetests</em> is run, it will search all the directories whose names start or end with the word <em>test</em>, find all of the Python modules in these directories whose names start or end with <em>test</em>, import them, and run all of the functions and classes whose names start or end with <em>test</em>. In fact, <code>nose</code> looks for any names that match the regular expression <code>'(?:^|[\\b_\\.-])[Tt]est'</code>. This automatic registration of test code saves tons of human time and allows us to focus on what is important: writing more tests.</p>
+<p>When you run <em>nosetests</em>, it will print a dot (<code>.</code>) on the screen for every test that passes, an <code>F</code> for every test that fails, and an <code>E</code> for every test were there was an unexpected error. In rarer situations you may also see an <code>S</code> indicating a skipped tests (because the test is not applicable on your system) or a <code>K</code> for a known failure (because the developers could not fix it promptly). After the dots, <em>nosetests</em> will print summary information.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Places to Create Git Repositories</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Fix The Failing Code</h2>
 </div>
 <div class="panel-body">
-<p>Dracula starts a new project, <code>moons</code>, related to his <code>planets</code> project. Despite Wolfman’s concerns, he enters the following sequence of commands to create one Git repository inside another:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span>             <span class="co"># return to home directory</span>
-<span class="kw">mkdir</span> planets  <span class="co"># make a new directory planets</span>
-<span class="kw">cd</span> planets     <span class="co"># go into planets</span>
-<span class="kw">git</span> init       <span class="co"># make the planets directory a Git repository</span>
-<span class="kw">mkdir</span> moons    <span class="co"># make a sub-directory planets/moons</span>
-<span class="kw">cd</span> moons       <span class="co"># go into planets/moons</span>
-<span class="kw">git</span> init       <span class="co"># make the moons sub-directory a Git repository</span></code></pre>
-<p>Why is it a bad idea to do this? How can Dracula “undo” his last <code>git init</code>?</p>
+<p>Without changing the tests, alter the mean.py file from the previous section until it passes. When it passes, <em>nosetests</em> will produce results like the following:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nosetests</span></code></pre>
+<pre class="output"><code>....
+
+Ran 4 test in 0.4s
+
+OK</code></pre>
 </div>
 </section>
+<p>As we write more code, we would write more tests, and <em>nosetests</em> would produce more dots. Each passing test is a small, satisfying reward for having written quality scientific software. Now that you know how to write tests, let’s go into what can go wrong.</p>
         </div>
       </div>
       </article>

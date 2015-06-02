@@ -49,43 +49,93 @@
 <h2><span class="glyphicon glyphicon-pushpin"></span>Functions are Like Paragraphs</h2>
 </div>
 <div class="panel-body">
-<p>Recall that humans can only hold a few ideas in our heads at once. Paragraphs in books, for example, become unwieldy after a few lines. Functions, generaly, shouldn’t be longer than paragraphs. Robert C. Martin, the author of “Clean Code” said : TODO</p>
+<p>Recall that humans can only hold a few ideas in our heads at once. Paragraphs in books, for example, become unwieldy after a few lines. Functions, generaly, shouldn’t be longer than paragraphs. Robert C. Martin, the author of “Clean Code” said : “The first rule of functions is that <em>they should be small</em>. The second rule of functions is that <em>they should be smaller than that</em>.”</p>
 </div>
 </aside>
-<p>The desire to unit test code often has the effect of encouraging both the code and the tests to be as small, well-defined, and modular as possible.<br />In Python, unit tests typically take the form of test functions.</p>
-<p>Consider the following example that could arise when comunicating with third-party programs. You have a function <code>f()</code> which will write a file named <code>yes.txt</code> to disk with the value 42 but only if a file <code>no.txt</code> does not exist. To truly test the function works, you would want to ensure that neither <code>yes.txt</code> nor <code>no.txt</code> existed before you ran your test. After the test, you want to clean up after yourself before the next test comes along. You could write the test, setup, and teardown functions as follows:</p>
-<h2 id="sourcepython">[source,python]</h2>
-<p>import os</p>
-<p>from nose.tools import assert_equal, with_setup</p>
-<p>from mod import f</p>
-<p>def f_setup(): &lt;1&gt; files = os.listdir(‘.’) if ‘no.txt’ in files: os.remove(‘no.txt’) if ‘yes.txt’ in files: os.remove(‘yes.txt’)</p>
-<p>def f_teardown(): &lt;2&gt; files = os.listdir(‘.’) if ‘yes.txt’ in files: os.remove(‘yes.txt’)</p>
-<p>def test_f(): f_setup() &lt;3&gt; exp = 42 f() with open(‘yes.txt’, ‘r’) as fhandle: obs = int(fhandle.read()) assert_equal(exp, obd) f_teardown() &lt;4&gt; ————— &lt;1&gt; The +f_setup()+ function tests ensure that neither the +yes.txt+ nor the +no.txt+ files exist. &lt;2&gt; The +f_teardown()+ function removes the +yes.txt+ file, if it was created. &lt;3&gt; The first action of +test_f()+ is to make sure the file system is clean. &lt;4&gt; The last action of +test_f()+ is to clean up after itself.</p>
-<p>The above implementation of test fixtures is usually fine. However, it does not guarantee that the +f_setup()+ and the +f_teardown()+ functions will be called. This is becaue an unexpected error anywhere in the body of +f()+ or +test_f()+ will cause the test to abort before the teardown function is reached. To make sure that both of the fixtures will be executed, you must use nose’s +with_setup()+ decorator. This decorator may be applied to any test and takes a setup and a teardown function as possible arguments. We can rewrite the +test_f()+ to be wrapped by +with_setup()+.</p>
-<h2 id="sourcepython-1">[source,python]</h2>
-<p><span class="citation">@with_setup</span>(setup=f_setup, teardown=f_teardown) def test_f(): exp = 42 f() with open(‘yes.txt’, ‘r’) as fhandle: obs = int(fhandle.read()) assert_equal(exp, obd) —————</p>
-<p>Note that if you have functions in your test module that are simply named +setup()+ and +teardown()+, each of these are called automatically when the entire test module is loaded in and finished.</p>
-<p>.Write Simple Functions [TIP] ==== Simple tests are the easiest to write. For this reason, functions should be small enough that they are easy to test. For more information on writing code that facilitates tests, we recommend the Robert C. Martin book, ‘Clean Code.’ ====</p>
-<p>Having introduced the concept of unit tests, we can now go up a level in complexity.</p>
-<p><em>Aside on Fixtures</em></p>
-<p>Additionally, unit tests may have <em>test fixtures</em>. A fixture is anything that may be added to the test that creates or removes the environment required by the test to successfully run. They are not part of expected result, the observed result, or the assertion. Test fixtures are completely optional.</p>
-<p>A fixture that is executed before the test to prepare the environment is called a <em>setup</em> function. One that is executed to mop-up side effects after a test is run is called a <em>teardown</em> function. Nose has a decorator that you can use to automatically run fixtures no matter if the test succeeded, failed, or had an error.</p>
+<p>The desire to unit test code often has the effect of encouraging both the code and the tests to be as small, well-defined, and modular as possible.<br />In Python, unit tests typically take the form of test functions that call and make assertions about methods and functions in the code base. To run these test functions, a test framework is often required to collect them together. For now, we’ll write some tests for the mean function and simply run them individually to see whether they fail. In the next session, we’ll use a test framework to collect and run them.</p>
+<p>Unit tests are typically made of three pieces, some set-up, a number of assertions, and some tear-down. Set-up can be as simple as initializing the input values or as complex as creating and initializing concrete instances of a class. Ultimately, the test occurs when an assertion is made, comparing the observed and expected values.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Places to Create Git Repositories</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Write a File Full of Tests</h2>
 </div>
 <div class="panel-body">
-<p>Dracula starts a new project, <code>moons</code>, related to his <code>planets</code> project. Despite Wolfman’s concerns, he enters the following sequence of commands to create one Git repository inside another:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span>             <span class="co"># return to home directory</span>
-<span class="kw">mkdir</span> planets  <span class="co"># make a new directory planets</span>
-<span class="kw">cd</span> planets     <span class="co"># go into planets</span>
-<span class="kw">git</span> init       <span class="co"># make the planets directory a Git repository</span>
-<span class="kw">mkdir</span> moons    <span class="co"># make a sub-directory planets/moons</span>
-<span class="kw">cd</span> moons       <span class="co"># go into planets/moons</span>
-<span class="kw">git</span> init       <span class="co"># make the moons sub-directory a Git repository</span></code></pre>
-<p>Why is it a bad idea to do this? How can Dracula “undo” his last <code>git init</code>?</p>
+<ol style="list-style-type: decimal">
+<li>In a file called <code>test_mean.py</code>, implement the following code:</li>
+</ol>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> mean <span class="ch">import</span> *
+
+<span class="kw">def</span> test_ints():
+  num_list=[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]
+  obs = mean(num_list)
+  exp = <span class="dv">3</span>
+  <span class="kw">assert</span> obs == exp
+
+<span class="kw">def</span> test_zero():
+  num_list=[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>]
+  obs = mean(num_list)
+  exp = <span class="dv">3</span>
+  <span class="kw">assert</span> obs == exp
+
+<span class="kw">def</span> test_double():
+  num_list=[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
+  obs = mean(num_list)
+  exp = <span class="fl">2.5</span>
+  <span class="kw">assert</span> obs == exp
+
+<span class="kw">def</span> test_long():
+  big = <span class="dv">100000000</span>
+  obs = mean(<span class="dt">range</span>(<span class="dv">1</span>,big))
+  exp = big/<span class="fl">2.0</span>
+  <span class="kw">assert</span> obs == exp</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Use IPython to import the test_mean package and run each test.</li>
+</ol>
 </div>
 </section>
+<p>The above example didn’t require much setup or teardown. Consider, however, the following example that could arise when comunicating with third-party programs. You have a function <code>f()</code> which will write a file named <code>yes.txt</code> to disk with the value 42 but only if a file <code>no.txt</code> does not exist. To truly test the function works, you would want to ensure that neither <code>yes.txt</code> nor <code>no.txt</code> existed before you ran your test. After the test, you want to clean up after yourself before the next test comes along. You could write the test, setup, and teardown functions as follows:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> os
+
+<span class="ch">from</span> nose.tools <span class="ch">import</span> assert_equal, with_setup
+
+<span class="ch">from</span> mod <span class="ch">import</span> f
+
+<span class="kw">def</span> f_setup():
+    <span class="co"># The f_setup() function tests ensure that neither the yes.txt nor the</span>
+    <span class="co"># no.txt files exist.</span>
+    files = os.listdir(<span class="st">&#39;.&#39;</span>)
+    <span class="kw">if</span> <span class="st">&#39;no.txt&#39;</span> in files:
+        os.remove(<span class="st">&#39;no.txt&#39;</span>)
+    <span class="kw">if</span> <span class="st">&#39;yes.txt&#39;</span> in files:
+        os.remove(<span class="st">&#39;yes.txt&#39;</span>)
+
+<span class="kw">def</span> f_teardown():
+    <span class="co"># The f_teardown() function removes the yes.txt file, if it was created.</span>
+    files = os.listdir(<span class="st">&#39;.&#39;</span>)
+    <span class="kw">if</span> <span class="st">&#39;yes.txt&#39;</span> in files:
+        os.remove(<span class="st">&#39;yes.txt&#39;</span>)
+
+<span class="kw">def</span> test_f():
+    <span class="co"># The first action of test_f() is to make sure the file system is clean.</span>
+    f_setup()
+    exp = <span class="dv">42</span>
+    f()
+    <span class="kw">with</span> <span class="dt">open</span>(<span class="st">&#39;yes.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="ch">as</span> fhandle:
+        obs = <span class="dt">int</span>(fhandle.read())
+    assert_equal(exp, obd)
+    <span class="co"># The last action of test_f() is to clean up after itself.</span>
+    f_teardown()</code></pre>
+<p>The above implementation of setup and teardown is usually fine.<br />However, it does not guarantee that the <code>f_setup()</code> and the <code>f_teardown()</code> functions will be called. This is becaue an unexpected error anywhere in the body of <code>f()</code> or <code>test_f()</code> will cause the test to abort before the teardown function is reached.</p>
+<p>These setup and teardown behaviors are needed when <em>test fixtures</em> must be created. A fixture is any environmental state or object that is required for the test to successfully run.</p>
+<p>As above, a function that is executed before the test to prepare the fixture is called a <em>setup</em> function. One that is executed to mop-up side effects after a test is run is called a <em>teardown</em> function. Nose has a decorator that you can use to automatically run setup and teardown of fixtures no matter if the test succeeded, failed, or had an error.</p>
+<p>To make sure that both of the functions will be executed, you must use nose’s <code>with_setup()</code> decorator. This decorator may be applied to any test and takes a setup and a teardown function as possible arguments. We can rewrite the <code>test_f()</code> to be wrapped by <code>with_setup()</code>.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@with_setup</span>(setup=f_setup, teardown=f_teardown)
+<span class="kw">def</span> test_f():
+    exp = <span class="dv">42</span>
+    f()
+    <span class="kw">with</span> <span class="dt">open</span>(<span class="st">&#39;yes.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="ch">as</span> fhandle:
+        obs = <span class="dt">int</span>(fhandle.read())
+    assert_equal(exp, obd)</code></pre>
+<p>Note that if you have functions in your test module that are simply named <code>setup()</code> and <code>teardown()</code>, each of these are called automatically when the entire test module is loaded in and finished.</p>
         </div>
       </div>
       </article>

@@ -2,7 +2,7 @@
 layout: page
 title: Testing
 subtitle: Assertions
-minutes: 5
+minutes: 10
 ---
 > ## Learning Objectives {.objectives}
 > 
@@ -10,69 +10,77 @@ minutes: 5
 > *   Assertions can halt execution if something unexpected happens.
 > *   Assertions are the building block of tests.
 
-The following python code 
-~~~ {.bash}
-$ mkdir planets
-$ cd planets
-~~~
 
-Then we tell Git to make `planets` a [repository](reference.html#repository)&mdash;a place where
-Git can store versions of our files:
+Assertions are the simplest type of test. They are used as a tool for bounding 
+acceptable behavior during runtime. The assert keyword in python has the 
+following behavior:
 
-~~~ {.bash}
-$ git init
-~~~
-
-If we use `ls` to show the directory's contents,
-it appears that nothing has changed:
-
-~~~ {.bash}
-$ ls
-~~~
-
-But if we add the `-a` flag to show everything,
-we can see that Git has created a hidden directory within `planets` called `.git`:
-
-~~~ {.bash}
-$ ls -a
+~~~ {.python}
+>>> assert True == False
 ~~~
 ~~~ {.output}
-.	..	.git
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  AssertionError
 ~~~
-
-Git stores information about the project in this special sub-directory.
-If we ever delete it,
-we will lose the project's history.
-
-We can check that everything is set up correctly
-by asking Git to tell us the status of our project:
-
-~~~ {.bash}
-$ git status
+~~~ {.python}
+  >>> assert True == True
 ~~~
 ~~~ {.output}
-# On branch master
-#
-# Initial commit
-#
-nothing to commit (create/copy files and use "git add" to track)
+  >>>
 ~~~
 
-> ## Places to Create Git Repositories {.challenge}
+That is, assertions halt code execution instantly if the comparison is false. 
+It does nothing at all if the comparison is true. These are therefore a very 
+good tool for guarding the function against foolish (e.g. human) input:
+
+~~~ {.python}
+def mean(num_list):
+    assert len(num_list) != 0
+    return sum(num_list)/len(num_list)
+~~~
+
+The advantage of assertions is their ease of use. They are rarely more than one
+line of code. The disadvantage is that assertions halt execution
+indiscriminately and the helpfulness of the resulting error message is usually
+quite limited. 
+
+
+> ## Insert an Assertion {.challenge}
 >
-> Dracula starts a new project, `moons`, related to his `planets` project.
-> Despite Wolfman's concerns, he enters the following sequence of commands to
-> create one Git repository inside another:
+> In the following code, insert an assertion that checks whether the list is 
+> made of numbers.
 > 
-> ~~~ {.bash}
-> cd             # return to home directory
-> mkdir planets  # make a new directory planets
-> cd planets     # go into planets
-> git init       # make the planets directory a Git repository
-> mkdir moons    # make a sub-directory planets/moons
-> cd moons       # go into planets/moons
-> git init       # make the moons sub-directory a Git repository
+> ~~~ {.python}
+> def mean(num_list):
+>   return sum(num_list)/len(num_list)
 > ~~~
+
+
+Assertions are also helpful for catching abnormal behaviors, such as those that 
+arise with floating point arithmetic.
+
+> ## Check a Floating Point Error {.challenge}
+> a = 401.0/200.0
 > 
-> Why is it a bad idea to do this?
-> How can Dracula "undo" his last `git init`?
+> 1. Using the `assert` keyword, how could you test whether `a` is the same as 
+> int (a) to within 2 decimal places?
+> 
+> 2. How about within an error of 0.003?
+
+To help with situations such as those above, there are classes of more helpful 
+assertions that we will use often in later parts of this testing lesson as the 
+building blocks of our tests. The nose testing package contains many of them.
+
+
+~~~ {.python}
+from nose.tools import assert_almost_equal
+> a = 401./200.
+> assert_almost_equal(a, int(a), places=2)
+> assert_almost_equal(a, int(a), delta=0.003)
+~~~
+
+These assertions give much more helpful error messages and have much more 
+powerful features than the simple assert keyword. An even more powerful sibling 
+of the assertion is the _exception_. We'll learn about those in the next 
+lesson.
