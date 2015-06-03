@@ -82,7 +82,7 @@ desire to work more efficiently, all scientists can benefit from testing.
 5.  [Nose Testing](05-nose.html)
 6.  [Edges and Corners](06-edges.html)
 7.  [Integration Tests](07-integration.html)
-8.  [Regression Tests](08-regression.html)
+8.  [Continuous Integration](08-ci.html)
 9.  [Test Driven Development](09-tdd.html)
 
 ## Other Resources
