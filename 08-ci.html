@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: Version Control with Git</title>
+    <title>Software Carpentry: Testing</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -26,52 +26,99 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title">Version Control with Git</h1>
-          <h2 class="subtitle">Creating a Repository</h2>
+          <h1 class="title">Testing</h1>
+          <h2 class="subtitle">Continuous Integration</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
-<li>Create a local Git repository.</li>
+<li>Understand how continuous integration speeds software development</li>
+<li>Understand the benefits of continuous integration</li>
+<li>Implement a continuous integration server</li>
+<li>Identify a few options for hosting a continuous integration server</li>
 </ul>
 </div>
 </section>
-<p>Once Git is configured, we can start using it. Let’s create a directory for our work and then move into that directory:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> planets
-$ <span class="kw">cd</span> planets</code></pre>
-<p>Then we tell Git to make <code>planets</code> a <a href="reference.html#repository">repository</a>—a place where Git can store versions of our files:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> init</code></pre>
-<p>If we use <code>ls</code> to show the directory’s contents, it appears that nothing has changed:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre>
-<p>But if we add the <code>-a</code> flag to show everything, we can see that Git has created a hidden directory within <code>planets</code> called <code>.git</code>:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -a</code></pre>
-<pre class="output"><code>.   ..  .git</code></pre>
-<p>Git stores information about the project in this special sub-directory. If we ever delete it, we will lose the project’s history.</p>
-<p>We can check that everything is set up correctly by asking Git to tell us the status of our project:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
-<pre class="output"><code># On branch master
-#
-# Initial commit
-#
-nothing to commit (create/copy files and use &quot;git add&quot; to track)</code></pre>
+<p>To make running the tests as easy as possible, many software development teams implement a strategy called <strong>continuous integration</strong>. As its name implies, continuous integration integrates the test suite into the development process. Every time a change is made to the repository, the continuous integration system builds and checks that code.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Places to Create Git Repositories</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Does Your Software Works on Your Colleague’s Computer?</h2>
 </div>
 <div class="panel-body">
-<p>Dracula starts a new project, <code>moons</code>, related to his <code>planets</code> project. Despite Wolfman’s concerns, he enters the following sequence of commands to create one Git repository inside another:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span>             <span class="co"># return to home directory</span>
-<span class="kw">mkdir</span> planets  <span class="co"># make a new directory planets</span>
-<span class="kw">cd</span> planets     <span class="co"># go into planets</span>
-<span class="kw">git</span> init       <span class="co"># make the planets directory a Git repository</span>
-<span class="kw">mkdir</span> moons    <span class="co"># make a sub-directory planets/moons</span>
-<span class="kw">cd</span> moons       <span class="co"># go into planets/moons</span>
-<span class="kw">git</span> init       <span class="co"># make the moons sub-directory a Git repository</span></code></pre>
-<p>Why is it a bad idea to do this? How can Dracula “undo” his last <code>git init</code>?</p>
+<p>Imagine you developed software on a MacOSX computer. Last week, you helped your office mate build and run it on their Linux computer. You’ve made some changes since then.</p>
+<ol style="list-style-type: decimal">
+<li>How can you be sure it will still work if they update their repository when they come back from vacation?</li>
+<li>How long will that process take? machine until you try rebuilding it on their machine.</li>
+</ol>
 </div>
 </section>
+<p>The typical story in a research lab is that, well, you don’t know whether it will work on your colleagues’ machine until you try rebuilding it on their machine. If you have a build system, it might take a few minutes to update the repository, rebuild the code, and run the tests. If you don’t have a build system, it could take all afternoon just to see if your new changes are compatible.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pushpin"></span>Let The Computers Do The Work</h2>
+</div>
+<div class="panel-body">
+<p>Scientists are good at creative insights, conceptual understanding, critical analysis, and consuming espresso. Computers are good at following instructions. Science would be more fun if the scientists could just give the computers the instructions and go grab an espresso.</p>
+<p>Continuous integration servers allow just that. Based on your instructions, a continuous integration server can:</p>
+<ul>
+<li>check out new code from a repository</li>
+<li>spin up instances of supported operating systems (i.e., various versions of OSX, Linux, Windows, etc.).</li>
+<li>spin up those instances with different software versions (i.e., python 2.7 and python 3.0)</li>
+<li>run the build and test scripts</li>
+<li>check for errors</li>
+<li>and report the results.</li>
+</ul>
+</div>
+</aside>
+<h2 id="giving-instructions">Giving Instructions</h2>
+<p>Your mean repository has both code and tests. Let’s add continuous integration to that repository.</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pencil"></span>Decide How To Set Up the Server</h2>
+</div>
+<div class="panel-body">
+<p>It doesn’t need a build system, because Python does not need to be compiled.</p>
+<ol style="list-style-type: decimal">
+<li>What does it need?</li>
+<li>Write the names of the software dependencies in a file called requirements.txt and save the file.</li>
+</ol>
+</div>
+</section>
+<h3 id="travis-ci">Travis-CI</h3>
+<p><a href="https://travis-ci.org/">Travis</a> is a continous integration server hosting platform. It’s commonly used in Ruby development circles as well as in the scientific python community.</p>
+<blockquote>
+<h2>Get a Travis-CI Account</h2>
+<p>To use Travis, all you need is an account. It’s free.</p>
+<ol style="list-style-type: decimal">
+<li>Someone in your group should sign up for a Travis account.</li>
+<li>Follow the instructions on the Travis website to connect your Travis account with GitHub.</li>
+</ol>
+</blockquote>
+<p>A file called <code>.travis.yml</code> in your repository will signal to Travis that you want to build and test this repository on Travis-CI. Such a file, for our purposes, is very simple:</p>
+<pre><code>language: python
+python:
+  - &quot;2.6&quot;
+  - &quot;2.7&quot;
+  - &quot;3.2&quot;
+  - &quot;3.3&quot;
+  - &quot;3.4&quot;
+  - &quot;nightly&quot;
+# command to install dependencies
+install:
+  - &quot;pip install .&quot;
+  - &quot;pip install -r requirements.txt&quot;
+# command to run tests
+script: nosetests</code></pre>
+<h2 id="continuous-integration-hosting">Continuous Integration Hosting</h2>
+<p>We gave the example of Travis because it’s very very simple to spin up. While it is able to run many flavors of Linux, it currently doesn’t support other platforms as well. Depending on your needs, you may consider other services such as CDash, Jenkins, or Buildbot.</p>
+<h3 id="cdash">CDash</h3>
+<p>CDash is awesome</p>
+<h3 id="jenkins">Jenkins</h3>
+<p>Jenkins is fancy</p>
+<h3 id="buildbot">buildbot</h3>
+<p>buildbot is customizable.</p>
         </div>
       </div>
       </article>
