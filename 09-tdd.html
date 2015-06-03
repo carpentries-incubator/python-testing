@@ -34,44 +34,99 @@
 </div>
 <div class="panel-body">
 <ul>
-<li>Create a local Git repository.</li>
+<li>Learn about the benefits and drawbacks of Test Driven Development</li>
+<li>Write a test before writing the code</li>
 </ul>
 </div>
 </section>
-<p>Once Git is configured, we can start using it. Let’s create a directory for our work and then move into that directory:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> planets
-$ <span class="kw">cd</span> planets</code></pre>
-<p>Then we tell Git to make <code>planets</code> a <a href="reference.html#repository">repository</a>—a place where Git can store versions of our files:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> init</code></pre>
-<p>If we use <code>ls</code> to show the directory’s contents, it appears that nothing has changed:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre>
-<p>But if we add the <code>-a</code> flag to show everything, we can see that Git has created a hidden directory within <code>planets</code> called <code>.git</code>:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -a</code></pre>
-<pre class="output"><code>.   ..  .git</code></pre>
-<p>Git stores information about the project in this special sub-directory. If we ever delete it, we will lose the project’s history.</p>
-<p>We can check that everything is set up correctly by asking Git to tell us the status of our project:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
-<pre class="output"><code># On branch master
-#
-# Initial commit
-#
-nothing to commit (create/copy files and use &quot;git add&quot; to track)</code></pre>
+<p>Test-driven Development (TDD) takes the workflow of writing code and writing tests and turns it on its head. TDD is a software development process where you write the tests first. Before you write a single line of a function, you first write the test for that function.</p>
+<p>After you write a test, you are then allowed to proceed to write the function that you are testing. However, you are only supposed to implement enough of the function so that the test passes. If the function does not do what is needed, you write another test and then go back and modify the function. You repeat this process of test-then-implement until the function is completely implemented for your current needs.</p>
+<p>Developers who practice strict TDD will tell you that it is the best thing since sliced arrays. The central claim to TDD is that at the end of the process you have an implementation that is well tested for your use case, and the process itself is more efficient. You stop when your tests pass and you do not need any more features. You do not spend any time implementing options and features on the off chance that they will prove helpful later. You get what you need when you need it, and no more. TDD is a very powerful idea, though it can be hard to follow religiously.</p>
+<p>The most important takeaway from test-driven development is that the moment you start writing code, you should be considering how to test that code. The tests should be written and presented in tandem with the implementation. Testing is too important to be an afterthought.</p>
+<p>Whether to pursue classic TDD is a personal decision. This design philosophy was most strongly put forth by Kent Beck in his book <em>Test-Driven Development: By Example</em>.</p>
+<p>The following example illustrates TDD for a standard deviation function, <code>std()</code>.</p>
+<p>To start, we write a test for computing the standard deviation from a list of numbers as follows:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> nose.tools <span class="ch">import</span> assert_equal
+
+<span class="ch">from</span> mod <span class="ch">import</span> std
+
+<span class="kw">def</span> test_std1():
+    obs = std([<span class="fl">0.0</span>, <span class="fl">2.0</span>])
+    exp = <span class="fl">1.0</span>
+    assert_equal(obs, exp)</code></pre>
+<p>Next, we write the <em>minimal</em> version of <code>std()</code> that will cause <code>test_std1()</code> to pass:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> std(vals):
+    <span class="co"># surely this is cheating...</span>
+    <span class="kw">return</span> <span class="fl">1.0</span></code></pre>
+<p>As you can see, the minimal version simply returns the expected result for the sole case that we are testing. If we only ever want to take the standard deviation of the numbers 0.0 and 2.0, or 1.0 and 3.0, and so on, then this implementation will work perfectly. If we want to branch out, then we probably need to write more robust code. However, before we can write more code, we first need to add another test or two:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> test_std1():
+    obs = std([<span class="fl">0.0</span>, <span class="fl">2.0</span>])
+    exp = <span class="fl">1.0</span>
+    assert_equal(obs, exp)
+
+<span class="kw">def</span> test_std2():
+    <span class="co"># Test the fiducial case when we pass in an empty list.</span>
+    obs = std([])
+    exp = <span class="fl">0.0</span>
+    assert_equal(obs, exp)
+
+<span class="kw">def</span> test_std3():
+    <span class="co"># Test a real case where the answer is not one.</span>
+    obs = std([<span class="fl">0.0</span>, <span class="fl">4.0</span>])
+    exp = <span class="fl">2.0</span>
+    assert_equal(obs, exp)</code></pre>
+<p>A simple function implementation that would make these tests pass could be as follows:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> std(vals):
+    <span class="co"># a little better</span>
+    <span class="kw">if</span> <span class="dt">len</span>(vals) == <span class="dv">0</span>: <span class="co"># Special case the empty list.</span>
+        <span class="kw">return</span> <span class="fl">0.0</span>
+    <span class="kw">return</span> vals[-<span class="dv">1</span>] / <span class="fl">2.0</span> <span class="co"># By being clever, we can get away without doing real work.</span></code></pre>
+<p>Are we done? No. Of course not. Even though the tests all pass, this is clearly still not a generic standard deviation function. To create a better implementation, TDD states that we again need to expand the test suite:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> test_std1():
+    obs = std([<span class="fl">0.0</span>, <span class="fl">2.0</span>])
+    exp = <span class="fl">1.0</span>
+    assert_equal(obs, exp)
+
+<span class="kw">def</span> test_std2():
+    obs = std([])
+    exp = <span class="fl">0.0</span>
+    assert_equal(obs, exp)
+
+<span class="kw">def</span> test_std3():
+    obs = std([<span class="fl">0.0</span>, <span class="fl">4.0</span>])
+    exp = <span class="fl">2.0</span>
+    assert_equal(obs, exp)
+
+<span class="kw">def</span> test_std4():
+    <span class="co"># The first value is not zero.</span>
+    obs = std([<span class="fl">1.0</span>, <span class="fl">3.0</span>])
+    exp = <span class="fl">1.0</span>
+    assert_equal(obs, exp)
+
+<span class="kw">def</span> test_std5():
+    <span class="co"># Here, we have more than two values, but all of the values are the same.</span>
+    obs = std([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])
+    exp = <span class="fl">0.0</span>
+    assert_equal(obs, exp)</code></pre>
+<p>At this point, we may as well try to implement a generic standard deviation function. Recall:</p>
+<div class="figure">
+<img src="img/std.png" alt="Standard Deviation" /><p class="caption">Standard Deviation</p>
+</div>
+<p>We would spend more time trying to come up with clever approximations to the standard deviation than we would spend actually coding it.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Places to Create Git Repositories</h2>
+<h3><span class="glyphicon glyphicon-pencil"></span>Just bite the bullet</h3>
 </div>
 <div class="panel-body">
-<p>Dracula starts a new project, <code>moons</code>, related to his <code>planets</code> project. Despite Wolfman’s concerns, he enters the following sequence of commands to create one Git repository inside another:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span>             <span class="co"># return to home directory</span>
-<span class="kw">mkdir</span> planets  <span class="co"># make a new directory planets</span>
-<span class="kw">cd</span> planets     <span class="co"># go into planets</span>
-<span class="kw">git</span> init       <span class="co"># make the planets directory a Git repository</span>
-<span class="kw">mkdir</span> moons    <span class="co"># make a sub-directory planets/moons</span>
-<span class="kw">cd</span> moons       <span class="co"># go into planets/moons</span>
-<span class="kw">git</span> init       <span class="co"># make the moons sub-directory a Git repository</span></code></pre>
-<p>Why is it a bad idea to do this? How can Dracula “undo” his last <code>git init</code>?</p>
+<ol style="list-style-type: decimal">
+<li>Copy the five tests above into a file called test_std.py</li>
+<li>Open mod.py</li>
+<li>Add an implementation that actually calculates a standard deviation.</li>
+<li>Run the tests above. Did they pass?</li>
+</ol>
 </div>
 </section>
+<p>It is important to note that we could improve this function by writing further tests. For example, this <code>std()</code> ignores the situation where infinity is an element of the values list. There is always more that can be tested. TDD prevents you from going overboard by telling you to stop testing when you have achieved all of your use cases.</p>
         </div>
       </div>
       </article>

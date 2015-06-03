@@ -83,6 +83,7 @@
 <ol style="list-style-type: decimal">
 <li>What does it need?</li>
 <li>Write the names of the software dependencies in a file called requirements.txt and save the file.</li>
+<li>In fact, why don’t you go ahead and version control it?</li>
 </ol>
 </div>
 </section>
@@ -107,10 +108,25 @@ python:
   - &quot;nightly&quot;
 # command to install dependencies
 install:
-  - &quot;pip install .&quot;
   - &quot;pip install -r requirements.txt&quot;
 # command to run tests
 script: nosetests</code></pre>
+<p>You can see how the python package manager, pip, will use your requirements.txt file from the previous exercise. That requirements.txt file is a conventional way to list all of the python packages that we need. If we needed nose, numpy, and pymol, the requirements.txt file would look like this:</p>
+<pre><code>nose
+numpy
+pymol</code></pre>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pencil"></span>Add a .travis.yml file</h2>
+</div>
+<div class="panel-body">
+<ol style="list-style-type: decimal">
+<li>Add .travis.yml to your repository</li>
+<li>Commit and push it.</li>
+<li>Check the situation at <a href="https://travis-ci.org/">your server</a></li>
+</ol>
+</div>
+</section>
 <h2 id="continuous-integration-hosting">Continuous Integration Hosting</h2>
 <p>We gave the example of Travis because it’s very very simple to spin up. While it is able to run many flavors of Linux, it currently doesn’t support other platforms as well. Depending on your needs, you may consider other services such as CDash, Jenkins, or Buildbot.</p>
 <h3 id="cdash">CDash</h3>
