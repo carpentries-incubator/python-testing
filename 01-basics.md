@@ -9,13 +9,12 @@ minutes: 5
 > *   Understand the place of testing in a scientific workflow.
 > *   Understand that testing has many forms.
 
-Testing should be a seamless part of scientific software development process.
-The purpose of the software should be clear to anyone reading the tests. For
-this reason, the purpose of the software must be clear the person writing the
-test. Thus, tests should be created aroudnd the same time as the code in
-qustion. Similarly, the author of the original software is often the best
-person to write the tests for that software.  
+The first step toward getting the right answers from our programs is to assume
+that mistakes *will* happen and to guard against them.  This is called
+**defensive programming** and the most common way to do it is to add alarms and
+tests into our code so that it checks itself.
 
+**Testing** should be a seamless part of scientific software development process.
 At the beginning of a new project, tests can
 be used to help guide the overall architecture of the project.
 This is analogous to experiment design in the experimental science world.
@@ -52,15 +51,13 @@ which might appear due to new software and updates.
 software work together as expected. 
 
 
-> ## Key Ideas {.callout}
+> ## Key Points {.keypoints}
 > 
-> * Tests compare that the result observed from running code is the same as what was
-  expected ahead of time.
-> * Tests should be written at the same time as the code they are testing is written.
-> * The person best suited to write a test is the author of the original code.
+> - Tests compare that the result observed from running code is the same as what was expected ahead of time.
+> - Tests should be written at the same time as the code they are testing is written.
+> - The person best suited to write a test is the author of the original code.
 > - Assertions and exceptions are like alarm systems embedded in the software, guarding against exceptional bahavior.
-- * Unit tests try to test the smallest pieces of code possible, usually functions and
-  methods.
-> - * Integration tests make sure that code units work together properly.
-> - * Regression tests ensure that everything works the same today as it did yesterday.
+> - Unit tests try to test the smallest pieces of code possible, usually functions and methods.
+> - Integration tests make sure that code units work together properly.
+> - Regression tests ensure that everything works the same today as it did yesterday.
 

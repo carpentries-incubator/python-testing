@@ -80,3 +80,10 @@ def mean(num_list):
 Exceptions have the advantage of being simple to include and powerfully helpful
 to the user. However, not all behaviors can or should be found with runtime
 exceptions. Most behaviors should be validated with unit tests.
+
+> ## Key Points {.keypoints}
+>
+> -   Exceptions are effectively specialized runtime tests
+> -   Exceptions can be caught and handled with a try-except block
+> -   Many built-in Exception types are available 
+

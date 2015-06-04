@@ -8,8 +8,7 @@ minutes: 10
 > 
 > *   Assertions are one line tests embedded in code.
 > *   Assertions can halt execution if something unexpected happens.
-> *   Assertions are the building block of tests.
-
+> *   Assertions are the building blocks of tests.
 
 Assertions are the simplest type of test. They are used as a tool for bounding 
 acceptable behavior during runtime. The assert keyword in python has the 
@@ -84,3 +83,13 @@ These assertions give much more helpful error messages and have much more
 powerful features than the simple assert keyword. An even more powerful sibling 
 of the assertion is the _exception_. We'll learn about those in the next 
 lesson.
+
+
+> ## Key Points {.keypoints}
+>
+> -   Assertions are one line tests embedded in code.
+> -   The `assert` keyword is used to set an assertion.
+> -   Assertions halt execution if the argument is false.
+> -   Assertions do nothing if the argument is true.
+> -   The `nose.tools` package provides more informative assertions.
+> -   Assertions are the building blocks of tests.

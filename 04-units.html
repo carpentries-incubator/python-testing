@@ -136,6 +136,16 @@
         obs = <span class="dt">int</span>(fhandle.read())
     assert_equal(exp, obd)</code></pre>
 <p>Note that if you have functions in your test module that are simply named <code>setup()</code> and <code>teardown()</code>, each of these are called automatically when the entire test module is loaded in and finished.</p>
+<blockquote>
+<h2>Key Points</h2>
+<ul>
+<li>Functions are the atomistic unit of software.</li>
+<li>Simpler units are easier to test than complex ones.</li>
+<li>A single unit test is a function containing assertions.</li>
+<li>Such a unit test is run just like any other function.</li>
+<li>It may be necessary to set up “fixtures” composing the test environment.</li>
+</ul>
+</blockquote>
         </div>
       </div>
       </article>

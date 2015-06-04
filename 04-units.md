@@ -6,11 +6,11 @@ minutes: 10
 ---
 > ## Learning Objectives {.objectives}
 > 
-> *   Understand that functions are the atomistic unit of software.
-> *   Understand that simpler units are easier to test than complex ones.
-> *   Understand how to write a single unit test.
-> *   Understand how to run a single unit test.
-> *   Understand how test fixtures can help write tests.
+> -   Understand that functions are the atomistic unit of software.
+> -   Understand that simpler units are easier to test than complex ones.
+> -   Understand how to write a single unit test.
+> -   Understand how to run a single unit test.
+> -   Understand how test fixtures can help write tests.
 
 Unit tests are so called because they exercise the functionality of the code by
 interrogating individual functions and methods. Fuctions and methods can often
@@ -160,3 +160,12 @@ def test_f():
 Note that if you have functions in your test module that are simply named
 `setup()` and `teardown()`, each of these are called automatically when the
 entire test module is loaded in and finished.
+
+> ## Key Points {.keypoints}
+>
+> -   Functions are the atomistic unit of software.
+> -   Simpler units are easier to test than complex ones.
+> -   A single unit test is a function containing assertions.
+> -   Such a unit test is run just like any other function.
+> -   It may be necessary to set up "fixtures" composing the test environment.
+

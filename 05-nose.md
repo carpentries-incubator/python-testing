@@ -6,7 +6,8 @@ minutes: 10
 ---
 > ## Learning Objectives {.objectives}
 > 
-> *   Understand how to run a test suite using the nose framework
+> -   Understand how to run a test suite using the nose framework
+> -   Understand how to read the output of a nose test suite
 
 
 Recall that we created a suite of tests for our mean function.
@@ -106,3 +107,13 @@ As we write more code, we would write more tests, and _nosetests_ would produce
 more dots.  Each passing test is a small, satisfying reward for having written
 quality scientific software. Now that you know how to write tests, let's go
 into what can go wrong.
+
+
+> ## Key Points {.keypoints}
+>
+> -   The `nosetests` command collects and runs tests starting with `Test-`, `test_`, and similar names.
+> -   `.` means the test passed
+> -   `F` means the test failed
+> -   `E` encountered an error
+> -   `K` is a known failure
+> -   `S` is a purposefully skipped test

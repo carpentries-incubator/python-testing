@@ -6,10 +6,10 @@ minutes: 10
 ---
 > ## Learning Objectives {.objectives}
 > 
-> *   Understand that edge  cases are at the limit of the function's behavior
-> *   Write a test for an edge case
-> *   Understand that corner cases are where two edge cases meet
-> *   Write a test for a corner case
+> -   Understand that edge  cases are at the limit of the function's behavior
+> -   Write a test for an edge case
+> -   Understand that corner cases are where two edge cases meet
+> -   Write a test for a corner case
 
 What we saw in the tests for the mean function are called  _interior_ tests.
 The precise points that we tested did not matter. The mean function should have
@@ -155,3 +155,10 @@ Whether internal, edge, or corner cases, we have started to build
 up a classification system for the tests themselves. In the following sections,
 we will build this system up even more based on the role that the tests have
 in the software architecture.
+
+
+> ## Key Points {.keypoints}
+>
+> -   Functions often fail at the edge of their range of validity
+> -   Edge case tests query the limits of a function's behavior
+> -   Corner cases are where two edge cases meet

@@ -4,6 +4,7 @@ title: Testing
 subtitle: Test Driven Development
 minutes: 10
 ---
+
 > ## Learning Objectives {.objectives}
 > 
 > *   Learn about the benefits and drawbacks of Test Driven Development
@@ -21,27 +22,31 @@ needed, you write another test and then go back and modify the function.  You
 repeat this process of test-then-implement until the function is completely
 implemented for your current needs.
 
-> ## You Do You {.callout}
+> ## The Big Idea {.callout}
+> This design philosophy was most strongly put forth by Kent Beck in his book 
+> _Test-Driven  Development: By Example_.
 >
-> Developers who practice strict TDD will tell you that it is the best thing since
-> sliced arrays.  The central claim to TDD is that at the end of the process you have an
+> The central claim to TDD is that at the end of the process you have an
 > implementation that is well tested for your use case, and the process itself is
 > more efficient. You stop when your tests pass and you do not need any more
 > features. You do not spend any time implementing options and features on the off
 > chance that they will prove helpful later. You get what you need when you need it,
 > and no more. TDD is a very powerful idea, though it can be hard to follow religiously.
 > 
-> The most important takeaway from test-driven development is that the moment
-> you start writing code, you should be considering how to test that code. The
-> tests should be written and presented in tandem with the implementation. **Testing
-> is too important to be an afterthought.**
-> 
-> Whether to pursue classic TDD is a personal decision. This design philosophy
-> was most strongly put forth by Kent Beck in his book _Test-Driven 
-> Development: By Example_.
-> 
 
-The following example illustrates TDD for a standard deviation function, `std()`.
+The most important takeaway from test-driven development is that the moment
+you start writing code, you should be considering how to test that code. The
+tests should be written and presented in tandem with the implementation. **Testing
+is too important to be an afterthought.**
+
+> ## You Do You {.callout}
+>
+> Developers who practice strict TDD will tell you that it is the best thing since
+> sliced arrays. However, do what works for you. The choice whether to pursue 
+> classic TDD is a personal decision. 
+
+The following example illustrates classic TDD for a standard deviation 
+function, `std()`.
 
 To start, we write a test for computing the standard deviation from
 a list of numbers as follows:
@@ -156,3 +161,12 @@ writing further tests.  For example, this `std()` ignores the situation where in
 is an element of the values list. There is always more that can be tested.  TDD
 prevents you from going overboard by telling you to stop testing when you
 have achieved all of your use cases.
+
+> ## Key Points {.keypoints}
+>
+> 
+> -   Test driven development is a common software development technique
+> -   By writing the tests first, the function requirements are very explicit
+> -   TDD is not for everyone
+> -   TDD requires vigilance for success (cheating leads to failure)
+

@@ -36,7 +36,7 @@
 <ul>
 <li>Assertions are one line tests embedded in code.</li>
 <li>Assertions can halt execution if something unexpected happens.</li>
-<li>Assertions are the building block of tests.</li>
+<li>Assertions are the building blocks of tests.</li>
 </ul>
 </div>
 </section>
@@ -81,6 +81,17 @@
 &gt; assert_almost_equal(a, <span class="dt">int</span>(a), places=<span class="dv">2</span>)
 &gt; assert_almost_equal(a, <span class="dt">int</span>(a), delta=<span class="fl">0.003</span>)</code></pre>
 <p>These assertions give much more helpful error messages and have much more powerful features than the simple assert keyword. An even more powerful sibling of the assertion is the <em>exception</em>. We’ll learn about those in the next lesson.</p>
+<blockquote>
+<h2>Key Points</h2>
+<ul>
+<li>Assertions are one line tests embedded in code.</li>
+<li>The <code>assert</code> keyword is used to set an assertion.</li>
+<li>Assertions halt execution if the argument is false.</li>
+<li>Assertions do nothing if the argument is true.</li>
+<li>The <code>nose.tools</code> package provides more informative assertions.</li>
+<li>Assertions are the building blocks of tests.</li>
+</ul>
+</blockquote>
         </div>
       </div>
       </article>
