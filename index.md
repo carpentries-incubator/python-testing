@@ -28,12 +28,6 @@ title: Testing
 8.  [Continuous Integration](08-ci.html)
 9.  [Test Driven Development](09-tdd.html)
 
-## Other Resources
-
-*   [Motivation](motivation.html)
-*   [Reference](reference.html)
-*   [Discussion](discussion.html)
-*   [Instructor's Guide](instructors.html)
 
 Before relying on a new experimental device, an experimental scientist always
 establishes its accuracy. A new detector is calibrated when the scientist
@@ -99,3 +93,10 @@ desire to work more efficiently, all scientists can benefit from testing.
 > [''Effective Computation In Physics'' by Anthony Scopatz and Kathryn Huff](http://physics.codes). 
 > It is often quoted directly.
 
+
+## Other Resources
+
+*   [Motivation](motivation.html)
+*   [Reference](reference.html)
+*   [Discussion](discussion.html)
+*   [Instructor's Guide](instructors.html)
