@@ -141,7 +141,9 @@ def test_edge_y():
 ~~~
 
 > ## Write a corner case
-> The sinc2d example will also need a test for the corner case, where both x and y are 0.0.
+> The sinc2d example will also need a test for the corner case, where both x 
+> and y are 0.0.
+>
 > 1. Insert the sinc2d function code (above) into a file called mod.py.
 > 2. Add the edge and internal case tests (above) to a test_sinc2d.py file.
 > 3. Invent and implement a corner case test in that file.

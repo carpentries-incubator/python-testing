@@ -57,29 +57,43 @@
 <h2><span class="glyphicon glyphicon-pencil"></span>Insert an Assertion</h2>
 </div>
 <div class="panel-body">
-<p>In the following code, insert an assertion that checks whether the list is made of numbers.</p>
+<ol style="list-style-type: decimal">
+<li>Create a new IPython Notebook</li>
+<li>Create the following function:</li>
+</ol>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
   <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>In the function, insert an assertion that checks whether the list is made of numbers.</li>
+</ol>
 </div>
 </section>
 <p>Assertions are also helpful for catching abnormal behaviors, such as those that arise with floating point arithmetic.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Check a Floating Point Error</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Challenge: Almost Equal</h2>
 </div>
 <div class="panel-body">
-<p>a = 401.0/200.0</p>
-<ol style="list-style-type: decimal">
-<li><p>Using the <code>assert</code> keyword, how could you test whether <code>a</code> is the same as int (a) to within 2 decimal places?</p></li>
-<li><p>How about within an error of 0.003?</p></li>
-</ol>
+<p>Assertions are also helpful for catching abnormal behaviors, such as those that arise with floating point arithmetic. Using the assert keyword, how could you test whether some value is almost the same as another value?</p>
+<ul>
+<li>My package, mynum, provides the number a.</li>
+<li>Use the <code>assert</code> keyword to check whether the number a is greater than 2.</li>
+<li>Use the <code>assert</code> keyword to check whether a is equal to 2 to within 2 decimal places.</li>
+<li>Use the <code>assert</code> keyword to check that a is equal to 2 within an error of 0.003.</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> mynum <span class="ch">import</span> a
+<span class="co"># greater than 2 assertion here</span>
+<span class="co"># 2 decimal places assertion here</span>
+<span class="co"># 0.003 assertion here</span></code></pre>
 </div>
 </section>
 <p>To help with situations such as those above, there are classes of more helpful assertions that we will use often in later parts of this testing lesson as the building blocks of our tests. The nose testing package contains many of them.</p>
+<h3 id="nose">Nose</h3>
+<p>The nose testing framework has built-in assertion types implementing <code>assert_almost_equal</code>, <code>assert_true</code>, <code>assert_false</code>, <code>assert_raises</code>, <code>assert_is_instance</code>, and others.</p>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> nose.tools <span class="ch">import</span> assert_almost_equal
-&gt; a = <span class="dv">401</span>./<span class="dv">200</span>.
-&gt; assert_almost_equal(a, <span class="dt">int</span>(a), places=<span class="dv">2</span>)
-&gt; assert_almost_equal(a, <span class="dt">int</span>(a), delta=<span class="fl">0.003</span>)</code></pre>
+<span class="ch">from</span> mynum <span class="ch">import</span> a
+assert_almost_equal(a, <span class="dv">2</span>, places=<span class="dv">2</span>)
+assert_almost_equal(a, <span class="dv">2</span>, delta=<span class="fl">0.003</span>)</code></pre>
 <p>These assertions give much more helpful error messages and have much more powerful features than the simple assert keyword. An even more powerful sibling of the assertion is the <em>exception</em>. We’ll learn about those in the next lesson.</p>
 <blockquote>
 <h2>Key Points</h2>

@@ -15,19 +15,19 @@ that mistakes *will* happen and to guard against them.  This is called
 tests into our code so that it checks itself.
 
 **Testing** should be a seamless part of scientific software development process.
-At the beginning of a new project, tests can
-be used to help guide the overall architecture of the project.
-This is analogous to experiment design in the experimental science world.
-The act of writing tests can help clarify how the software
-should be performing. Taking this idea to the
-extreme you could start to write the tests _before_ you even write the software
-that will be
-tested. Such a practice is called _test-driven development_, which we will
-discuss in greater detail [later in the lesson](09-tdd.html).
+This is analogous to experiment design in the experimental science world:
+
+- At the beginning of a new project, tests can be used to help guide the 
+  overall architecture of the project.
+- The act of writing tests can help clarify how the software should be perform when you are done. 
+- In fact, starting to write the tests _before_ you even write the software 
+  might be advisable. (Such a practice is called _test-driven development_, 
+  which we will discuss in greater detail [later in the lesson](09-tdd.html).)
 
 > ### What Kinds of Tests Exist
 > There are many ways to test software, such as:
 >
+> - Assertions
 > - Exceptions
 > - Unit Tests
 > - Regresson Tests

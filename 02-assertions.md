@@ -47,36 +47,54 @@ quite limited.
 
 > ## Insert an Assertion {.challenge}
 >
-> In the following code, insert an assertion that checks whether the list is 
-> made of numbers.
-> 
+> 1. Create a new IPython Notebook
+> 2. Create the following function:
+>
 > ~~~ {.python}
 > def mean(num_list):
 >   return sum(num_list)/len(num_list)
 > ~~~
+>
+> 3. In the function, insert an assertion that checks whether the list is 
+> made of numbers.
+> 
 
 
 Assertions are also helpful for catching abnormal behaviors, such as those that 
 arise with floating point arithmetic.
 
-> ## Check a Floating Point Error {.challenge}
-> a = 401.0/200.0
+> ## Challenge: Almost Equal {.challenge}
+> Assertions are also helpful for catching abnormal behaviors, such as those
+> that arise with floating point arithmetic. Using the assert keyword, how could
+> you test whether some value is almost the same as another value?
+>
+> - My package, mynum, provides the number a. 
+> - Use the `assert` keyword to check whether the number a is greater than 2.
+> - Use the `assert` keyword to check whether a is equal to 2 to within 2 decimal places.
+> - Use the `assert` keyword to check that a is equal to 2 within an error of 0.003.
 > 
-> 1. Using the `assert` keyword, how could you test whether `a` is the same as 
-> int (a) to within 2 decimal places?
-> 
-> 2. How about within an error of 0.003?
+> ~~~ {.python}
+> from mynum import a
+> # greater than 2 assertion here
+> # 2 decimal places assertion here
+> # 0.003 assertion here
+> ~~~
 
-To help with situations such as those above, there are classes of more helpful 
-assertions that we will use often in later parts of this testing lesson as the 
+To help with situations such as those above, there are classes of more helpful
+assertions that we will use often in later parts of this testing lesson as the
 building blocks of our tests. The nose testing package contains many of them.
 
+### Nose
+
+The nose testing framework has built-in assertion types implementing
+`assert_almost_equal`, `assert_true`, `assert_false`, `assert_raises`,
+`assert_is_instance`, and others.
 
 ~~~ {.python}
 from nose.tools import assert_almost_equal
-> a = 401./200.
-> assert_almost_equal(a, int(a), places=2)
-> assert_almost_equal(a, int(a), delta=0.003)
+from mynum import a
+assert_almost_equal(a, 2, places=2)
+assert_almost_equal(a, 2, delta=0.003)
 ~~~
 
 These assertions give much more helpful error messages and have much more 

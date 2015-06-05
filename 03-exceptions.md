@@ -20,8 +20,7 @@ used.
 ~~~ {.python}
 def mean(num_list):
     if len(num_list) == 0 :
-      raise Exception("The algebraic mean of an empty list is undefined. \
-      Please provide a list of numbers")
+      raise Exception("The algebraic mean of an empty list is undefined. Please provide a list of numbers")
     else :
       return sum(num_list)/len(num_list)
 ~~~
@@ -55,7 +54,7 @@ def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
     except ZeroDivisionError :
-        return Infinity
+        return 0
 ~~~
 
 If a single function might raise more than one type of exception, each can be
@@ -66,16 +65,21 @@ def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
     except ZeroDivisionError :
-        return Infinity
+        return 0
     except TypeError as detail :
         msg = "The algebraic mean of an non-numerical list is undefined. Please provide a list of numbers."
         raise TypeError(detail.__str__() + "\n" +  msg)
 ~~~
 
-> ## What Else Can Go Wrong? {.challenge}
+> ## Challenge: What Else Can Go Wrong? {.challenge}
 > 1. Think of some other type of exception that could be raised by the try 
 > block.
 > 2. Guard against it by adding an except clause.
+
+> ## Challenge: Cause all of the errors {.challenge}
+> 
+> - Use the mean function in three different ways, so that you cause each
+> exceptional case.
 
 Exceptions have the advantage of being simple to include and powerfully helpful
 to the user. However, not all behaviors can or should be found with runtime

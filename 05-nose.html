@@ -39,46 +39,57 @@
 </ul>
 </div>
 </section>
-<p>Recall that we created a suite of tests for our mean function.</p>
+<p>We created a suite of tests for our mean function, but it was annoying to run them one at a time. It would be a lot better if there were some way to run them all at once, just reporting which tests fail and which succeed.</p>
+<p>Thankfully, that exists. Recall our tests:</p>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> mean <span class="ch">import</span> *
 
 <span class="kw">def</span> test_ints():
-  num_list=[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]
-  obs = mean(num_list)
-  exp = <span class="dv">3</span>
-  <span class="kw">assert</span> obs == exp
+    num_list = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]
+    obs = mean(num_list)
+    exp = <span class="dv">3</span>
+    <span class="kw">assert</span> obs == exp
 
 <span class="kw">def</span> test_zero():
-  num_list=[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>]
-  obs = mean(num_list)
-  exp = <span class="dv">3</span>
-  <span class="kw">assert</span> obs == exp
+    num_list=[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>]
+    obs = mean(num_list)
+    exp = <span class="dv">3</span>
+    <span class="kw">assert</span> obs == exp
 
 <span class="kw">def</span> test_double():
-  num_list=[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
-  obs = mean(num_list)
-  exp = <span class="fl">2.5</span>
-  <span class="kw">assert</span> obs == exp
+    <span class="co"># This one will fail in Python 2</span>
+    num_list=[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
+    obs = mean(num_list)
+    exp = <span class="fl">2.5</span>
+    <span class="kw">assert</span> obs == exp
 
 <span class="kw">def</span> test_long():
-  big = <span class="dv">100000000</span>
-  obs = mean(<span class="dt">range</span>(<span class="dv">1</span>,big))
-  exp = big/<span class="fl">2.0</span>
-  <span class="kw">assert</span> obs == exp</code></pre>
+    big = <span class="dv">100000000</span>
+    obs = mean(<span class="dt">range</span>(<span class="dv">1</span>,big))
+    exp = big/<span class="fl">2.0</span>
+    <span class="kw">assert</span> obs == exp
+
+<span class="kw">def</span> test_complex():
+    <span class="co"># given that complex numbers are an unordered field</span>
+    <span class="co"># the arithmetic mean of complex numbers is meaningless</span>
+    num_list = [<span class="dv">2</span> + 3j, <span class="dv">3</span> + 4j, -<span class="dv">32</span> - 2j]
+    obs = mean(num_list)
+    exp = <span class="ot">NotImplemented</span>
+    <span class="kw">assert</span> obs == exp</code></pre>
 <p>Once these tests are written in a file called <code>test_mean.py</code>, the command “nosetests” can be called from the directory containing the tests:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nosetests</span></code></pre>
-<pre class="output"><code>..F.
-FAIL: test_mean.test_double
+<pre class="output"><code>....F
+======================================================================
+FAIL: test_mean.test_complex
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File &quot;/Users/khuff/anaconda/lib/python2.7/site-packages/nose/case.py&quot;, line 197, in runTest
+  File &quot;/Users/khuff/anaconda/envs/py3k/lib/python3.3/site-packages/nose/case.py&quot;, line 198, in runTest
     self.test(*self.arg)
-  File &quot;/Users/khuff/repos/book-code/tests/test_mean.py&quot;, line 20, in test_double
+  File &quot;/Users/khuff/repos/2015-06-04-berkeley/testing/test_mean.py&quot;, line 34, in test_complex
     assert obs == exp
 AssertionError
 
 ----------------------------------------------------------------------
-Ran 4 tests in 3.062s
+Ran 5 tests in 3.746s
 
 FAILED (failures=1)</code></pre>
 <p>In the above case, the python nose package ‘sniffed-out’ the tests in the directory and ran them together to produce a report of the sum of the files and functions matching the regular expression <code>[Tt]est[-_]*</code>.</p>
@@ -91,9 +102,9 @@ FAILED (failures=1)</code></pre>
 <div class="panel-body">
 <p>Without changing the tests, alter the mean.py file from the previous section until it passes. When it passes, <em>nosetests</em> will produce results like the following:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nosetests</span></code></pre>
-<pre class="output"><code>....
+<pre class="output"><code>.....
 
-Ran 4 test in 0.4s
+Ran 5 tests in 3.746s
 
 OK</code></pre>
 </div>

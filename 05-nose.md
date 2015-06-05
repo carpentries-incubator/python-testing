@@ -10,34 +10,47 @@ minutes: 10
 > -   Understand how to read the output of a nose test suite
 
 
-Recall that we created a suite of tests for our mean function.
+We created a suite of tests for our mean function, but it was annoying to run 
+them one at a time. It would be a lot better if there were some way to run them
+all at once, just reporting which tests fail and which succeed.
+
+Thankfully, that exists. Recall our tests:
 
 ~~~ {.python}
 from mean import *
 
 def test_ints():
-  num_list=[1,2,3,4,5]
-  obs = mean(num_list)
-  exp = 3
-  assert obs == exp
+    num_list = [1,2,3,4,5]
+    obs = mean(num_list)
+    exp = 3
+    assert obs == exp
 
 def test_zero():
-  num_list=[0,2,4,6]
-  obs = mean(num_list)
-  exp = 3
-  assert obs == exp
+    num_list=[0,2,4,6]
+    obs = mean(num_list)
+    exp = 3
+    assert obs == exp
 
 def test_double():
-  num_list=[1,2,3,4]
-  obs = mean(num_list)
-  exp = 2.5
-  assert obs == exp
+    # This one will fail in Python 2
+    num_list=[1,2,3,4]
+    obs = mean(num_list)
+    exp = 2.5
+    assert obs == exp
 
 def test_long():
-  big = 100000000
-  obs = mean(range(1,big))
-  exp = big/2.0
-  assert obs == exp
+    big = 100000000
+    obs = mean(range(1,big))
+    exp = big/2.0
+    assert obs == exp
+
+def test_complex():
+    # given that complex numbers are an unordered field
+    # the arithmetic mean of complex numbers is meaningless
+    num_list = [2 + 3j, 3 + 4j, -32 - 2j]
+    obs = mean(num_list)
+    exp = NotImplemented
+    assert obs == exp
 ~~~
 
 Once these tests are written in a file called `test_mean.py`, the command
@@ -47,18 +60,19 @@ Once these tests are written in a file called `test_mean.py`, the command
 $ nosetests
 ~~~
 ~~~ {.output}
-..F.
-FAIL: test_mean.test_double
+....F
+======================================================================
+FAIL: test_mean.test_complex
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/Users/khuff/anaconda/lib/python2.7/site-packages/nose/case.py", line 197, in runTest
+  File "/Users/khuff/anaconda/envs/py3k/lib/python3.3/site-packages/nose/case.py", line 198, in runTest
     self.test(*self.arg)
-  File "/Users/khuff/repos/book-code/tests/test_mean.py", line 20, in test_double
+  File "/Users/khuff/repos/2015-06-04-berkeley/testing/test_mean.py", line 34, in test_complex
     assert obs == exp
 AssertionError
 
 ----------------------------------------------------------------------
-Ran 4 tests in 3.062s
+Ran 5 tests in 3.746s
 
 FAILED (failures=1)
 ~~~
@@ -96,9 +110,9 @@ will print summary information.
 > $ nosetests
 > ~~~
 > ~~~ {.output}
-> ....
+> .....
 > 
-> Ran 4 test in 0.4s
+> Ran 5 tests in 3.746s
 >
 > OK
 > ~~~

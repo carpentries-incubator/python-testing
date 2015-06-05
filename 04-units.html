@@ -53,10 +53,20 @@
 </div>
 </aside>
 <p>The desire to unit test code often has the effect of encouraging both the code and the tests to be as small, well-defined, and modular as possible.<br />In Python, unit tests typically take the form of test functions that call and make assertions about methods and functions in the code base. To run these test functions, a test framework is often required to collect them together. For now, we’ll write some tests for the mean function and simply run them individually to see whether they fail. In the next session, we’ll use a test framework to collect and run them.</p>
-<p>Unit tests are typically made of three pieces, some set-up, a number of assertions, and some tear-down. Set-up can be as simple as initializing the input values or as complex as creating and initializing concrete instances of a class. Ultimately, the test occurs when an assertion is made, comparing the observed and expected values.</p>
+<h2 id="unit-tests-are-just-functions">Unit Tests Are Just Functions</h2>
+<p>Unit tests are typically made of three pieces, some set-up, a number of assertions, and some tear-down. Set-up can be as simple as initializing the input values or as complex as creating and initializing concrete instances of a class. Ultimately, the test occurs when an assertion is made, comparing the observed and expected values. For example, let us test that our mean function successfully calculates the known value for a simple list.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> mean <span class="ch">import</span> *
+
+<span class="kw">def</span> test_ints():
+    num_list = [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]
+    obs = mean(num_list)
+    exp = <span class="dv">3</span>
+    <span class="kw">assert</span> obs == exp</code></pre>
+<p>The test above: - sets up the input parameters (the simple list [1, 2, 3, 4, 5]. - collects the observed result - declares the expected result (calculated with our human brain). - and compares the two with an assertion.</p>
+<p>A unit test suite is made up of many tests just like this one. A single implemented function may be tested in numerous ways.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Write a File Full of Tests</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Challenge: Write a File Full of Tests</h2>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
@@ -65,77 +75,43 @@
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> mean <span class="ch">import</span> *
 
 <span class="kw">def</span> test_ints():
-  num_list=[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]
-  obs = mean(num_list)
-  exp = <span class="dv">3</span>
-  <span class="kw">assert</span> obs == exp
+    num_list = [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]
+    obs = mean(num_list)
+    exp = <span class="dv">3</span>
+    <span class="kw">assert</span> obs == exp
 
 <span class="kw">def</span> test_zero():
-  num_list=[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>]
-  obs = mean(num_list)
-  exp = <span class="dv">3</span>
-  <span class="kw">assert</span> obs == exp
+    num_list=[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>]
+    obs = mean(num_list)
+    exp = <span class="dv">3</span>
+    <span class="kw">assert</span> obs == exp
 
 <span class="kw">def</span> test_double():
-  num_list=[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
-  obs = mean(num_list)
-  exp = <span class="fl">2.5</span>
-  <span class="kw">assert</span> obs == exp
+    <span class="co"># This one will fail in Python 2</span>
+    num_list=[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
+    obs = mean(num_list)
+    exp = <span class="fl">2.5</span>
+    <span class="kw">assert</span> obs == exp
 
 <span class="kw">def</span> test_long():
-  big = <span class="dv">100000000</span>
-  obs = mean(<span class="dt">range</span>(<span class="dv">1</span>,big))
-  exp = big/<span class="fl">2.0</span>
-  <span class="kw">assert</span> obs == exp</code></pre>
+    big = <span class="dv">100000000</span>
+    obs = mean(<span class="dt">range</span>(<span class="dv">1</span>,big))
+    exp = big/<span class="fl">2.0</span>
+    <span class="kw">assert</span> obs == exp
+
+<span class="kw">def</span> test_complex():
+    <span class="co"># given that complex numbers are an unordered field</span>
+    <span class="co"># the arithmetic mean of complex numbers is meaningless</span>
+    num_list = [<span class="dv">2</span> + 3j, <span class="dv">3</span> + 4j, -<span class="dv">32</span> - 2j]
+    obs = mean(num_list)
+    exp = <span class="ot">NotImplemented</span>
+    <span class="kw">assert</span> obs == exp</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Use IPython to import the test_mean package and run each test.</li>
 </ol>
 </div>
 </section>
-<p>The above example didn’t require much setup or teardown. Consider, however, the following example that could arise when comunicating with third-party programs. You have a function <code>f()</code> which will write a file named <code>yes.txt</code> to disk with the value 42 but only if a file <code>no.txt</code> does not exist. To truly test the function works, you would want to ensure that neither <code>yes.txt</code> nor <code>no.txt</code> existed before you ran your test. After the test, you want to clean up after yourself before the next test comes along. You could write the test, setup, and teardown functions as follows:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> os
-
-<span class="ch">from</span> nose.tools <span class="ch">import</span> assert_equal, with_setup
-
-<span class="ch">from</span> mod <span class="ch">import</span> f
-
-<span class="kw">def</span> f_setup():
-    <span class="co"># The f_setup() function tests ensure that neither the yes.txt nor the</span>
-    <span class="co"># no.txt files exist.</span>
-    files = os.listdir(<span class="st">&#39;.&#39;</span>)
-    <span class="kw">if</span> <span class="st">&#39;no.txt&#39;</span> in files:
-        os.remove(<span class="st">&#39;no.txt&#39;</span>)
-    <span class="kw">if</span> <span class="st">&#39;yes.txt&#39;</span> in files:
-        os.remove(<span class="st">&#39;yes.txt&#39;</span>)
-
-<span class="kw">def</span> f_teardown():
-    <span class="co"># The f_teardown() function removes the yes.txt file, if it was created.</span>
-    files = os.listdir(<span class="st">&#39;.&#39;</span>)
-    <span class="kw">if</span> <span class="st">&#39;yes.txt&#39;</span> in files:
-        os.remove(<span class="st">&#39;yes.txt&#39;</span>)
-
-<span class="kw">def</span> test_f():
-    <span class="co"># The first action of test_f() is to make sure the file system is clean.</span>
-    f_setup()
-    exp = <span class="dv">42</span>
-    f()
-    <span class="kw">with</span> <span class="dt">open</span>(<span class="st">&#39;yes.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="ch">as</span> fhandle:
-        obs = <span class="dt">int</span>(fhandle.read())
-    assert_equal(exp, obd)
-    <span class="co"># The last action of test_f() is to clean up after itself.</span>
-    f_teardown()</code></pre>
-<p>The above implementation of setup and teardown is usually fine.<br />However, it does not guarantee that the <code>f_setup()</code> and the <code>f_teardown()</code> functions will be called. This is becaue an unexpected error anywhere in the body of <code>f()</code> or <code>test_f()</code> will cause the test to abort before the teardown function is reached.</p>
-<p>These setup and teardown behaviors are needed when <em>test fixtures</em> must be created. A fixture is any environmental state or object that is required for the test to successfully run.</p>
-<p>As above, a function that is executed before the test to prepare the fixture is called a <em>setup</em> function. One that is executed to mop-up side effects after a test is run is called a <em>teardown</em> function. Nose has a decorator that you can use to automatically run setup and teardown of fixtures no matter if the test succeeded, failed, or had an error.</p>
-<p>To make sure that both of the functions will be executed, you must use nose’s <code>with_setup()</code> decorator. This decorator may be applied to any test and takes a setup and a teardown function as possible arguments. We can rewrite the <code>test_f()</code> to be wrapped by <code>with_setup()</code>.</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@with_setup</span>(setup=f_setup, teardown=f_teardown)
-<span class="kw">def</span> test_f():
-    exp = <span class="dv">42</span>
-    f()
-    <span class="kw">with</span> <span class="dt">open</span>(<span class="st">&#39;yes.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="ch">as</span> fhandle:
-        obs = <span class="dt">int</span>(fhandle.read())
-    assert_equal(exp, obd)</code></pre>
-<p>Note that if you have functions in your test module that are simply named <code>setup()</code> and <code>teardown()</code>, each of these are called automatically when the entire test module is loaded in and finished.</p>
+<p>Well, <strong>that</strong> was tedious.</p>
 <blockquote>
 <h2>Key Points</h2>
 <ul>
@@ -143,7 +119,7 @@
 <li>Simpler units are easier to test than complex ones.</li>
 <li>A single unit test is a function containing assertions.</li>
 <li>Such a unit test is run just like any other function.</li>
-<li>It may be necessary to set up “fixtures” composing the test environment.</li>
+<li><strong>Running tests one at a time is pretty tedious.</strong> (let’s use a framework instead)</li>
 </ul>
 </blockquote>
         </div>
