@@ -55,7 +55,6 @@ software work together as expected.
 > 
 > - Tests compare that the result observed from running code is the same as what was expected ahead of time.
 > - Tests should be written at the same time as the code they are testing is written.
-> - The person best suited to write a test is the author of the original code.
 > - Assertions and exceptions are like alarm systems embedded in the software, guarding against exceptional bahavior.
 > - Unit tests try to test the smallest pieces of code possible, usually functions and methods.
 > - Integration tests make sure that code units work together properly.

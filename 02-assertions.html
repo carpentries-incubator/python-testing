@@ -52,20 +52,22 @@
     <span class="kw">assert</span> <span class="dt">len</span>(num_list) != <span class="dv">0</span>
     <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)</code></pre>
 <p>The advantage of assertions is their ease of use. They are rarely more than one line of code. The disadvantage is that assertions halt execution indiscriminately and the helpfulness of the resulting error message is usually quite limited.</p>
+<p>Also, input checking may require decending a rabbit hole of exceptional cases. What happens when the input provided to the mean function is a string, rather than a list of numbers?</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Insert an Assertion</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Challenge Insert an Assertion</h2>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
-<li>Create a new IPython Notebook</li>
+<li>Open an IPython Notebook</li>
 <li>Create the following function:</li>
 </ol>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
   <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>In the function, insert an assertion that checks whether the list is made of numbers.</li>
+<li>In the function, insert an assertion that checks whether the input is actually a list.</li>
 </ol>
+<p>Hint: Use the <a href="https://docs.python.org/2/library/functions.html#isinstance">isinstance function</a>.</p>
 </div>
 </section>
 <p>Assertions are also helpful for catching abnormal behaviors, such as those that arise with floating point arithmetic.</p>

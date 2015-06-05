@@ -44,10 +44,15 @@ line of code. The disadvantage is that assertions halt execution
 indiscriminately and the helpfulness of the resulting error message is usually
 quite limited. 
 
+Also, input checking may require decending a rabbit hole of exceptional cases. 
+What happens when the input provided to the mean function is a string, rather 
+than a list of numbers?
 
-> ## Insert an Assertion {.challenge}
+
+> ## Challenge Insert an Assertion {.challenge}
 >
-> 1. Create a new IPython Notebook
+>
+> 1. Open an IPython Notebook
 > 2. Create the following function:
 >
 > ~~~ {.python}
@@ -55,8 +60,10 @@ quite limited.
 >   return sum(num_list)/len(num_list)
 > ~~~
 >
-> 3. In the function, insert an assertion that checks whether the list is 
-> made of numbers.
+> 3. In the function, insert an assertion that checks whether the input is 
+> actually a list.
+> 
+> Hint: Use the [isinstance function](https://docs.python.org/2/library/functions.html#isinstance). 
 > 
 
 
