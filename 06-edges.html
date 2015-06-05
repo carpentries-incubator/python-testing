@@ -129,8 +129,11 @@
     exp = (<span class="fl">2.0</span> / np.pi)
     obs = sinc2d(np.pi / <span class="fl">2.0</span>, <span class="fl">0.0</span>)
     assert_equal(exp, obs)</code></pre>
-<blockquote>
-<h2>Write a corner case</h2>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pencil"></span>Challenge: Write a corner case</h2>
+</div>
+<div class="panel-body">
 <p>The sinc2d example will also need a test for the corner case, where both x and y are 0.0.</p>
 <ol style="list-style-type: decimal">
 <li>Insert the sinc2d function code (above) into a file called mod.py.</li>
@@ -138,7 +141,8 @@
 <li>Invent and implement a corner case test in that file.</li>
 <li>Run all of the tests using <code>nosetests</code> on the command line.</li>
 </ol>
-</blockquote>
+</div>
+</section>
 <p>Corner cases can be even trickier to find and debug than edge cases because of their increased complexity. This complexity, however, makes them even more important to explicitly test.</p>
 <p>Whether internal, edge, or corner cases, we have started to build up a classification system for the tests themselves. In the following sections, we will build this system up even more based on the role that the tests have in the software architecture.</p>
 <blockquote>

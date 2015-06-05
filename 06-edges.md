@@ -149,7 +149,7 @@ def test_edge_y():
     assert_equal(exp, obs)
 ~~~
 
-> ## Write a corner case
+> ## Challenge: Write a corner case {.challenge}
 > The sinc2d example will also need a test for the corner case, where both x 
 > and y are 0.0.
 >
