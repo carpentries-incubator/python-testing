@@ -80,11 +80,20 @@ def test_fib6():
 Different functions will have different edge cases.
 Often, you need not test for cases that are outside the valid range, unless you
 want to test that the function fails.  In the `fib()` function negative and
-noninteger values are
-not valid inputs. You do not need to have tests for these classes of numbers,
-unless you want to make sure that the function fails as expected, which is
-actually quite a good idea.  Edge cases are not where the story ends, though,
-as we will see next.
+noninteger values are not valid inputs. Tests for these classes of numbers serve you well if you want to make sure that the function fails as 
+expected. Indeed, we learned in the assertions section that this is actually quite a good idea.  
+
+> ## Test for Graceful Failure {.challenge}
+> The `fib()` function should probably return the Python built-in 
+> `NotImplemented` value for negative and noninteger values.
+> 
+> 1. Create a file called `test_fib.py`
+> 2. Copy the three tests above into that file.
+> 3. Write **two new** tests that check for the expected return value 
+> (NotImplemented) in each case (for negative input and noninteger input 
+> respectively).
+
+Edge cases are not where the story ends, though, as we will see next.
 
 ## Corner Cases
 

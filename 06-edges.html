@@ -80,7 +80,21 @@
     <span class="co"># test internal point</span>
     obs = fib(<span class="dv">6</span>)
     assert_equal(<span class="dv">13</span>, obs)</code></pre>
-<p>Different functions will have different edge cases. Often, you need not test for cases that are outside the valid range, unless you want to test that the function fails. In the <code>fib()</code> function negative and noninteger values are not valid inputs. You do not need to have tests for these classes of numbers, unless you want to make sure that the function fails as expected, which is actually quite a good idea. Edge cases are not where the story ends, though, as we will see next.</p>
+<p>Different functions will have different edge cases. Often, you need not test for cases that are outside the valid range, unless you want to test that the function fails. In the <code>fib()</code> function negative and noninteger values are not valid inputs. Tests for these classes of numbers serve you well if you want to make sure that the function fails as expected. Indeed, we learned in the assertions section that this is actually quite a good idea.</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pencil"></span>Test for Graceful Failure</h2>
+</div>
+<div class="panel-body">
+<p>The <code>fib()</code> function should probably return the Python built-in <code>NotImplemented</code> value for negative and noninteger values.</p>
+<ol style="list-style-type: decimal">
+<li>Create a file called <code>test_fib.py</code></li>
+<li>Copy the three tests above into that file.</li>
+<li>Write <strong>two new</strong> tests that check for the expected return value (NotImplemented) in each case (for negative input and noninteger input respectively).</li>
+</ol>
+</div>
+</section>
+<p>Edge cases are not where the story ends, though, as we will see next.</p>
 <h2 id="corner-cases">Corner Cases</h2>
 <p>When two or more edge cases are combined, it is called a <em>corner case</em>. If a function is parametrized by two linear and independent variables, a test that is at the extreme of both variables is in a corner. As a demonstration, consider the case of the function <code>(sin(x) / x) * (sin(y) / y)</code>, presented here:</p>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> numpy <span class="ch">as</span> np
