@@ -28,7 +28,8 @@ Anecdotally, it is important to test edges cases because this is where errors te
 arise. Qualitatively different behavior happens at boundaries. As such,
 they tend to have special code dedicated to them in the implementation.
 
-> ## Consider the fibonacci sequence {.callout}
+> ## Consider the Fibonacci Sequence {.callout}
+>
 > Take a moment to recall everything you know about the Fibonacci sequence.
 > 
 > The fibonacci sequence is valid for all positive integers. To believe that a 
@@ -84,6 +85,7 @@ noninteger values are not valid inputs. Tests for these classes of numbers serve
 expected. Indeed, we learned in the assertions section that this is actually quite a good idea.  
 
 > ## Test for Graceful Failure {.challenge}
+>
 > The `fib()` function should probably return the Python built-in 
 > `NotImplemented` value for negative and noninteger values.
 > 
@@ -149,7 +151,8 @@ def test_edge_y():
     assert_equal(exp, obs)
 ~~~
 
-> ## Challenge: Write a corner case {.challenge}
+> ## Write a Corner Case {.challenge}
+>
 > The sinc2d example will also need a test for the corner case, where both x 
 > and y are 0.0.
 >
@@ -166,10 +169,3 @@ Whether internal, edge, or corner cases, we have started to build
 up a classification system for the tests themselves. In the following sections,
 we will build this system up even more based on the role that the tests have
 in the software architecture.
-
-
-> ## Key Points {.keypoints}
->
-> -   Functions often fail at the edge of their range of validity
-> -   Edge case tests query the limits of a function's behavior
-> -   Corner cases are where two edge cases meet

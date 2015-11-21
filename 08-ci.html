@@ -104,14 +104,18 @@
 </section>
 <h3 id="travis-ci">Travis-CI</h3>
 <p><a href="https://travis-ci.org/">Travis</a> is a continous integration server hosting platform. It’s commonly used in Ruby development circles as well as in the scientific python community.</p>
-<blockquote>
-<h2>Get a Travis-CI Account</h2>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pushpin"></span>Get a Travis-CI Account</h2>
+</div>
+<div class="panel-body">
 <p>To use Travis, all you need is an account. It’s free.</p>
 <ol style="list-style-type: decimal">
 <li>Someone in your group should sign up for a Travis account.</li>
 <li>Follow the instructions on the Travis website to connect your Travis account with GitHub.</li>
 </ol>
-</blockquote>
+</div>
+</aside>
 <p>A file called <code>.travis.yml</code> in your repository will signal to Travis that you want to build and test this repository on Travis-CI. Such a file, for our purposes, is very simple:</p>
 <pre><code>language: python
 python:
@@ -132,7 +136,7 @@ numpy
 pymol</code></pre>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Add a .travis.yml file</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Add a .travis.yml File</h2>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
@@ -144,17 +148,11 @@ pymol</code></pre>
 </section>
 <h2 id="continuous-integration-hosting">Continuous Integration Hosting</h2>
 <p>We gave the example of Travis because it’s very very simple to spin up. While it is able to run many flavors of Linux, it currently doesn’t support other platforms as well. Depending on your needs, you may consider other services such as:</p>
-<p>= <a href="http://buildbot.net/">buildbot</a> - <a href="http://www.cdash.org/">CDash</a> - <a href="https://jenkins-ci.org/">Jenkins</a></p>
-<blockquote>
-<h2>Key Points</h2>
 <ul>
-<li>Servers exist for automatically running your tests</li>
-<li>Running the tests can be triggered by a GitHub pull request</li>
-<li>CI allows cross platform build testing</li>
-<li>A .travis.yml file configures a build on the travis-ci servers</li>
-<li>Many free CI servers are available</li>
+<li><a href="http://buildbot.net/">buildbot</a></li>
+<li><a href="http://www.cdash.org/">CDash</a></li>
+<li><a href="https://jenkins-ci.org/">Jenkins</a></li>
 </ul>
-</blockquote>
         </div>
       </div>
       </article>

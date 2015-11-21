@@ -47,7 +47,7 @@
 <p>Anecdotally, it is important to test edges cases because this is where errors tend to arise. Qualitatively different behavior happens at boundaries. As such, they tend to have special code dedicated to them in the implementation.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pushpin"></span>Consider the fibonacci sequence</h2>
+<h2><span class="glyphicon glyphicon-pushpin"></span>Consider the Fibonacci Sequence</h2>
 </div>
 <div class="panel-body">
 <p>Take a moment to recall everything you know about the Fibonacci sequence.</p>
@@ -131,7 +131,7 @@
     assert_equal(exp, obs)</code></pre>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Challenge: Write a corner case</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Write a Corner Case</h2>
 </div>
 <div class="panel-body">
 <p>The sinc2d example will also need a test for the corner case, where both x and y are 0.0.</p>
@@ -145,14 +145,6 @@
 </section>
 <p>Corner cases can be even trickier to find and debug than edge cases because of their increased complexity. This complexity, however, makes them even more important to explicitly test.</p>
 <p>Whether internal, edge, or corner cases, we have started to build up a classification system for the tests themselves. In the following sections, we will build this system up even more based on the role that the tests have in the software architecture.</p>
-<blockquote>
-<h2>Key Points</h2>
-<ul>
-<li>Functions often fail at the edge of their range of validity</li>
-<li>Edge case tests query the limits of a function’s behavior</li>
-<li>Corner cases are where two edge cases meet</li>
-</ul>
-</blockquote>
         </div>
       </div>
       </article>

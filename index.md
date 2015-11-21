@@ -22,12 +22,12 @@ title: Testing
 2.  [Assertions](02-assertions.html)
 3.  [Exceptions](03-exceptions.html)
 4.  [Unit Tests](04-units.html)
-5.  [Nose Testing](05-nose.html)
-6.  [Edges and Corners](06-edges.html)
-7.  [Integration Tests](07-integration.html)
+5.  [Running Tests with Nose](05-nose.html)
+6.  [Edge and Corner Cases](06-edges.html)
+7.  [Integration and Regression Tests](07-integration.html)
 8.  [Continuous Integration](08-ci.html)
 9.  [Test Driven Development](09-tdd.html)
-
+10. [Fixtures](10-fixtures.html)
 
 Before relying on a new experimental device, an experimental scientist always
 establishes its accuracy. A new detector is calibrated when the scientist
@@ -37,7 +37,7 @@ scientist would never conduct an experiment with uncalibrated detectors - the
 that would be unscientific. So too, simulations and analysis with untested
 software do not constitute science.**
 
-> ## How do you know your code is right? {.callout}
+> ## How Do You Know Your Code is Right? {.callout}
 >
 > **You can only know by testing it.** Software bugs are hiding in all 
 > nontrivial software. Testing is the process by which those bugs are 
@@ -54,6 +54,7 @@ know to not trust software when its tests do not _cover_ its claimed
 capabilities and when its tests do not pass.
 
 > ## But How Close is Close Enough? {.callout}
+>
 > In the same way that your scientific domain has expectations concerning 
 > experimental accuracy, it likely also has expectations concerning allowable 
 > computational accuracy. These considerations should surely come into play 
@@ -73,8 +74,9 @@ that software cannot be called _scientific_ unless it has been validated.
 
 > ## Why Untested Code is Legacy Code {.callout}
 >
-> In ''Working Effectively with Legacy Code,'' Michael Feathers defines legacy 
-> code as 'any code without tests.' This definition draws on the fact that 
+> In *[Working Effectively with Legacy Code](http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/)*,
+> Michael Feathers defines legacy 
+> code as "any code without tests". This definition draws on the fact that 
 > after its initial creation, tests provide a powerful guide to other 
 > developers (and to your forgetful self, a few months in the future) about how 
 > each function is meant to be used. Without runnable tests to provide examples 
@@ -89,14 +91,15 @@ re-enter the codebase unnoticed. So, whether motivated by principles or a
 desire to work more efficiently, all scientists can benefit from testing.
 
 > ## Effective Computation In Physics {.callout}
+>
 > Note that this testing lesson was adapted from the Testing chapter in 
-> [''Effective Computation In Physics'' by Anthony Scopatz and Kathryn Huff](http://physics.codes). 
+> *[Effective Computation In Physics](http://physics.codes)*
+> by Anthony Scopatz and Kathryn Huff.
 > It is often quoted directly.
 
 
 ## Other Resources
 
-*   [Motivation](motivation.html)
 *   [Reference](reference.html)
 *   [Discussion](discussion.html)
 *   [Instructor's Guide](instructors.html)

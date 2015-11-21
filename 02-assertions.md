@@ -48,9 +48,7 @@ Also, input checking may require decending a rabbit hole of exceptional cases.
 What happens when the input provided to the mean function is a string, rather 
 than a list of numbers?
 
-
-> ## Challenge Insert an Assertion {.challenge}
->
+> ## Insert an Assertion {.challenge}
 >
 > 1. Open an IPython Notebook
 > 2. Create the following function:
@@ -70,7 +68,8 @@ than a list of numbers?
 Assertions are also helpful for catching abnormal behaviors, such as those that 
 arise with floating point arithmetic.
 
-> ## Challenge: Almost Equal {.challenge}
+> ## Almost Equal {.challenge}
+>
 > Assertions are also helpful for catching abnormal behaviors, such as those
 > that arise with floating point arithmetic. Using the assert keyword, how could
 > you test whether some value is almost the same as another value?
@@ -91,7 +90,7 @@ To help with situations such as those above, there are classes of more helpful
 assertions that we will use often in later parts of this testing lesson as the
 building blocks of our tests. The nose testing package contains many of them.
 
-### Nose
+## Nose
 
 The nose testing framework has built-in assertion types implementing
 `assert_almost_equal`, `assert_true`, `assert_false`, `assert_raises`,
@@ -108,13 +107,3 @@ These assertions give much more helpful error messages and have much more
 powerful features than the simple assert keyword. An even more powerful sibling 
 of the assertion is the _exception_. We'll learn about those in the next 
 lesson.
-
-
-> ## Key Points {.keypoints}
->
-> -   Assertions are one line tests embedded in code.
-> -   The `assert` keyword is used to set an assertion.
-> -   Assertions halt execution if the argument is false.
-> -   Assertions do nothing if the argument is true.
-> -   The `nose.tools` package provides more informative assertions.
-> -   Assertions are the building blocks of tests.
