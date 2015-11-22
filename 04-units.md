@@ -25,6 +25,7 @@ be made any simpler logically (you cannot split apart the addition operator) or
 practically (a function is self-contained and well defined), then it is a unit. 
 
 > ## Functions are Like Paragraphs {.callout}
+>
 > Recall that humans can only hold a few ideas in our heads at once. Paragraphs
 > in books, for example, become unwieldy after a few lines. Functions, generaly,
 > shouldn't be longer than paragraphs.
@@ -69,7 +70,8 @@ The test above:
 A unit test suite is made up of many tests just like this one. A single 
 implemented function may be tested in numerous ways. 
 
-> ## Challenge: Write a File Full of Tests {.challenge}
+> ## Write a File Full of Tests {.challenge}
+>
 > 1. In a file called `test_mean.py`, implement the following code:
 > 
 > ~~~ {.python}
@@ -113,13 +115,3 @@ implemented function may be tested in numerous ways.
 > 
 
 Well, **that** was tedious.
-
-> ## Key Points {.keypoints}
->
-> -   Functions are the atomistic unit of software.
-> -   Simpler units are easier to test than complex ones.
-> -   A single unit test is a function containing assertions.
-> -   Such a unit test is run just like any other function.
-> -   **Running tests one at a time is pretty tedious.** (let's use a framework 
-> instead)
-

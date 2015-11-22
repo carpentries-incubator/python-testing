@@ -26,8 +26,80 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title">Testing</h1>
+                    <a href="index.html"><h1 class="title">Testing</h1></a>
           <h2 class="subtitle">Reference</h2>
+          <h2 id="basics-of-testing"><a href="01-basics.html">Basics of Testing</a></h2>
+<ul>
+<li>Tests compare that the result observed from running code is the same as what was expected ahead of time.</li>
+<li>Tests should be written at the same time as the code they are testing is written.</li>
+<li>Assertions and exceptions are like alarm systems embedded in the software, guarding against exceptional bahavior.</li>
+<li>Unit tests try to test the smallest pieces of code possible, usually functions and methods.</li>
+<li>Integration tests make sure that code units work together properly.</li>
+<li>Regression tests ensure that everything works the same today as it did yesterday.</li>
+</ul>
+<h2 id="assertions"><a href="02-assertions.html">Assertions</a></h2>
+<ul>
+<li>Assertions are one line tests embedded in code.</li>
+<li>The <code>assert</code> keyword is used to set an assertion.</li>
+<li>Assertions halt execution if the argument is false.</li>
+<li>Assertions do nothing if the argument is true.</li>
+<li>The <code>nose.tools</code> package provides more informative assertions.</li>
+<li>Assertions are the building blocks of tests.</li>
+</ul>
+<h2 id="exceptions"><a href="03-exceptions.html">Exceptions</a></h2>
+<ul>
+<li>Exceptions are effectively specialized runtime tests</li>
+<li>Exceptions can be caught and handled with a try-except block</li>
+<li>Many built-in Exception types are available</li>
+</ul>
+<h2 id="unit-tests"><a href="04-units.html">Unit Tests</a></h2>
+<ul>
+<li>Functions are the atomistic unit of software.</li>
+<li>Simpler units are easier to test than complex ones.</li>
+<li>A single unit test is a function containing assertions.</li>
+<li>Such a unit test is run just like any other function.</li>
+<li><strong>Running tests one at a time is pretty tedious.</strong> (let’s use a framework instead)</li>
+</ul>
+<h2 id="running-tests-with-nose"><a href="05-nose.html">Running Tests with Nose</a></h2>
+<ul>
+<li>The <code>nosetests</code> command collects and runs tests starting with <code>Test-</code>, <code>test_</code>, and similar names.</li>
+<li><code>.</code> means the test passed</li>
+<li><code>F</code> means the test failed</li>
+<li><code>E</code> encountered an error</li>
+<li><code>K</code> is a known failure</li>
+<li><code>S</code> is a purposefully skipped test</li>
+</ul>
+<h2 id="edge-and-corner-cases"><a href="06-edges.html">Edge and Corner Cases</a></h2>
+<ul>
+<li>Functions often fail at the edge of their range of validity</li>
+<li>Edge case tests query the limits of a function’s behavior</li>
+<li>Corner cases are where two edge cases meet</li>
+</ul>
+<h2 id="integration-and-regression-tests"><a href="07-integration.html">Integration and Regression Tests</a></h2>
+<ul>
+<li>Integration tests interrogate the coopration of pieces of the software</li>
+<li>Regression tests use past behavior as the expected result</li>
+</ul>
+<h2 id="continuous-integration"><a href="08-ci.html">Continuous Integration</a></h2>
+<ul>
+<li>Servers exist for automatically running your tests</li>
+<li>Running the tests can be triggered by a GitHub pull request</li>
+<li>CI allows cross platform build testing</li>
+<li>A <code>.travis.yml</code> file configures a build on the travis-ci servers</li>
+<li>Many free CI servers are available</li>
+</ul>
+<h2 id="test-driven-development"><a href="09-tdd.html">Test Driven Development</a></h2>
+<ul>
+<li>Test driven development is a common software development technique</li>
+<li>By writing the tests first, the function requirements are very explicit</li>
+<li>TDD is not for everyone</li>
+<li>TDD requires vigilance for success (cheating leads to failure)</li>
+</ul>
+<h2 id="fixtures"><a href="10-fixtures.html">Fixtures</a></h2>
+<ul>
+<li>It may be necessary to set up “fixtures” composing the test environment.</li>
+</ul>
+<h2 id="glossary">Glossary</h2>
 <ul>
 <li><code>assert</code> is a keyword that halts code execution when its argument is false</li>
 <li><code>Exceptions</code> are customizeable cousin of assertions.</li>
@@ -46,7 +118,7 @@
       </article>
       <div class="footer">
         <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
-        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/git-novice">Source</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/lesson-template">Source</a>
         <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
         <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>

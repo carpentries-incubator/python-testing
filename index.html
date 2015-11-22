@@ -26,9 +26,8 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title">Testing</h1>
-          
-<section class="prereq panel panel-warning">
+                    <h1 class="title">Testing</h1>
+          <section class="prereq panel panel-warning">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-education"></span>Prerequisites</h2>
 </div>
@@ -50,16 +49,17 @@
 <li><a href="02-assertions.html">Assertions</a></li>
 <li><a href="03-exceptions.html">Exceptions</a></li>
 <li><a href="04-units.html">Unit Tests</a></li>
-<li><a href="05-nose.html">Nose Testing</a></li>
-<li><a href="06-edges.html">Edges and Corners</a></li>
-<li><a href="07-integration.html">Integration Tests</a></li>
+<li><a href="05-nose.html">Running Tests with Nose</a></li>
+<li><a href="06-edges.html">Edge and Corner Cases</a></li>
+<li><a href="07-integration.html">Integration and Regression Tests</a></li>
 <li><a href="08-ci.html">Continuous Integration</a></li>
 <li><a href="09-tdd.html">Test Driven Development</a></li>
+<li><a href="10-fixtures.html">Fixtures</a></li>
 </ol>
 <p>Before relying on a new experimental device, an experimental scientist always establishes its accuracy. A new detector is calibrated when the scientist observes its responses to to known input signals. The results of this calibration are compared against the <em>expected</em> response. <strong>An experimental scientist would never conduct an experiment with uncalibrated detectors - the that would be unscientific. So too, simulations and analysis with untested software do not constitute science.</strong></p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pushpin"></span>How do you know your code is right?</h2>
+<h2><span class="glyphicon glyphicon-pushpin"></span>How Do You Know Your Code is Right?</h2>
 </div>
 <div class="panel-body">
 <p><strong>You can only know by testing it.</strong> Software bugs are hiding in all nontrivial software. Testing is the process by which those bugs are systematically exterminated before they have a chance to cause a paper retraction. In software tests, just like in device calibration, expected results are compared with observed results in order to establish accuracy.</p>
@@ -81,7 +81,7 @@
 <h2><span class="glyphicon glyphicon-pushpin"></span>Why Untested Code is Legacy Code</h2>
 </div>
 <div class="panel-body">
-<p>In ‘’Working Effectively with Legacy Code,’‘Michael Feathers defines legacy code as ’any code without tests.’ This definition draws on the fact that after its initial creation, tests provide a powerful guide to other developers (and to your forgetful self, a few months in the future) about how each function is meant to be used. Without runnable tests to provide examples of code use, even brand new programs are unsustainable.</p>
+<p>In <em><a href="http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/">Working Effectively with Legacy Code</a></em>, Michael Feathers defines legacy code as “any code without tests”. This definition draws on the fact that after its initial creation, tests provide a powerful guide to other developers (and to your forgetful self, a few months in the future) about how each function is meant to be used. Without runnable tests to provide examples of code use, even brand new programs are unsustainable.</p>
 </div>
 </aside>
 <p>Testing is the calibration step of the computational simulation and analysis world: it lets the scientist trust their own work on a fundamental level and helps others to understand and trust their work as well. Furthermore, tests help you to never fix a bug a second time. Once a bug has been caught and a test has been written, that particular bug can never again re-enter the codebase unnoticed. So, whether motivated by principles or a desire to work more efficiently, all scientists can benefit from testing.</p>
@@ -90,12 +90,11 @@
 <h2><span class="glyphicon glyphicon-pushpin"></span>Effective Computation In Physics</h2>
 </div>
 <div class="panel-body">
-<p>Note that this testing lesson was adapted from the Testing chapter in <a href="http://physics.codes">‘’Effective Computation In Physics’’ by Anthony Scopatz and Kathryn Huff</a>. It is often quoted directly.</p>
+<p>Note that this testing lesson was adapted from the Testing chapter in <em><a href="http://physics.codes">Effective Computation In Physics</a></em> by Anthony Scopatz and Kathryn Huff. It is often quoted directly.</p>
 </div>
 </aside>
 <h2 id="other-resources">Other Resources</h2>
 <ul>
-<li><a href="motivation.html">Motivation</a></li>
 <li><a href="reference.html">Reference</a></li>
 <li><a href="discussion.html">Discussion</a></li>
 <li><a href="instructors.html">Instructor’s Guide</a></li>
@@ -105,7 +104,7 @@
       </article>
       <div class="footer">
         <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
-        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/git-novice">Source</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/lesson-template">Source</a>
         <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
         <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>

@@ -4,7 +4,6 @@ title: Testing
 subtitle: Test Driven Development
 minutes: 10
 ---
-
 > ## Learning Objectives {.objectives}
 > 
 > *   Learn about the benefits and drawbacks of Test Driven Development
@@ -23,6 +22,7 @@ repeat this process of test-then-implement until the function is completely
 implemented for your current needs.
 
 > ## The Big Idea {.callout}
+>
 > This design philosophy was most strongly put forth by Kent Beck in his book 
 > _Test-Driven  Development: By Example_.
 >
@@ -149,7 +149,7 @@ function. Recall:
 approximations to the standard deviation than we would spend actually coding it.
 
 
-> ### Just bite the bullet {.challenge}
+> ## Just Bite the Bullet {.challenge}
 > 
 > 1. Copy the five tests above into a file called test_std.py
 > 2. Open mod.py
@@ -161,12 +161,3 @@ writing further tests.  For example, this `std()` ignores the situation where in
 is an element of the values list. There is always more that can be tested.  TDD
 prevents you from going overboard by telling you to stop testing when you
 have achieved all of your use cases.
-
-> ## Key Points {.keypoints}
->
-> 
-> -   Test driven development is a common software development technique
-> -   By writing the tests first, the function requirements are very explicit
-> -   TDD is not for everyone
-> -   TDD requires vigilance for success (cheating leads to failure)
-

@@ -26,9 +26,9 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title">Testing</h1>
+                    <a href="index.html"><h1 class="title">Testing</h1></a>
           <h2 class="subtitle">Assertions</h2>
-<section class="objectives panel panel-warning">
+          <section class="objectives panel panel-warning">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
@@ -55,7 +55,7 @@
 <p>Also, input checking may require decending a rabbit hole of exceptional cases. What happens when the input provided to the mean function is a string, rather than a list of numbers?</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Challenge Insert an Assertion</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Insert an Assertion</h2>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
@@ -73,7 +73,7 @@
 <p>Assertions are also helpful for catching abnormal behaviors, such as those that arise with floating point arithmetic.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Challenge: Almost Equal</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Almost Equal</h2>
 </div>
 <div class="panel-body">
 <p>Assertions are also helpful for catching abnormal behaviors, such as those that arise with floating point arithmetic. Using the assert keyword, how could you test whether some value is almost the same as another value?</p>
@@ -90,30 +90,19 @@
 </div>
 </section>
 <p>To help with situations such as those above, there are classes of more helpful assertions that we will use often in later parts of this testing lesson as the building blocks of our tests. The nose testing package contains many of them.</p>
-<h3 id="nose">Nose</h3>
+<h2 id="nose">Nose</h2>
 <p>The nose testing framework has built-in assertion types implementing <code>assert_almost_equal</code>, <code>assert_true</code>, <code>assert_false</code>, <code>assert_raises</code>, <code>assert_is_instance</code>, and others.</p>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> nose.tools <span class="ch">import</span> assert_almost_equal
 <span class="ch">from</span> mynum <span class="ch">import</span> a
 assert_almost_equal(a, <span class="dv">2</span>, places=<span class="dv">2</span>)
 assert_almost_equal(a, <span class="dv">2</span>, delta=<span class="fl">0.003</span>)</code></pre>
 <p>These assertions give much more helpful error messages and have much more powerful features than the simple assert keyword. An even more powerful sibling of the assertion is the <em>exception</em>. We’ll learn about those in the next lesson.</p>
-<blockquote>
-<h2>Key Points</h2>
-<ul>
-<li>Assertions are one line tests embedded in code.</li>
-<li>The <code>assert</code> keyword is used to set an assertion.</li>
-<li>Assertions halt execution if the argument is false.</li>
-<li>Assertions do nothing if the argument is true.</li>
-<li>The <code>nose.tools</code> package provides more informative assertions.</li>
-<li>Assertions are the building blocks of tests.</li>
-</ul>
-</blockquote>
         </div>
       </div>
       </article>
       <div class="footer">
         <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
-        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/git-novice">Source</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/lesson-template">Source</a>
         <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
         <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>

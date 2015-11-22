@@ -104,6 +104,7 @@ expected behavior. The expected
 result is taken as what was previously computed for the same inputs. 
 
 > ## The Past as Truth {.callout}
+>
 > Regression tests assume that the past is "correct." They are great for 
 > letting developers know when and how a code base has changed. They are not 
 > great for letting anyone know why the change occurred. The change between 
@@ -146,8 +147,3 @@ tests.
 
 While more test classifications exist for more specialized situations, we have covered
 what you will need to know for almost every situation in computational physics.
-
-> ## Key Points {.keypoints}
->
-> -   Integration tests interrogate the coopration of pieces of the software
-> -   Regression tests use past behavior as the expected result

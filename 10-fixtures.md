@@ -86,7 +86,3 @@ def test_f():
 Note that if you have functions in your test module that are simply named
 `setup()` and `teardown()`, each of these are called automatically when the
 entire test module is loaded in and finished.
-
-> ## Key Points {.keypoints}
->
-> -   It may be necessary to set up "fixtures" composing the test environment.

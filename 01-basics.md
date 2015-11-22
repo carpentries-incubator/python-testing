@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Testing
-subtitle: Basics of testing
+subtitle: Basics of Testing
 minutes: 5
 ---
 > ## Learning Objectives {.objectives}
@@ -24,7 +24,8 @@ This is analogous to experiment design in the experimental science world:
   might be advisable. (Such a practice is called _test-driven development_, 
   which we will discuss in greater detail [later in the lesson](09-tdd.html).)
 
-> ### What Kinds of Tests Exist
+> ## What Kinds of Tests Exist {.callout}
+>
 > There are many ways to test software, such as:
 >
 > - Assertions
@@ -49,14 +50,3 @@ which might appear due to new software and updates.
 
 *Integration Tests*: Integration tests check that various pieces of the
 software work together as expected. 
-
-
-> ## Key Points {.keypoints}
-> 
-> - Tests compare that the result observed from running code is the same as what was expected ahead of time.
-> - Tests should be written at the same time as the code they are testing is written.
-> - Assertions and exceptions are like alarm systems embedded in the software, guarding against exceptional bahavior.
-> - Unit tests try to test the smallest pieces of code possible, usually functions and methods.
-> - Integration tests make sure that code units work together properly.
-> - Regression tests ensure that everything works the same today as it did yesterday.
-

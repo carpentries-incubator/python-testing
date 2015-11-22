@@ -71,12 +71,13 @@ def mean(num_list):
         raise TypeError(detail.__str__() + "\n" +  msg)
 ~~~
 
-> ## Challenge: What Else Can Go Wrong? {.challenge}
+> ## What Else Can Go Wrong? {.challenge}
+>
 > 1. Think of some other type of exception that could be raised by the try 
 > block.
 > 2. Guard against it by adding an except clause.
 
-> ## Challenge: Cause all of the errors {.challenge}
+> ## Cause All of the Errors {.challenge}
 > 
 > - Use the mean function in three different ways, so that you cause each
 > exceptional case.
@@ -84,10 +85,3 @@ def mean(num_list):
 Exceptions have the advantage of being simple to include and powerfully helpful
 to the user. However, not all behaviors can or should be found with runtime
 exceptions. Most behaviors should be validated with unit tests.
-
-> ## Key Points {.keypoints}
->
-> -   Exceptions are effectively specialized runtime tests
-> -   Exceptions can be caught and handled with a try-except block
-> -   Many built-in Exception types are available 
-
