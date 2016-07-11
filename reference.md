@@ -18,14 +18,14 @@ subtitle: Reference
 -   The `assert` keyword is used to set an assertion.
 -   Assertions halt execution if the argument is false.
 -   Assertions do nothing if the argument is true.
--   The `nose.tools` package provides more informative assertions.
+-   The `numpy.testing` module provides tools numeric testing.
 -   Assertions are the building blocks of tests.
 
 ## [Exceptions](03-exceptions.html)
 
 -   Exceptions are effectively specialized runtime tests
 -   Exceptions can be caught and handled with a try-except block
--   Many built-in Exception types are available 
+-   Many built-in Exception types are available
 
 ## [Unit Tests](04-units.html)
 
@@ -35,14 +35,13 @@ subtitle: Reference
 -   Such a unit test is run just like any other function.
 -   **Running tests one at a time is pretty tedious.** (let's use a framework instead)
 
-## [Running Tests with Nose](05-nose.html)
+## [Running Tests with Pytest](05-pytest.html)
 
--   The `nosetests` command collects and runs tests starting with `Test-`, `test_`, and similar names.
+-   The `py.test` command collects and runs tests starting with `Test` or `test_`.
 -   `.` means the test passed
--   `F` means the test failed
--   `E` encountered an error
--   `K` is a known failure
--   `S` is a purposefully skipped test
+-   `F` means the test failed or erred
+-   `x` is a known failure
+-   `s` is a purposefully skipped test
 
 ## [Edge and Corner Cases](06-edges.html)
 
@@ -80,9 +79,9 @@ subtitle: Reference
 *   `Exceptions` are customizeable cousin of assertions.
 *   `try` is a keyword that guards a piece of code which may throw an exception.
 *   `except` is a keyword used to catch and carefully handle that exception
-*   `nose` is a python package with useful assertions and unit test utilities
-*   `nosetests` is a command-line program that collects and runs unit tests.
-*    _Unit Tests_ investigate the behavior of units of code (such as functions, classes, or data structures). 
+*   `pytest` is a python package with testing utilities
+*   `py.test` is a command-line program that collects and runs unit tests.
+*    _Unit Tests_ investigate the behavior of units of code (such as functions, classes, or data structures).
 *    _Regression Tests_ defend against new bugs, or regressions, which might appear due to new software and updates.
 *    _Integration Tests_ check that various pieces of the software work together as expected.
 *   _Continuous Integration_ automates the building and testing process accross platforms.

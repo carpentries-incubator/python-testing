@@ -30,7 +30,7 @@
           <h2 class="subtitle">Integration and Regression Tests</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -43,7 +43,7 @@
 <p>You can think of a software project like a clock. Functions and classes are the gears and cogs that make up the system. On their own, they can be of the highest quality. Unit tests verify that each gear is well made. However, the clock still needs to be put together. The gears need to fit with one another.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pushpin"></span>Telling The Time</h2>
+<h2 id="telling-the-time"><span class="glyphicon glyphicon-pushpin"></span>Telling The Time</h2>
 </div>
 <div class="panel-body">
 <p><em>Integration tests</em> are the class of tests that verify that multiple moving pieces and gears inside the clock work well together. Where unit tests investigate the gears, integration tests look at the position of the hands to determine if the clock can tell time correctly. They look at the system as a whole or at its subsystems. Integration tests typically function at a higher level conceptually than unit tests. Thus, writing integration tests also happens at a higher level.</p>
@@ -52,24 +52,22 @@
 <p>Because they deal with gluing code together, there are typically fewer integration tests in a test suite than there are unit tests. However, integration tests are no less important. Integration tests are essential for having adequate testing. They encompass all of the cases that you cannot hit through plain unit testing.</p>
 <p>Sometimes, especially in probabilistic or stochastic codes, the precise behavior of an integration test cannot be determined beforehand. That is OK. In these situations it is acceptable for integration tests to verify average or aggregate behavior rather than exact values. Sometimes you can mitigate nondeterminism by saving seed values to a random number generator, but this is not always going to be possible. It is better to have an imperfect integration test than no integration test at all.</p>
 <p>As a simple example, consider the three functions <code>a()</code>, <code>b()</code>, and <code>c()</code>. The <code>a()</code> function adds one to a number, <code>b()</code> multiplies a number by two, and <code>c()</code> composes them. These functions are defined as follows:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> a(x):
-    <span class="kw">return</span> x + <span class="dv">1</span>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> a(x):
+    <span class="cf">return</span> x <span class="op">+</span> <span class="dv">1</span>
 
 <span class="kw">def</span> b(x):
-    <span class="kw">return</span> <span class="dv">2</span> * x
+    <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> x
 
 <span class="kw">def</span> c(x):
-    <span class="kw">return</span> b(a(x))</code></pre>
+    <span class="cf">return</span> b(a(x))</code></pre></div>
 <p>The <code>a()</code> and <code>b()</code> functions can each be unit tested because they each do one thing. However, <code>c()</code> cannot be truly unit tested because all of the real work is farmed out to <code>a()</code> and <code>b()</code>. Testing <code>c()</code> will be a test of whether <code>a()</code> and <code>b()</code> can be integrated together.</p>
 <p>Integration tests still follow the pattern of comparing expected results to observed results. A sample <code>test_c()</code> is implemented here:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> nose.tools <span class="ch">import</span> assert_equal
-
-<span class="ch">from</span> mod <span class="ch">import</span> c
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> mod <span class="im">import</span> c
 
 <span class="kw">def</span> test_c():
-    exp = <span class="dv">6</span>
-    obs = c(<span class="dv">2</span>)
-    assert_equal(exp, obs)</code></pre>
+    exp <span class="op">=</span> <span class="dv">6</span>
+    obs <span class="op">=</span> c(<span class="dv">2</span>)
+    <span class="cf">assert</span> obs <span class="op">==</span> exp</code></pre></div>
 <p>Given the lack of clarity in what is defined as a code unit, what is considered an integration test is also a little fuzzy. Integration tests can range from the extremely simple (like the one just shown) to the very complex. A good delimiter, though, is in opposition to the unit tests. If a function or class only combines two or more unit-tested pieces of code, then you need an integration test. If a function implements new behavior that is not otherwise tested, you need a unit test.</p>
 <p>The structure of integration tests is very similar to that of unit tests. There is an expected result, which is compared against the observed value. However, what goes in to creating the expected result or setting up the code to run can be considerably more complicated and more involved. Integration tests can also take much longer to run because of how much more work they do. This is a useful classification to keep in mind while writing tests. It helps separate out which test should be easy to write (unit) and which ones may require more careful consideration (integration).</p>
 <p>Integration tests, however, are not the end of the story.</p>
@@ -77,7 +75,7 @@
 <p>Regression tests are qualitatively different from both unit and integration tests. Rather than assuming that the test author knows what the expected result should be, regression tests look to the past for the expected behavior. The expected result is taken as what was previously computed for the same inputs.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pushpin"></span>The Past as Truth</h2>
+<h2 id="the-past-as-truth"><span class="glyphicon glyphicon-pushpin"></span>The Past as Truth</h2>
 </div>
 <div class="panel-body">
 <p>Regression tests assume that the past is “correct.” They are great for letting developers know when and how a code base has changed. They are not great for letting anyone know why the change occurred. The change between what a code produces now and what it computed before is called a <em>regression</em>.</p>

@@ -5,7 +5,7 @@ subtitle: Integration and Regression Tests
 minutes: 10
 ---
 > ## Learning Objectives {.objectives}
-> 
+>
 > *   Understand the purpose of integration and regression tests
 > *   Understand how to implement an integration test
 
@@ -18,7 +18,7 @@ quality. Unit tests verify that each gear is well made. However, the clock still
 needs to be put together. The gears need to fit with one another.
 
 > ## Telling The Time {.callout}
-> 
+>
 > _Integration tests_ are the class of tests that verify that multiple moving
 > pieces and gears inside the clock work well together. Where unit tests
 > investigate the gears, integration tests look at the position of the hands to
@@ -66,14 +66,12 @@ Integration tests still follow the pattern
 of comparing expected results to observed results. A sample `test_c()` is implemented here:
 
 ~~~ {.python}
-from nose.tools import assert_equal
-
 from mod import c
 
 def test_c():
     exp = 6
     obs = c(2)
-    assert_equal(exp, obs)
+    assert obs == exp
 ~~~
 
 Given the lack of clarity in what is defined as a code unit, what is considered an
@@ -99,16 +97,16 @@ Integration tests, however, are not the end of the story.
 
 Regression tests are qualitatively different from
 both unit and integration tests. Rather than assuming that the test author knows what
-the expected result should be, regression tests look to the past for the 
+the expected result should be, regression tests look to the past for the
 expected behavior. The expected
-result is taken as what was previously computed for the same inputs. 
+result is taken as what was previously computed for the same inputs.
 
 > ## The Past as Truth {.callout}
 >
-> Regression tests assume that the past is "correct." They are great for 
-> letting developers know when and how a code base has changed. They are not 
-> great for letting anyone know why the change occurred. The change between 
-> what a code produces now and what it computed before is called a 
+> Regression tests assume that the past is "correct." They are great for
+> letting developers know when and how a code base has changed. They are not
+> great for letting anyone know why the change occurred. The change between
+> what a code produces now and what it computed before is called a
 > _regression_.
 
 Like integration tests, regression tests tend to be high level. They often

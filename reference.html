@@ -43,7 +43,7 @@
 <li>The <code>assert</code> keyword is used to set an assertion.</li>
 <li>Assertions halt execution if the argument is false.</li>
 <li>Assertions do nothing if the argument is true.</li>
-<li>The <code>nose.tools</code> package provides more informative assertions.</li>
+<li>The <code>numpy.testing</code> module provides tools numeric testing.</li>
 <li>Assertions are the building blocks of tests.</li>
 </ul>
 <h2 id="exceptions"><a href="03-exceptions.html">Exceptions</a></h2>
@@ -60,14 +60,13 @@
 <li>Such a unit test is run just like any other function.</li>
 <li><strong>Running tests one at a time is pretty tedious.</strong> (let’s use a framework instead)</li>
 </ul>
-<h2 id="running-tests-with-nose"><a href="05-nose.html">Running Tests with Nose</a></h2>
+<h2 id="running-tests-with-pytest"><a href="05-pytest.html">Running Tests with Pytest</a></h2>
 <ul>
-<li>The <code>nosetests</code> command collects and runs tests starting with <code>Test-</code>, <code>test_</code>, and similar names.</li>
+<li>The <code>py.test</code> command collects and runs tests starting with <code>Test</code> or <code>test_</code>.</li>
 <li><code>.</code> means the test passed</li>
-<li><code>F</code> means the test failed</li>
-<li><code>E</code> encountered an error</li>
-<li><code>K</code> is a known failure</li>
-<li><code>S</code> is a purposefully skipped test</li>
+<li><code>F</code> means the test failed or erred</li>
+<li><code>x</code> is a known failure</li>
+<li><code>s</code> is a purposefully skipped test</li>
 </ul>
 <h2 id="edge-and-corner-cases"><a href="06-edges.html">Edge and Corner Cases</a></h2>
 <ul>
@@ -105,8 +104,8 @@
 <li><code>Exceptions</code> are customizeable cousin of assertions.</li>
 <li><code>try</code> is a keyword that guards a piece of code which may throw an exception.</li>
 <li><code>except</code> is a keyword used to catch and carefully handle that exception</li>
-<li><code>nose</code> is a python package with useful assertions and unit test utilities</li>
-<li><code>nosetests</code> is a command-line program that collects and runs unit tests.</li>
+<li><code>pytest</code> is a python package with testing utilities</li>
+<li><code>py.test</code> is a command-line program that collects and runs unit tests.</li>
 <li><em>Unit Tests</em> investigate the behavior of units of code (such as functions, classes, or data structures).</li>
 <li><em>Regression Tests</em> defend against new bugs, or regressions, which might appear due to new software and updates.</li>
 <li><em>Integration Tests</em> check that various pieces of the software work together as expected.</li>

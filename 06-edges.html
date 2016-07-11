@@ -30,7 +30,7 @@
           <h2 class="subtitle">Edge and Corner Cases</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -47,7 +47,7 @@
 <p>Anecdotally, it is important to test edges cases because this is where errors tend to arise. Qualitatively different behavior happens at boundaries. As such, they tend to have special code dedicated to them in the implementation.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pushpin"></span>Consider the Fibonacci Sequence</h2>
+<h2 id="consider-the-fibonacci-sequence"><span class="glyphicon glyphicon-pushpin"></span>Consider the Fibonacci Sequence</h2>
 </div>
 <div class="panel-body">
 <p>Take a moment to recall everything you know about the Fibonacci sequence.</p>
@@ -56,34 +56,32 @@
 </div>
 </aside>
 <p>Consider the following simple Fibonacci function:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fib(n):
-    <span class="kw">if</span> n == <span class="dv">0</span> or n == <span class="dv">1</span>:
-        <span class="kw">return</span> <span class="dv">1</span>
-    <span class="kw">else</span>:
-        <span class="kw">return</span> fib(n - <span class="dv">1</span>) + fib(n - <span class="dv">2</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fib(n):
+    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span> <span class="op">or</span> n <span class="op">==</span> <span class="dv">1</span>:
+        <span class="cf">return</span> <span class="dv">1</span>
+    <span class="cf">else</span>:
+        <span class="cf">return</span> fib(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fib(n <span class="op">-</span> <span class="dv">2</span>)</code></pre></div>
 <p>This function has two edge cases: zero and one. For these values of <code>n</code>, the <code>fib()</code> function does something special that does not apply to any other values. Such cases should be tested explicitly. A minimally sufficient test suite for this function would be:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> nose.tools <span class="ch">import</span> assert_equal
-
-<span class="ch">from</span> mod <span class="ch">import</span> fib
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> mod <span class="im">import</span> fib
 
 <span class="kw">def</span> test_fib0():
     <span class="co"># test edge 0</span>
-    obs = fib(<span class="dv">0</span>)
-    assert_equal(<span class="dv">1</span>, obs)
+    obs <span class="op">=</span> fib(<span class="dv">0</span>)
+    <span class="cf">assert</span> obs <span class="op">==</span> <span class="dv">1</span>
 
 <span class="kw">def</span> test_fib1():
     <span class="co"># test edge 1</span>
-    obs = fib(<span class="dv">1</span>)
-    assert_equal(<span class="dv">1</span>, obs)
+    obs <span class="op">=</span> fib(<span class="dv">1</span>)
+    <span class="cf">assert</span> obs <span class="op">==</span> <span class="dv">1</span>
 
 <span class="kw">def</span> test_fib6():
     <span class="co"># test internal point</span>
-    obs = fib(<span class="dv">6</span>)
-    assert_equal(<span class="dv">13</span>, obs)</code></pre>
+    obs <span class="op">=</span> fib(<span class="dv">6</span>)
+    <span class="cf">assert</span> obs <span class="op">==</span> <span class="dv">13</span>)</code></pre></div>
 <p>Different functions will have different edge cases. Often, you need not test for cases that are outside the valid range, unless you want to test that the function fails. In the <code>fib()</code> function negative and noninteger values are not valid inputs. Tests for these classes of numbers serve you well if you want to make sure that the function fails as expected. Indeed, we learned in the assertions section that this is actually quite a good idea.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Test for Graceful Failure</h2>
+<h2 id="test-for-graceful-failure"><span class="glyphicon glyphicon-pencil"></span>Test for Graceful Failure</h2>
 </div>
 <div class="panel-body">
 <p>The <code>fib()</code> function should probably return the Python built-in <code>NotImplemented</code> value for negative and noninteger values.</p>
@@ -97,41 +95,40 @@
 <p>Edge cases are not where the story ends, though, as we will see next.</p>
 <h2 id="corner-cases">Corner Cases</h2>
 <p>When two or more edge cases are combined, it is called a <em>corner case</em>. If a function is parametrized by two linear and independent variables, a test that is at the extreme of both variables is in a corner. As a demonstration, consider the case of the function <code>(sin(x) / x) * (sin(y) / y)</code>, presented here:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> numpy <span class="ch">as</span> np
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
 
 <span class="kw">def</span> sinc2d(x, y):
-    <span class="kw">if</span> x == <span class="fl">0.0</span> and y == <span class="fl">0.0</span>:
-        <span class="kw">return</span> <span class="fl">1.0</span>
-    <span class="kw">elif</span> x == <span class="fl">0.0</span>:
-        <span class="kw">return</span> np.sin(y) / y
-    <span class="kw">elif</span> y == <span class="fl">0.0</span>:
-        <span class="kw">return</span> np.sin(x) / x
-    <span class="kw">else</span>:
-        <span class="kw">return</span> (np.sin(x) / x) * (np.sin(y) / y)</code></pre>
+    <span class="cf">if</span> x <span class="op">==</span> <span class="fl">0.0</span> <span class="op">and</span> y <span class="op">==</span> <span class="fl">0.0</span>:
+        <span class="cf">return</span> <span class="fl">1.0</span>
+    <span class="cf">elif</span> x <span class="op">==</span> <span class="fl">0.0</span>:
+        <span class="cf">return</span> np.sin(y) <span class="op">/</span> y
+    <span class="cf">elif</span> y <span class="op">==</span> <span class="fl">0.0</span>:
+        <span class="cf">return</span> np.sin(x) <span class="op">/</span> x
+    <span class="cf">else</span>:
+        <span class="cf">return</span> (np.sin(x) <span class="op">/</span> x) <span class="op">*</span> (np.sin(y) <span class="op">/</span> y)</code></pre></div>
 <p>The function <code>sin(x)/x</code> is called the <code>sinc()</code> function. We know that at the point where <code>x = 0</code>, then <code>sinc(x) == 1.0</code>. In the code just shown, <code>sinc2d()</code> is a two-dimensional version of this function. When both <code>x</code> and <code>y</code> are zero, it is a corner case because it requires a special value for both variables. If either <code>x</code> or <code>y</code> but not both are zero, these are edge cases. If neither is zero, this is a regular internal point.</p>
 <p>A minimal test suite for this function would include a separate test for the each of the edge cases, and an internal point. For example:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> numpy <span class="ch">as</span> np
-<span class="ch">from</span> nose.tools <span class="ch">import</span> assert_equal
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
 
-<span class="ch">from</span> mod <span class="ch">import</span> sinc2d
+<span class="im">from</span> mod <span class="im">import</span> sinc2d
 
 <span class="kw">def</span> test_internal():
-    exp = (<span class="fl">2.0</span> / np.pi) * (-<span class="fl">2.0</span> / (<span class="fl">3.0</span> * np.pi))
-    obs = sinc2d(np.pi / <span class="fl">2.0</span>, <span class="fl">3.0</span> * np.pi / <span class="fl">2.0</span>)
-    assert_equal(exp, obs)
+    exp <span class="op">=</span> (<span class="fl">2.0</span> <span class="op">/</span> np.pi) <span class="op">*</span> (<span class="op">-</span><span class="fl">2.0</span> <span class="op">/</span> (<span class="fl">3.0</span> <span class="op">*</span> np.pi))
+    obs <span class="op">=</span> sinc2d(np.pi <span class="op">/</span> <span class="fl">2.0</span>, <span class="fl">3.0</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="fl">2.0</span>)
+    <span class="cf">assert</span> obs <span class="op">==</span> exp
 
 <span class="kw">def</span> test_edge_x():
-    exp = (-<span class="fl">2.0</span> / (<span class="fl">3.0</span> * np.pi))
-    obs = sinc2d(<span class="fl">0.0</span>, <span class="fl">3.0</span> * np.pi / <span class="fl">2.0</span>)
-    assert_equal(exp, obs)
+    exp <span class="op">=</span> (<span class="op">-</span><span class="fl">2.0</span> <span class="op">/</span> (<span class="fl">3.0</span> <span class="op">*</span> np.pi))
+    obs <span class="op">=</span> sinc2d(<span class="fl">0.0</span>, <span class="fl">3.0</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="fl">2.0</span>)
+    <span class="cf">assert</span> obs <span class="op">==</span> exp
 
 <span class="kw">def</span> test_edge_y():
-    exp = (<span class="fl">2.0</span> / np.pi)
-    obs = sinc2d(np.pi / <span class="fl">2.0</span>, <span class="fl">0.0</span>)
-    assert_equal(exp, obs)</code></pre>
+    exp <span class="op">=</span> (<span class="fl">2.0</span> <span class="op">/</span> np.pi)
+    obs <span class="op">=</span> sinc2d(np.pi <span class="op">/</span> <span class="fl">2.0</span>, <span class="fl">0.0</span>)
+    <span class="cf">assert</span> obs <span class="op">==</span> exp</code></pre></div>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Write a Corner Case</h2>
+<h2 id="write-a-corner-case"><span class="glyphicon glyphicon-pencil"></span>Write a Corner Case</h2>
 </div>
 <div class="panel-body">
 <p>The sinc2d example will also need a test for the corner case, where both x and y are 0.0.</p>
@@ -139,7 +136,7 @@
 <li>Insert the sinc2d function code (above) into a file called mod.py.</li>
 <li>Add the edge and internal case tests (above) to a test_sinc2d.py file.</li>
 <li>Invent and implement a corner case test in that file.</li>
-<li>Run all of the tests using <code>nosetests</code> on the command line.</li>
+<li>Run all of the tests using <code>py.test</code> on the command line.</li>
 </ol>
 </div>
 </section>

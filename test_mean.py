@@ -1,5 +1,4 @@
 from mean import *
-import unittest
 
 def test_ints():
     num_list = [1,2,3,4,5]
