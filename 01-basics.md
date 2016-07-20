@@ -36,7 +36,7 @@ This is analogous to experiment design in the experimental science world:
 
 *Exceptions and Assertions*: While writing code, `exceptions` and `assertions` 
 can be added to sound an alarm as runtime problems come up. These kinds of 
-tests, are embedded in the software iteself and handle, as their name implies, 
+tests, are embedded in the software itself and handle, as their name implies, 
 exceptional cases rather than the norm. 
 
 *Unit Tests*: Unit tests investigate the behavior of units of code (such as

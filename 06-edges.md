@@ -32,9 +32,9 @@ they tend to have special code dedicated to them in the implementation.
 >
 > Take a moment to recall everything you know about the Fibonacci sequence.
 > 
-> The fibonacci sequence is valid for all positive integers. To believe that a 
-> fibonacci sequence function is accurate throughout that space, is it necessary 
-> to check every expected output value of the fibonacci sequence? Given that the 
+> The Fibonacci sequence is valid for all positive integers. To believe that a 
+> Fibonacci sequence function is accurate throughout that space, is it necessary 
+> to check every expected output value of the Fibonacci sequence? Given that the 
 > sequence is infinite, let's hope not.
 > 
 > Indeed, what we should probably do is test a few values within the typical 
@@ -81,7 +81,7 @@ def test_fib6():
 Different functions will have different edge cases.
 Often, you need not test for cases that are outside the valid range, unless you
 want to test that the function fails.  In the `fib()` function negative and
-noninteger values are not valid inputs. Tests for these classes of numbers serve you well if you want to make sure that the function fails as 
+non-integer values are not valid inputs. Tests for these classes of numbers serve you well if you want to make sure that the function fails as 
 expected. Indeed, we learned in the assertions section that this is actually quite a good idea.  
 
 > ## Test for Graceful Failure {.challenge}
@@ -92,7 +92,7 @@ expected. Indeed, we learned in the assertions section that this is actually qui
 > 1. Create a file called `test_fib.py`
 > 2. Copy the three tests above into that file.
 > 3. Write **two new** tests that check for the expected return value 
-> (NotImplemented) in each case (for negative input and noninteger input 
+> (NotImplemented) in each case (for negative input and non-integer input 
 > respectively).
 
 Edge cases are not where the story ends, though, as we will see next.

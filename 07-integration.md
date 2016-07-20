@@ -36,7 +36,7 @@ They encompass all of the cases that you cannot hit through plain unit testing.
 Sometimes, especially in probabilistic or stochastic codes, the precise behavior
 of an integration test cannot be determined beforehand.  That is OK. In these
 situations it is acceptable for integration tests to verify average or aggregate
-behavior rather than exact values. Sometimes you can mitigate nondeterminism by saving
+behavior rather than exact values. Sometimes you can mitigate non-determinism by saving
 seed values to a random number generator, but this is not always going to be possible.
 It is better to have an imperfect integration test than no integration test
 at all.
