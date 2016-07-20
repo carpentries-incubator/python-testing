@@ -101,12 +101,10 @@ This automatic registration of test code saves tons of human time and allows us 
 focus on what is important: writing more tests.
 
 When you run _py.test_, it will print a dot (`.`) on the screen for every test
-that passes,
-an `F` for every test that fails, and an `E` for every test were there was an
-unexpected error. In rarer situations you may also see an `S` indicating a
-skipped tests (because the test is not applicable on your system) or a `K` for a known
-failure (because the developers could not fix it promptly). After the dots, _py.test_
-will print summary information. 
+that passes, an `F` for every test that fails.
+In rarer situations you may also see an `s` indicating skipped tests (because the test is not applicable on your system),
+or `x` for known failures (e.g., when the developers are aware that a test fails, but did or could not fix it).
+After the dots, _py.test_ will print summary information. 
 
 
 > ## Fix The Failing Code {.challenge}

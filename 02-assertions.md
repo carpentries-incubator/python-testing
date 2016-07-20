@@ -90,17 +90,14 @@ building blocks of our tests.
 
 ## Approximate testing
 
-The NumPy numerical computing library has built-in functions `isclose` and `allclose`
+The NumPy numerical computing library has  `assert_allclose`
 for comparing numbers (or arrays of numbers) for equivalence within some tolerance:
 
 ~~~ {.python}
-from numpy import isclose, allclose
+from numpy.testing import assert_allclose
 from mynum import a
-assert isclose(a, 2, atol=0.003, rtol=0)
-assert allclose([a, 2 * a], [2, 4], atol=0.003, rtol=0)
+assert_allclose(a, 2, atol=0.003, rtol=0)
 ~~~
-
-When `x` and `y` are arrays, `allclose(x, y)` is a convenient shortcut for `all(isclose(x, y))`.
 
 Approximate testing is particularly useful when checking the result of numerical computations
 involving floating-point numbers, which may introduce precision errors that would confuse a strict
