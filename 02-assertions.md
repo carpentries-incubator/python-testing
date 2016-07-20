@@ -88,22 +88,22 @@ arise with floating point arithmetic.
 
 To help with situations such as those above, there are classes of more helpful
 assertions that we will use often in later parts of this testing lesson as the
-building blocks of our tests. The nose testing package contains many of them.
+building blocks of our tests.
 
-## Nose
+## Approximate testing
 
-The nose testing framework has built-in assertion types implementing
-`assert_almost_equal`, `assert_true`, `assert_false`, `assert_raises`,
-`assert_is_instance`, and others.
+The NumPy numerical computing library has built-in function `allclose`
+for comparing numbers (or arrays of numbers) for equivalence within a set tolerance:
 
 ~~~ {.python}
-from nose.tools import assert_almost_equal
+from numpy import allclose
 from mynum import a
-assert_almost_equal(a, 2, places=2)
-assert_almost_equal(a, 2, delta=0.003)
+assert allclose(a, 2, atol=0.003, rtol=0)
 ~~~
 
-These assertions give much more helpful error messages and have much more 
-powerful features than the simple assert keyword. An even more powerful sibling 
-of the assertion is the _exception_. We'll learn about those in the next 
+Approximate testing is particularly useful when checking the result of numerical computations
+involving floating-point numbers, which may introduce precision errors that would confuse a strict
+equivalence test.
+
+An even more powerful sibling of the assertion is the _exception_. We'll learn about those in the next 
 lesson.
