@@ -30,7 +30,7 @@
           <h2 class="subtitle">Continuous Integration</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -44,7 +44,7 @@
 <p>To make running the tests as easy as possible, many software development teams implement a strategy called <strong>continuous integration</strong>. As its name implies, continuous integration integrates the test suite into the development process. Every time a change is made to the repository, the continuous integration system builds and checks that code.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Thought Experiment: Does Your Software Work on Your Colleague’s Computer?</h2>
+<h2 id="thought-experiment-does-your-software-work-on-your-colleagues-computer"><span class="glyphicon glyphicon-pencil"></span>Thought Experiment: Does Your Software Work on Your Colleague’s Computer?</h2>
 </div>
 <div class="panel-body">
 <p>Imagine you developed software on a MacOSX computer. Last week, you helped your office mate build and run it on their Linux computer. You’ve made some changes since then.</p>
@@ -57,7 +57,7 @@
 <p>The typical story in a research lab is that, well, you don’t know whether it will work on your colleagues’ machine until you try rebuilding it on their machine. If you have a build system, it might take a few minutes to update the repository, rebuild the code, and run the tests. If you don’t have a build system, it could take all afternoon just to see if your new changes are compatible.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pushpin"></span>Let The Computers Do The Work</h2>
+<h2 id="let-the-computers-do-the-work"><span class="glyphicon glyphicon-pushpin"></span>Let The Computers Do The Work</h2>
 </div>
 <div class="panel-body">
 <p>Scientists are good at creative insights, conceptual understanding, critical analysis, and consuming espresso. Computers are good at following instructions. Science would be more fun if the scientists could just give the computers the instructions and go grab an espresso.</p>
@@ -75,7 +75,7 @@
 <p>Since the first step the server conducts is to check out the code from a repository, we’ll need to put our code online to make use of this kind of server (unless we are able/willing to set up our own CI server).</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Set Up a Mean Git Repository on GitHub</h2>
+<h2 id="set-up-a-mean-git-repository-on-github"><span class="glyphicon glyphicon-pencil"></span>Set Up a Mean Git Repository on GitHub</h2>
 </div>
 <div class="panel-body">
 <p>Your <code>mean.py</code> <code>test_mean.py</code> files can be the contents of a repository on GitHub.</p>
@@ -91,7 +91,7 @@
 <p>Your work on the mean function has both code and tests. Let’s copy that code into its own repository and add continuous integration to that repository.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Decide How To Set Up the Server</h2>
+<h2 id="decide-how-to-set-up-the-server"><span class="glyphicon glyphicon-pencil"></span>Decide How To Set Up the Server</h2>
 </div>
 <div class="panel-body">
 <p>It doesn’t need a build system, because Python does not need to be compiled.</p>
@@ -103,10 +103,10 @@
 </div>
 </section>
 <h3 id="travis-ci">Travis-CI</h3>
-<p><a href="https://travis-ci.org/">Travis</a> is a continous integration server hosting platform. It’s commonly used in Ruby development circles as well as in the scientific python community.</p>
+<p><a href="https://travis-ci.org/">Travis</a> is a continuous integration server hosting platform. It’s commonly used in Ruby development circles as well as in the scientific python community.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pushpin"></span>Get a Travis-CI Account</h2>
+<h2 id="get-a-travis-ci-account"><span class="glyphicon glyphicon-pushpin"></span>Get a Travis-CI Account</h2>
 </div>
 <div class="panel-body">
 <p>To use Travis, all you need is an account. It’s free.</p>
@@ -129,14 +129,14 @@ python:
 install:
   - &quot;pip install -r requirements.txt&quot;
 # command to run tests
-script: nosetests</code></pre>
-<p>You can see how the python package manager, pip, will use your requirements.txt file from the previous exercise. That requirements.txt file is a conventional way to list all of the python packages that we need. If we needed nose, numpy, and pymol, the requirements.txt file would look like this:</p>
-<pre><code>nose
+script: py.test</code></pre>
+<p>You can see how the python package manager, pip, will use your requirements.txt file from the previous exercise. That requirements.txt file is a conventional way to list all of the python packages that we need. If we needed py.test, numpy, and pymol, the requirements.txt file would look like this:</p>
+<pre><code>pytest
 numpy
 pymol</code></pre>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Add a .travis.yml File</h2>
+<h2 id="add-a-.travis.yml-file"><span class="glyphicon glyphicon-pencil"></span>Add a .travis.yml File</h2>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">

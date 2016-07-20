@@ -30,7 +30,7 @@
           <h2 class="subtitle">Exceptions</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -41,37 +41,37 @@
 </section>
 <p>Exceptions are more sophisticated than assertions. They are the standard error messaging system in most modern programming languages. Fundamentally, when an error is encountered, an informative exception is ‘thrown’ or ‘raised’.</p>
 <p>For example, instead of the assertion in the case before, an exception can be used.</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
-    <span class="kw">if</span> <span class="dt">len</span>(num_list) == <span class="dv">0</span> :
-      <span class="kw">raise</span> <span class="ot">Exception</span>(<span class="st">&quot;The algebraic mean of an empty list is undefined. Please provide a list of numbers&quot;</span>)
-    <span class="kw">else</span> :
-      <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+    <span class="cf">if</span> <span class="bu">len</span>(num_list) <span class="op">==</span> <span class="dv">0</span> :
+      <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">&quot;The algebraic mean of an empty list is undefined. Please provide a list of numbers&quot;</span>)
+    <span class="cf">else</span> :
+      <span class="cf">return</span> <span class="bu">sum</span>(num_list)<span class="op">/</span><span class="bu">len</span>(num_list)</code></pre></div>
 <p>Once an exception is raised, it will be passed upward in the program scope. An exception be used to trigger additional error messages or an alternative behavior. rather than immediately halting code execution, the exception can be ‘caught’ upstream with a try-except block. When wrapped in a try-except block, the exception can be intercepted before it reaches global scope and halts execution.</p>
 <p>To add information or replace the message before it is passed upstream, the try-catch block can be used to catch-and-reraise the exception:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
-    <span class="kw">try</span>:
-        <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)
-    <span class="kw">except</span> <span class="ot">ZeroDivisionError</span> <span class="ch">as</span> detail :
-        msg = <span class="st">&quot;The algebraic mean of an empty list is undefined. Please provide a list of numbers.&quot;</span>
-        <span class="kw">raise</span> <span class="ot">ZeroDivisionError</span>(detail.<span class="ot">__str__</span>() + <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> +  msg)</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+    <span class="cf">try</span>:
+        <span class="cf">return</span> <span class="bu">sum</span>(num_list)<span class="op">/</span><span class="bu">len</span>(num_list)
+    <span class="cf">except</span> <span class="pp">ZeroDivisionError</span> <span class="im">as</span> detail :
+        msg <span class="op">=</span> <span class="st">&quot;The algebraic mean of an empty list is undefined. Please provide a list of numbers.&quot;</span>
+        <span class="cf">raise</span> <span class="pp">ZeroDivisionError</span>(detail.<span class="fu">__str__</span>() <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> <span class="op">+</span>  msg)</code></pre></div>
 <p>Alternatively, the exception can simply be handled intelligently. If an alternative behavior is preferred, the exception can be disregarded and a responsive behavior can be implemented like so:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
-    <span class="kw">try</span>:
-        <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)
-    <span class="kw">except</span> <span class="ot">ZeroDivisionError</span> :
-        <span class="kw">return</span> <span class="dv">0</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+    <span class="cf">try</span>:
+        <span class="cf">return</span> <span class="bu">sum</span>(num_list)<span class="op">/</span><span class="bu">len</span>(num_list)
+    <span class="cf">except</span> <span class="pp">ZeroDivisionError</span> :
+        <span class="cf">return</span> <span class="dv">0</span></code></pre></div>
 <p>If a single function might raise more than one type of exception, each can be caught and handled separately.</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
-    <span class="kw">try</span>:
-        <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)
-    <span class="kw">except</span> <span class="ot">ZeroDivisionError</span> :
-        <span class="kw">return</span> <span class="dv">0</span>
-    <span class="kw">except</span> <span class="ot">TypeError</span> <span class="ch">as</span> detail :
-        msg = <span class="st">&quot;The algebraic mean of an non-numerical list is undefined. Please provide a list of numbers.&quot;</span>
-        <span class="kw">raise</span> <span class="ot">TypeError</span>(detail.<span class="ot">__str__</span>() + <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> +  msg)</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+    <span class="cf">try</span>:
+        <span class="cf">return</span> <span class="bu">sum</span>(num_list)<span class="op">/</span><span class="bu">len</span>(num_list)
+    <span class="cf">except</span> <span class="pp">ZeroDivisionError</span> :
+        <span class="cf">return</span> <span class="dv">0</span>
+    <span class="cf">except</span> <span class="pp">TypeError</span> <span class="im">as</span> detail :
+        msg <span class="op">=</span> <span class="st">&quot;The algebraic mean of an non-numerical list is undefined. Please provide a list of numbers.&quot;</span>
+        <span class="cf">raise</span> <span class="pp">TypeError</span>(detail.<span class="fu">__str__</span>() <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> <span class="op">+</span>  msg)</code></pre></div>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>What Else Can Go Wrong?</h2>
+<h2 id="what-else-can-go-wrong"><span class="glyphicon glyphicon-pencil"></span>What Else Can Go Wrong?</h2>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
@@ -82,7 +82,7 @@
 </section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Cause All of the Errors</h2>
+<h2 id="cause-all-of-the-errors"><span class="glyphicon glyphicon-pencil"></span>Cause All of the Errors</h2>
 </div>
 <div class="panel-body">
 <ul>

@@ -30,7 +30,7 @@
           <h2 class="subtitle">Fixtures</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -38,50 +38,64 @@
 </ul>
 </div>
 </section>
-<p>The above example didn’t require much setup or teardown. Consider, however, the following example that could arise when comunicating with third-party programs. You have a function <code>f()</code> which will write a file named <code>yes.txt</code> to disk with the value 42 but only if a file <code>no.txt</code> does not exist. To truly test the function works, you would want to ensure that neither <code>yes.txt</code> nor <code>no.txt</code> existed before you ran your test. After the test, you want to clean up after yourself before the next test comes along. You could write the test, setup, and teardown functions as follows:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> os
+<p>The above example didn’t require much setup or tear-down. Consider, however, the following example that could arise when communicating with third-party programs. You have a function <code>f()</code> which will write a file named <code>yes.txt</code> to disk with the value 42 but only if a file <code>no.txt</code> does not exist. To truly test the function works, you would want to ensure that neither <code>yes.txt</code> nor <code>no.txt</code> existed before you ran your test. After the test, you want to clean up after yourself before the next test comes along. You could write the test, setup, and tear-down functions as follows:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> os
 
-<span class="ch">from</span> nose.tools <span class="ch">import</span> assert_equal, with_setup
-
-<span class="ch">from</span> mod <span class="ch">import</span> f
+<span class="im">from</span> mod <span class="im">import</span> f
 
 <span class="kw">def</span> f_setup():
     <span class="co"># The f_setup() function tests ensure that neither the yes.txt nor the</span>
     <span class="co"># no.txt files exist.</span>
-    files = os.listdir(<span class="st">&#39;.&#39;</span>)
-    <span class="kw">if</span> <span class="st">&#39;no.txt&#39;</span> in files:
+    files <span class="op">=</span> os.listdir(<span class="st">&#39;.&#39;</span>)
+    <span class="cf">if</span> <span class="st">&#39;no.txt&#39;</span> <span class="op">in</span> files:
         os.remove(<span class="st">&#39;no.txt&#39;</span>)
-    <span class="kw">if</span> <span class="st">&#39;yes.txt&#39;</span> in files:
+    <span class="cf">if</span> <span class="st">&#39;yes.txt&#39;</span> <span class="op">in</span> files:
         os.remove(<span class="st">&#39;yes.txt&#39;</span>)
 
 <span class="kw">def</span> f_teardown():
     <span class="co"># The f_teardown() function removes the yes.txt file, if it was created.</span>
-    files = os.listdir(<span class="st">&#39;.&#39;</span>)
-    <span class="kw">if</span> <span class="st">&#39;yes.txt&#39;</span> in files:
+    files <span class="op">=</span> os.listdir(<span class="st">&#39;.&#39;</span>)
+    <span class="cf">if</span> <span class="st">&#39;yes.txt&#39;</span> <span class="op">in</span> files:
         os.remove(<span class="st">&#39;yes.txt&#39;</span>)
 
 <span class="kw">def</span> test_f():
     <span class="co"># The first action of test_f() is to make sure the file system is clean.</span>
     f_setup()
-    exp = <span class="dv">42</span>
+
+    exp <span class="op">=</span> <span class="dv">42</span>
     f()
-    <span class="kw">with</span> <span class="dt">open</span>(<span class="st">&#39;yes.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="ch">as</span> fhandle:
-        obs = <span class="dt">int</span>(fhandle.read())
-    assert_equal(exp, obd)
+    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;yes.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> fhandle:
+        obs <span class="op">=</span> <span class="bu">int</span>(fhandle.read())
+
+    <span class="cf">assert</span> exp <span class="op">==</span> obd
     <span class="co"># The last action of test_f() is to clean up after itself.</span>
-    f_teardown()</code></pre>
-<p>The above implementation of setup and teardown is usually fine. However, it does not guarantee that the <code>f_setup()</code> and the <code>f_teardown()</code> functions will be called. This is becaue an unexpected error anywhere in the body of <code>f()</code> or <code>test_f()</code> will cause the test to abort before the teardown function is reached.</p>
-<p>These setup and teardown behaviors are needed when <em>test fixtures</em> must be created. A fixture is any environmental state or object that is required for the test to successfully run.</p>
-<p>As above, a function that is executed before the test to prepare the fixture is called a <em>setup</em> function. One that is executed to mop-up side effects after a test is run is called a <em>teardown</em> function. Nose has a decorator that you can use to automatically run setup and teardown of fixtures no matter if the test succeeded, failed, or had an error.</p>
-<p>To make sure that both of the functions will be executed, you must use nose’s <code>with_setup()</code> decorator. This decorator may be applied to any test and takes a setup and a teardown function as possible arguments. We can rewrite the <code>test_f()</code> to be wrapped by <code>with_setup()</code>.</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@with_setup</span>(setup=f_setup, teardown=f_teardown)
-<span class="kw">def</span> test_f():
-    exp = <span class="dv">42</span>
+    f_teardown()</code></pre></div>
+<p>The above implementation of setup and tear-down is usually fine. However, it does not guarantee that the <code>f_setup()</code> and the <code>f_teardown()</code> functions will be called. This is because an unexpected error anywhere in the body of <code>f()</code> or <code>test_f()</code> will cause the test to abort before the tear-down function is reached.</p>
+<p>These setup and tear-down behaviors are needed when <em>test fixtures</em> must be created. A fixture is any environmental state or object that is required for the test to successfully run.</p>
+<p>As above, a function that is executed before the test to prepare the fixture is called a <em>setup</em> function. One that is executed to mop-up side effects after a test is run is called a <em>tear-down</em> function.</p>
+<p>To make sure that both setup and tear-down are executed, we can use a <code>py.test</code>’s <code>yield_fixture</code>. This decorator can be used to combine setup and tear-down logic into a single, self-contained <em>fixture</em> function. The name of the fixture function can then be provided as an argument to any tests which use the same fixture.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">from</span> pytest <span class="im">import</span> yield_fixture
+
+<span class="at">@yield_fixture</span>
+<span class="kw">def</span> f_fixture():
+    <span class="co"># The setup code runs before the test</span>
+    f_setup()
+
+    <span class="co"># This will transfer control to the test</span>
+    <span class="cf">yield</span>
+
+    <span class="co"># Everything after the yield runs after the test</span>
+    f_teardown()
+
+
+<span class="kw">def</span> test_f(f_fixture):
+    exp <span class="op">=</span> <span class="dv">42</span>
     f()
-    <span class="kw">with</span> <span class="dt">open</span>(<span class="st">&#39;yes.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="ch">as</span> fhandle:
-        obs = <span class="dt">int</span>(fhandle.read())
-    assert_equal(exp, obd)</code></pre>
-<p>Note that if you have functions in your test module that are simply named <code>setup()</code> and <code>teardown()</code>, each of these are called automatically when the entire test module is loaded in and finished.</p>
+    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;yes.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> fhandle:
+        obs <span class="op">=</span> <span class="bu">int</span>(fhandle.read())
+    <span class="cf">assert</span> exp <span class="op">==</span> obd</code></pre></div>
+<p>In the above example, <code>f_setup</code> is always called before <code>test_f</code> executes, and <code>f_teardown</code> is called afterwards, even if <code>test_f</code> fails unexpectedly. Note that there is generally no need to keep <code>f_setup</code> and <code>f_teardown</code> as separate functions: any code above the <code>yield</code> will be interpreted as setup, and any code afterward is considered tear-down.</p>
         </div>
       </div>
       </article>

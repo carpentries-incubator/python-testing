@@ -30,7 +30,7 @@
           <h2 class="subtitle">Test Driven Development</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -43,7 +43,7 @@
 <p>After you write a test, you are then allowed to proceed to write the function that you are testing. However, you are only supposed to implement enough of the function so that the test passes. If the function does not do what is needed, you write another test and then go back and modify the function. You repeat this process of test-then-implement until the function is completely implemented for your current needs.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pushpin"></span>The Big Idea</h2>
+<h2 id="the-big-idea"><span class="glyphicon glyphicon-pushpin"></span>The Big Idea</h2>
 </div>
 <div class="panel-body">
 <p>This design philosophy was most strongly put forth by Kent Beck in his book <em>Test-Driven Development: By Example</em>.</p>
@@ -53,7 +53,7 @@
 <p>The most important takeaway from test-driven development is that the moment you start writing code, you should be considering how to test that code. The tests should be written and presented in tandem with the implementation. <strong>Testing is too important to be an afterthought.</strong></p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pushpin"></span>You Do You</h2>
+<h2 id="you-do-you"><span class="glyphicon glyphicon-pushpin"></span>You Do You</h2>
 </div>
 <div class="panel-body">
 <p>Developers who practice strict TDD will tell you that it is the best thing since sliced arrays. However, do what works for you. The choice whether to pursue classic TDD is a personal decision.</p>
@@ -61,76 +61,75 @@
 </aside>
 <p>The following example illustrates classic TDD for a standard deviation function, <code>std()</code>.</p>
 <p>To start, we write a test for computing the standard deviation from a list of numbers as follows:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> nose.tools <span class="ch">import</span> assert_equal
-
-<span class="ch">from</span> mod <span class="ch">import</span> std
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> mod <span class="im">import</span> std
 
 <span class="kw">def</span> test_std1():
-    obs = std([<span class="fl">0.0</span>, <span class="fl">2.0</span>])
-    exp = <span class="fl">1.0</span>
-    assert_equal(obs, exp)</code></pre>
+    obs <span class="op">=</span> std([<span class="fl">0.0</span>, <span class="fl">2.0</span>])
+    exp <span class="op">=</span> <span class="fl">1.0</span>
+    <span class="cf">assert</span> exp <span class="op">==</span> obs</code></pre></div>
 <p>Next, we write the <em>minimal</em> version of <code>std()</code> that will cause <code>test_std1()</code> to pass:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> std(vals):
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> std(vals):
     <span class="co"># surely this is cheating...</span>
-    <span class="kw">return</span> <span class="fl">1.0</span></code></pre>
+    <span class="cf">return</span> <span class="fl">1.0</span></code></pre></div>
 <p>As you can see, the minimal version simply returns the expected result for the sole case that we are testing. If we only ever want to take the standard deviation of the numbers 0.0 and 2.0, or 1.0 and 3.0, and so on, then this implementation will work perfectly. If we want to branch out, then we probably need to write more robust code. However, before we can write more code, we first need to add another test or two:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> test_std1():
-    obs = std([<span class="fl">0.0</span>, <span class="fl">2.0</span>])
-    exp = <span class="fl">1.0</span>
-    assert_equal(obs, exp)
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> test_std1():
+    obs <span class="op">=</span> std([<span class="fl">0.0</span>, <span class="fl">2.0</span>])
+    exp <span class="op">=</span> <span class="fl">1.0</span>
+    <span class="cf">assert</span> exp <span class="op">==</span> obs
 
 <span class="kw">def</span> test_std2():
     <span class="co"># Test the fiducial case when we pass in an empty list.</span>
-    obs = std([])
-    exp = <span class="fl">0.0</span>
-    assert_equal(obs, exp)
+    obs <span class="op">=</span> std([])
+    exp <span class="op">=</span> <span class="fl">0.0</span>
+    <span class="cf">assert</span> exp <span class="op">==</span> obs
 
 <span class="kw">def</span> test_std3():
     <span class="co"># Test a real case where the answer is not one.</span>
-    obs = std([<span class="fl">0.0</span>, <span class="fl">4.0</span>])
-    exp = <span class="fl">2.0</span>
-    assert_equal(obs, exp)</code></pre>
+    obs <span class="op">=</span> std([<span class="fl">0.0</span>, <span class="fl">4.0</span>])
+    exp <span class="op">=</span> <span class="fl">2.0</span>
+    <span class="cf">assert</span> exp <span class="op">==</span> obs</code></pre></div>
 <p>A simple function implementation that would make these tests pass could be as follows:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> std(vals):
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> std(vals):
     <span class="co"># a little better</span>
-    <span class="kw">if</span> <span class="dt">len</span>(vals) == <span class="dv">0</span>: <span class="co"># Special case the empty list.</span>
-        <span class="kw">return</span> <span class="fl">0.0</span>
-    <span class="kw">return</span> vals[-<span class="dv">1</span>] / <span class="fl">2.0</span> <span class="co"># By being clever, we can get away without doing real work.</span></code></pre>
+    <span class="cf">if</span> <span class="bu">len</span>(vals) <span class="op">==</span> <span class="dv">0</span>: <span class="co"># Special case the empty list.</span>
+        <span class="cf">return</span> <span class="fl">0.0</span>
+    <span class="cf">return</span> vals[<span class="op">-</span><span class="dv">1</span>] <span class="op">/</span> <span class="fl">2.0</span> <span class="co"># By being clever, we can get away without doing real work.</span></code></pre></div>
 <p>Are we done? No. Of course not. Even though the tests all pass, this is clearly still not a generic standard deviation function. To create a better implementation, TDD states that we again need to expand the test suite:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> test_std1():
-    obs = std([<span class="fl">0.0</span>, <span class="fl">2.0</span>])
-    exp = <span class="fl">1.0</span>
-    assert_equal(obs, exp)
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> test_std1():
+    obs <span class="op">=</span> std([<span class="fl">0.0</span>, <span class="fl">2.0</span>])
+    exp <span class="op">=</span> <span class="fl">1.0</span>
+    <span class="cf">assert</span> exp <span class="op">==</span> obs
 
 <span class="kw">def</span> test_std2():
-    obs = std([])
-    exp = <span class="fl">0.0</span>
-    assert_equal(obs, exp)
+    obs <span class="op">=</span> std([])
+    exp <span class="op">=</span> <span class="fl">0.0</span>
+    <span class="cf">assert</span> exp <span class="op">==</span> obs
 
 <span class="kw">def</span> test_std3():
-    obs = std([<span class="fl">0.0</span>, <span class="fl">4.0</span>])
-    exp = <span class="fl">2.0</span>
-    assert_equal(obs, exp)
+    obs <span class="op">=</span> std([<span class="fl">0.0</span>, <span class="fl">4.0</span>])
+    exp <span class="op">=</span> <span class="fl">2.0</span>
+    <span class="cf">assert</span> exp <span class="op">==</span> obs
 
 <span class="kw">def</span> test_std4():
     <span class="co"># The first value is not zero.</span>
-    obs = std([<span class="fl">1.0</span>, <span class="fl">3.0</span>])
-    exp = <span class="fl">1.0</span>
-    assert_equal(obs, exp)
+    obs <span class="op">=</span> std([<span class="fl">1.0</span>, <span class="fl">3.0</span>])
+    exp <span class="op">=</span> <span class="fl">1.0</span>
+    <span class="cf">assert</span> exp <span class="op">==</span> obs
 
 <span class="kw">def</span> test_std5():
     <span class="co"># Here, we have more than two values, but all of the values are the same.</span>
-    obs = std([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])
-    exp = <span class="fl">0.0</span>
-    assert_equal(obs, exp)</code></pre>
+    obs <span class="op">=</span> std([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])
+    exp <span class="op">=</span> <span class="fl">0.0</span>
+    <span class="cf">assert</span> exp <span class="op">==</span> obs</code></pre></div>
 <p>At this point, we may as well try to implement a generic standard deviation function. Recall:</p>
 <div class="figure">
-<img src="img/std.png" alt="Standard Deviation" /><p class="caption">Standard Deviation</p>
+<img src="img/std.png" alt="Standard Deviation" />
+<p class="caption">Standard Deviation</p>
 </div>
 <p>We would spend more time trying to come up with clever approximations to the standard deviation than we would spend actually coding it.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Just Bite the Bullet</h2>
+<h2 id="just-bite-the-bullet"><span class="glyphicon glyphicon-pencil"></span>Just Bite the Bullet</h2>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">

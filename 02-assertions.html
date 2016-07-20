@@ -30,7 +30,7 @@
           <h2 class="subtitle">Assertions</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -41,29 +41,29 @@
 </div>
 </section>
 <p>Assertions are the simplest type of test. They are used as a tool for bounding acceptable behavior during runtime. The assert keyword in python has the following behavior:</p>
-<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">assert</span> <span class="ot">True</span> == <span class="ot">False</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="cf">assert</span> <span class="va">True</span> <span class="op">==</span> <span class="va">False</span></code></pre></div>
 <pre class="output"><code>Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
   AssertionError</code></pre>
-<pre class="sourceCode python"><code class="sourceCode python">  &gt;&gt;&gt; <span class="kw">assert</span> <span class="ot">True</span> == <span class="ot">True</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">  <span class="op">&gt;&gt;&gt;</span> <span class="cf">assert</span> <span class="va">True</span> <span class="op">==</span> <span class="va">True</span></code></pre></div>
 <pre class="output"><code>  &gt;&gt;&gt;</code></pre>
 <p>That is, assertions halt code execution instantly if the comparison is false. It does nothing at all if the comparison is true. These are therefore a very good tool for guarding the function against foolish (e.g. human) input:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
-    <span class="kw">assert</span> <span class="dt">len</span>(num_list) != <span class="dv">0</span>
-    <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+    <span class="cf">assert</span> <span class="bu">len</span>(num_list) <span class="op">!=</span> <span class="dv">0</span>
+    <span class="cf">return</span> <span class="bu">sum</span>(num_list)<span class="op">/</span><span class="bu">len</span>(num_list)</code></pre></div>
 <p>The advantage of assertions is their ease of use. They are rarely more than one line of code. The disadvantage is that assertions halt execution indiscriminately and the helpfulness of the resulting error message is usually quite limited.</p>
 <p>Also, input checking may require decending a rabbit hole of exceptional cases. What happens when the input provided to the mean function is a string, rather than a list of numbers?</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Insert an Assertion</h2>
+<h2 id="insert-an-assertion"><span class="glyphicon glyphicon-pencil"></span>Insert an Assertion</h2>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
 <li>Open an IPython Notebook</li>
 <li>Create the following function:</li>
 </ol>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
-  <span class="kw">return</span> <span class="dt">sum</span>(num_list)/<span class="dt">len</span>(num_list)</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> mean(num_list):
+  <span class="cf">return</span> <span class="bu">sum</span>(num_list)<span class="op">/</span><span class="bu">len</span>(num_list)</code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>In the function, insert an assertion that checks whether the input is actually a list.</li>
 </ol>
@@ -73,30 +73,28 @@
 <p>Assertions are also helpful for catching abnormal behaviors, such as those that arise with floating point arithmetic.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Almost Equal</h2>
+<h2 id="almost-equal"><span class="glyphicon glyphicon-pencil"></span>Almost Equal</h2>
 </div>
 <div class="panel-body">
 <p>Assertions are also helpful for catching abnormal behaviors, such as those that arise with floating point arithmetic. Using the assert keyword, how could you test whether some value is almost the same as another value?</p>
 <ul>
 <li>My package, mynum, provides the number a.</li>
 <li>Use the <code>assert</code> keyword to check whether the number a is greater than 2.</li>
-<li>Use the <code>assert</code> keyword to check whether a is equal to 2 to within 2 decimal places.</li>
 <li>Use the <code>assert</code> keyword to check that a is equal to 2 within an error of 0.003.</li>
 </ul>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> mynum <span class="ch">import</span> a
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> mynum <span class="im">import</span> a
 <span class="co"># greater than 2 assertion here</span>
-<span class="co"># 2 decimal places assertion here</span>
-<span class="co"># 0.003 assertion here</span></code></pre>
+<span class="co"># 0.003 assertion here</span></code></pre></div>
 </div>
 </section>
-<p>To help with situations such as those above, there are classes of more helpful assertions that we will use often in later parts of this testing lesson as the building blocks of our tests. The nose testing package contains many of them.</p>
-<h2 id="nose">Nose</h2>
-<p>The nose testing framework has built-in assertion types implementing <code>assert_almost_equal</code>, <code>assert_true</code>, <code>assert_false</code>, <code>assert_raises</code>, <code>assert_is_instance</code>, and others.</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> nose.tools <span class="ch">import</span> assert_almost_equal
-<span class="ch">from</span> mynum <span class="ch">import</span> a
-assert_almost_equal(a, <span class="dv">2</span>, places=<span class="dv">2</span>)
-assert_almost_equal(a, <span class="dv">2</span>, delta=<span class="fl">0.003</span>)</code></pre>
-<p>These assertions give much more helpful error messages and have much more powerful features than the simple assert keyword. An even more powerful sibling of the assertion is the <em>exception</em>. We’ll learn about those in the next lesson.</p>
+<p>To help with situations such as those above, there are classes of more helpful assertions that we will use often in later parts of this testing lesson as the building blocks of our tests.</p>
+<h2 id="approximate-testing">Approximate testing</h2>
+<p>The NumPy numerical computing library has <code>assert_allclose</code> for comparing numbers (or arrays of numbers) for equivalence within some tolerance:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> numpy.testing <span class="im">import</span> assert_allclose
+<span class="im">from</span> mynum <span class="im">import</span> a
+assert_allclose(a, <span class="dv">2</span>, atol<span class="op">=</span><span class="fl">0.003</span>, rtol<span class="op">=</span><span class="dv">0</span>)</code></pre></div>
+<p>Approximate testing is particularly useful when checking the result of numerical computations involving floating-point numbers, which may introduce precision errors that would confuse a strict equivalence test.</p>
+<p>An even more powerful sibling of the assertion is the <em>exception</em>. We’ll learn about those in the next lesson.</p>
         </div>
       </div>
       </article>

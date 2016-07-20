@@ -30,7 +30,7 @@
           <h2 class="subtitle">Unit Tests</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -42,70 +42,71 @@
 </ul>
 </div>
 </section>
-<p>Unit tests are so called because they exercise the functionality of the code by interrogating individual functions and methods. Fuctions and methods can often be considered the atomic units of software because they are indivisble. However, what is considered to be the smallest code <em>unit</em> is subjective. The body of a function can be long are short, and shorter functions are arguably more unit-like than long ones.</p>
+<p>Unit tests are so called because they exercise the functionality of the code by interrogating individual functions and methods. Functions and methods can often be considered the atomic units of software because they are indivisble. However, what is considered to be the smallest code <em>unit</em> is subjective. The body of a function can be long are short, and shorter functions are arguably more unit-like than long ones.</p>
 <p>Thus what reasonably constitutes a code unit typically varies from project to project and language to language. A good guideline is that if the code cannot be made any simpler logically (you cannot split apart the addition operator) or practically (a function is self-contained and well defined), then it is a unit.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pushpin"></span>Functions are Like Paragraphs</h2>
+<h2 id="functions-are-like-paragraphs"><span class="glyphicon glyphicon-pushpin"></span>Functions are Like Paragraphs</h2>
 </div>
 <div class="panel-body">
-<p>Recall that humans can only hold a few ideas in our heads at once. Paragraphs in books, for example, become unwieldy after a few lines. Functions, generaly, shouldn’t be longer than paragraphs. Robert C. Martin, the author of “Clean Code” said : “The first rule of functions is that <em>they should be small</em>. The second rule of functions is that <em>they should be smaller than that</em>.”</p>
+<p>Recall that humans can only hold a few ideas in our heads at once. Paragraphs in books, for example, become unwieldy after a few lines. Functions, generally, shouldn’t be longer than paragraphs. Robert C. Martin, the author of “Clean Code” said : “The first rule of functions is that <em>they should be small</em>. The second rule of functions is that <em>they should be smaller than that</em>.”</p>
 </div>
 </aside>
-<p>The desire to unit test code often has the effect of encouraging both the code and the tests to be as small, well-defined, and modular as possible.<br />In Python, unit tests typically take the form of test functions that call and make assertions about methods and functions in the code base. To run these test functions, a test framework is often required to collect them together. For now, we’ll write some tests for the mean function and simply run them individually to see whether they fail. In the next session, we’ll use a test framework to collect and run them.</p>
+<p>The desire to unit test code often has the effect of encouraging both the code and the tests to be as small, well-defined, and modular as possible.<br />
+In Python, unit tests typically take the form of test functions that call and make assertions about methods and functions in the code base. To run these test functions, a test framework is often required to collect them together. For now, we’ll write some tests for the mean function and simply run them individually to see whether they fail. In the next session, we’ll use a test framework to collect and run them.</p>
 <h2 id="unit-tests-are-just-functions">Unit Tests Are Just Functions</h2>
 <p>Unit tests are typically made of three pieces, some set-up, a number of assertions, and some tear-down. Set-up can be as simple as initializing the input values or as complex as creating and initializing concrete instances of a class. Ultimately, the test occurs when an assertion is made, comparing the observed and expected values. For example, let us test that our mean function successfully calculates the known value for a simple list.</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> mean <span class="ch">import</span> *
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> mean <span class="im">import</span> <span class="op">*</span>
 
 <span class="kw">def</span> test_ints():
-    num_list = [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]
-    obs = mean(num_list)
-    exp = <span class="dv">3</span>
-    <span class="kw">assert</span> obs == exp</code></pre>
+    num_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]
+    obs <span class="op">=</span> mean(num_list)
+    exp <span class="op">=</span> <span class="dv">3</span>
+    <span class="cf">assert</span> obs <span class="op">==</span> exp</code></pre></div>
 <p>The test above: - sets up the input parameters (the simple list [1, 2, 3, 4, 5]. - collects the observed result - declares the expected result (calculated with our human brain). - and compares the two with an assertion.</p>
 <p>A unit test suite is made up of many tests just like this one. A single implemented function may be tested in numerous ways.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Write a File Full of Tests</h2>
+<h2 id="write-a-file-full-of-tests"><span class="glyphicon glyphicon-pencil"></span>Write a File Full of Tests</h2>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
 <li>In a file called <code>test_mean.py</code>, implement the following code:</li>
 </ol>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> mean <span class="ch">import</span> *
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> mean <span class="im">import</span> <span class="op">*</span>
 
 <span class="kw">def</span> test_ints():
-    num_list = [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]
-    obs = mean(num_list)
-    exp = <span class="dv">3</span>
-    <span class="kw">assert</span> obs == exp
+    num_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]
+    obs <span class="op">=</span> mean(num_list)
+    exp <span class="op">=</span> <span class="dv">3</span>
+    <span class="cf">assert</span> obs <span class="op">==</span> exp
 
 <span class="kw">def</span> test_zero():
-    num_list=[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>]
-    obs = mean(num_list)
-    exp = <span class="dv">3</span>
-    <span class="kw">assert</span> obs == exp
+    num_list<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>]
+    obs <span class="op">=</span> mean(num_list)
+    exp <span class="op">=</span> <span class="dv">3</span>
+    <span class="cf">assert</span> obs <span class="op">==</span> exp
 
 <span class="kw">def</span> test_double():
     <span class="co"># This one will fail in Python 2</span>
-    num_list=[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
-    obs = mean(num_list)
-    exp = <span class="fl">2.5</span>
-    <span class="kw">assert</span> obs == exp
+    num_list<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
+    obs <span class="op">=</span> mean(num_list)
+    exp <span class="op">=</span> <span class="fl">2.5</span>
+    <span class="cf">assert</span> obs <span class="op">==</span> exp
 
 <span class="kw">def</span> test_long():
-    big = <span class="dv">100000000</span>
-    obs = mean(<span class="dt">range</span>(<span class="dv">1</span>,big))
-    exp = big/<span class="fl">2.0</span>
-    <span class="kw">assert</span> obs == exp
+    big <span class="op">=</span> <span class="dv">100000000</span>
+    obs <span class="op">=</span> mean(<span class="bu">range</span>(<span class="dv">1</span>,big))
+    exp <span class="op">=</span> big<span class="op">/</span><span class="fl">2.0</span>
+    <span class="cf">assert</span> obs <span class="op">==</span> exp
 
 <span class="kw">def</span> test_complex():
     <span class="co"># given that complex numbers are an unordered field</span>
     <span class="co"># the arithmetic mean of complex numbers is meaningless</span>
-    num_list = [<span class="dv">2</span> + 3j, <span class="dv">3</span> + 4j, -<span class="dv">32</span> - 2j]
-    obs = mean(num_list)
-    exp = <span class="ot">NotImplemented</span>
-    <span class="kw">assert</span> obs == exp</code></pre>
+    num_list <span class="op">=</span> [<span class="dv">2</span> <span class="op">+</span> 3j, <span class="dv">3</span> <span class="op">+</span> 4j, <span class="op">-</span><span class="dv">32</span> <span class="op">-</span> 2j]
+    obs <span class="op">=</span> mean(num_list)
+    exp <span class="op">=</span> <span class="va">NotImplemented</span>
+    <span class="cf">assert</span> obs <span class="op">==</span> exp</code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Use IPython to import the test_mean package and run each test.</li>
 </ol>
