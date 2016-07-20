@@ -5,7 +5,7 @@ title: Testing
 
 > ## Prerequisites {.prereq}
 >
-> In this lesson we use a python library called nose. 
+> In this lesson we use a python library called py.test. 
 > Basic understanding of python variables and functions are a necessary
 > prerequisite.
 > Some previous experience with the shell is expected,
@@ -22,7 +22,7 @@ title: Testing
 2.  [Assertions](02-assertions.html)
 3.  [Exceptions](03-exceptions.html)
 4.  [Unit Tests](04-units.html)
-5.  [Running Tests with Nose](05-nose.html)
+5.  [Running Tests with py.test](05-pytest.html)
 6.  [Edge and Corner Cases](06-edges.html)
 7.  [Integration and Regression Tests](07-integration.html)
 8.  [Continuous Integration](08-ci.html)
