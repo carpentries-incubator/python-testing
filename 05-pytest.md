@@ -1,13 +1,13 @@
 ---
 layout: page
 title: Testing
-subtitle: Running Tests with Nose
+subtitle: Running Tests with py.test
 minutes: 10
 ---
 > ## Learning Objectives {.objectives}
 > 
-> -   Understand how to run a test suite using the nose framework
-> -   Understand how to read the output of a nose test suite
+> -   Understand how to run a test suite using the py.test framework
+> -   Understand how to read the output of a py.test test suite
 
 
 We created a suite of tests for our mean function, but it was annoying to run 
@@ -54,71 +54,82 @@ def test_complex():
 ~~~
 
 Once these tests are written in a file called `test_mean.py`, the command
-"nosetests" can be called from the directory containing the tests:
+"py.test" can be called from the directory containing the tests:
 
 ~~~ {.bash}
-$ nosetests
+$ py.test test_mean.py
 ~~~
 ~~~ {.output}
-....F
-======================================================================
-FAIL: test_mean.test_complex
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/Users/khuff/anaconda/envs/py3k/lib/python3.3/site-packages/nose/case.py", line 198, in runTest
-    self.test(*self.arg)
-  File "/Users/khuff/repos/2015-06-04-berkeley/testing/test_mean.py", line 34, in test_complex
-    assert obs == exp
-AssertionError
+============================== test session starts ===============================
+platform linux -- Python 3.5.2, pytest-2.9.2, py-1.4.31, pluggy-0.3.1
+rootdir: /home/bmcfee/git/swc/python-testing, inifile: 
+plugins: pep8-1.0.6, cov-2.2.1
+collected 5 items 
 
-----------------------------------------------------------------------
-Ran 5 tests in 3.746s
+test_mean.py ....F
 
-FAILED (failures=1)
+==================================== FAILURES ====================================
+__________________________________ test_complex __________________________________
+
+    def test_complex():
+        # given that complex numbers are an unordered field
+        # the arithmetic mean of complex numbers is meaningless
+        num_list = [2 + 3j, 3 + 4j, -32 - 2j]
+        obs = mean(num_list)
+        exp = NotImplemented
+>       assert obs == exp
+E       assert (-9+1.6666666666666667j) == NotImplemented
+
+test_mean.py:35: AssertionError
+======================= 1 failed, 4 passed in 2.01 seconds =======================
 ~~~
 
-In the above case, the python nose package 'sniffed-out' the tests in the
-directory and ran them together to produce a report of the sum of the files and
+In the above case, the _py.test_ package located the tests in the file `test_mean.py`
+and ran them together to produce a report of the sum of the files and
 functions matching the regular expression `[Tt]est[-_]*`.
 
 
 The major boon a testing framework provides is exactly that, a utility to find and run the
-tests automatically. With `nose`, this is the command-line tool called
-_nosetests_.  When _nosetests_ is run, it will search all the directories whose names start or
+tests automatically. With `py.test`, this is the command-line tool called
+_py.test_.  When _py.test_ is run, it will search all the directories whose names start or
 end with the word _test_, find all of the Python modules in these directories
 whose names
 start or end with _test_, import them, and run all of the functions and classes
-whose names start or end with _test_. In fact, `nose` looks for any names
+whose names start or end with _test_. In fact, `py.test` looks for any names
 that match the regular expression `'(?:^|[\\b_\\.-])[Tt]est'`.
 This automatic registration of test code saves tons of human time and allows us to
 focus on what is important: writing more tests.
 
-When you run _nosetests_, it will print a dot (`.`) on the screen for every test
+When you run _py.test_, it will print a dot (`.`) on the screen for every test
 that passes,
 an `F` for every test that fails, and an `E` for every test were there was an
 unexpected error. In rarer situations you may also see an `S` indicating a
 skipped tests (because the test is not applicable on your system) or a `K` for a known
-failure (because the developers could not fix it promptly). After the dots, _nosetests_
+failure (because the developers could not fix it promptly). After the dots, _py.test_
 will print summary information. 
 
 
 > ## Fix The Failing Code {.challenge}
 >
 > Without changing the tests, alter the mean.py file from the previous section until it passes. 
-> When it passes, _nosetests_ will produce results like the following:
+> When it passes, _py.test_ will produce results like the following:
 >
 > ~~~ {.bash}
-> $ nosetests
+> $ py.test test_mean.py
 > ~~~
 > ~~~ {.output}
-> .....
+> ============================== test session starts ===============================
+> platform linux -- Python 3.5.2, pytest-2.9.2, py-1.4.31, pluggy-0.3.1
+> rootdir: /home/bmcfee/git/swc/python-testing, inifile: 
+> plugins: pep8-1.0.6, cov-2.2.1
+> collected 5 items 
 > 
-> Ran 5 tests in 3.746s
->
-> OK
+> test_mean_fixed.py .....
+> 
+> ============================ 5 passed in 2.00 seconds ============================
 > ~~~
 
-As we write more code, we would write more tests, and _nosetests_ would produce
+As we write more code, we would write more tests, and _py.test_ would produce
 more dots.  Each passing test is a small, satisfying reward for having written
 quality scientific software. Now that you know how to write tests, let's go
 into what can go wrong.
