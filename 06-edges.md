@@ -58,24 +58,22 @@ Such cases should be tested explicitly. A minimally sufficient test suite
 for this function would be:
 
 ~~~ {.python}
-from nose.tools import assert_equal
-
 from mod import fib
 
 def test_fib0():
     # test edge 0
     obs = fib(0)
-    assert_equal(1, obs)
+    assert 1 == obs
 
 def test_fib1():
     # test edge 1
     obs = fib(1)
-    assert_equal(1, obs)
+    assert 1 == obs
 
 def test_fib6():
     # test internal point
     obs = fib(6)
-    assert_equal(13, obs)
+    assert 13 == obs
 ~~~
 
 Different functions will have different edge cases.
@@ -87,7 +85,7 @@ expected. Indeed, we learned in the assertions section that this is actually qui
 > ## Test for Graceful Failure {.challenge}
 >
 > The `fib()` function should probably return the Python built-in 
-> `NotImplemented` value for negative and noninteger values.
+> `NotImplemented` value for negative and non-integer values.
 > 
 > 1. Create a file called `test_fib.py`
 > 2. Copy the three tests above into that file.
@@ -119,7 +117,7 @@ def sinc2d(x, y):
 ~~~
 
 The function `sin(x)/x` is called the `sinc()` function.  We know that at
-the point where `x = 0`, then
+the point where `x == 0`, then
 `sinc(x) == 1.0`.  In the code just shown, `sinc2d()` is a two-dimensional version
 of this function. When both `x` and `y`
 are zero, it is a corner case because it requires a special value for both
@@ -131,24 +129,23 @@ each of the edge cases, and an internal point. For example:
 
 ~~~ {.python}
 import numpy as np
-from nose.tools import assert_equal
 
 from mod import sinc2d
 
 def test_internal():
     exp = (2.0 / np.pi) * (-2.0 / (3.0 * np.pi))
     obs = sinc2d(np.pi / 2.0, 3.0 * np.pi / 2.0)
-    assert_equal(exp, obs)
+    assert exp == obs
 
 def test_edge_x():
     exp = (-2.0 / (3.0 * np.pi))
     obs = sinc2d(0.0, 3.0 * np.pi / 2.0)
-    assert_equal(exp, obs)
+    assert exp == obs
 
 def test_edge_y():
     exp = (2.0 / np.pi)
     obs = sinc2d(np.pi / 2.0, 0.0)
-    assert_equal(exp, obs)
+    assert exp == obs
 ~~~
 
 > ## Write a Corner Case {.challenge}
@@ -159,7 +156,7 @@ def test_edge_y():
 > 1. Insert the sinc2d function code (above) into a file called mod.py.
 > 2. Add the edge and internal case tests (above) to a test_sinc2d.py file.
 > 3. Invent and implement a corner case test in that file.
-> 4. Run all of the tests using `nosetests` on the command line.
+> 4. Run all of the tests using `py.test` on the command line.
 
 Corner cases can be even trickier to find and debug than edge cases because of their
 increased complexity.  This complexity, however, makes them even more important to

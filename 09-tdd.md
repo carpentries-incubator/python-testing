@@ -52,14 +52,12 @@ To start, we write a test for computing the standard deviation from
 a list of numbers as follows:
 
 ~~~ {.python}
-from nose.tools import assert_equal
-
 from mod import std
 
 def test_std1():
     obs = std([0.0, 2.0])
     exp = 1.0
-    assert_equal(obs, exp)
+    assert exp == obs
 ~~~
 
 Next, we write the _minimal_ version of `std()` that will cause `test_std1()` to
@@ -82,19 +80,19 @@ need to add another test or two:
 def test_std1():
     obs = std([0.0, 2.0])
     exp = 1.0
-    assert_equal(obs, exp)
+    assert exp == obs
 
 def test_std2():
     # Test the fiducial case when we pass in an empty list.
     obs = std([])
     exp = 0.0
-    assert_equal(obs, exp)
+    assert exp == obs
 
 def test_std3():
     # Test a real case where the answer is not one.
     obs = std([0.0, 4.0])
     exp = 2.0
-    assert_equal(obs, exp)
+    assert exp == obs
 ~~~
 
 A simple function implementation that would make these tests pass could be as follows:
@@ -115,29 +113,29 @@ implementation, TDD states that we again need to expand the test suite:
 def test_std1():
     obs = std([0.0, 2.0])
     exp = 1.0
-    assert_equal(obs, exp)
+    assert exp == obs
 
 def test_std2():
     obs = std([])
     exp = 0.0
-    assert_equal(obs, exp)
+    assert exp == obs
 
 def test_std3():
     obs = std([0.0, 4.0])
     exp = 2.0
-    assert_equal(obs, exp)
+    assert exp == obs
 
 def test_std4():
     # The first value is not zero.
     obs = std([1.0, 3.0])
     exp = 1.0
-    assert_equal(obs, exp)
+    assert exp == obs
 
 def test_std5():
     # Here, we have more than two values, but all of the values are the same.
     obs = std([1.0, 1.0, 1.0])
     exp = 0.0
-    assert_equal(obs, exp)
+    assert exp == obs
 ~~~
 
 At this point, we may as well try to implement a generic standard deviation

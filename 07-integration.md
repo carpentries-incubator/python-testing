@@ -66,14 +66,12 @@ Integration tests still follow the pattern
 of comparing expected results to observed results. A sample `test_c()` is implemented here:
 
 ~~~ {.python}
-from nose.tools import assert_equal
-
 from mod import c
 
 def test_c():
     exp = 6
     obs = c(2)
-    assert_equal(exp, obs)
+    assert exp == obs
 ~~~
 
 Given the lack of clarity in what is defined as a code unit, what is considered an
