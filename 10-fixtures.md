@@ -20,8 +20,6 @@ and tear-down functions as follows:
 ~~~ {.python}
 import os
 
-from nose.tools import assert_equal, with_setup
-
 from mod import f
 
 def f_setup():
@@ -42,11 +40,13 @@ def f_teardown():
 def test_f():
     # The first action of test_f() is to make sure the file system is clean.
     f_setup()
+
     exp = 42
     f()
     with open('yes.txt', 'r') as fhandle:
         obs = int(fhandle.read())
-    assert_equal(exp, obd)
+
+    assert exp == obd
     # The last action of test_f() is to clean up after itself.
     f_teardown()
 ~~~
@@ -63,26 +63,39 @@ created.  A fixture is any environmental state or object that is required for th
 
 As above, a function that is executed before the test to prepare the fixture
 is called a _setup_ function. One that is executed to mop-up side effects
-after a test is run is called a _tear-down_ function.  Nose has a decorator that
-you can use to automatically run setup and tear-down of fixtures no matter if
-the test succeeded, failed, or had an error.
+after a test is run is called a _tear-down_ function.
 
-To make sure that both of the functions will be executed, you must use nose's
-`with_setup()` decorator. This decorator may be applied to any test
-and takes a setup and a tear-down function as possible arguments. We can rewrite the
-`test_f()` to be wrapped by `with_setup()`.
+
+To make sure that both setup and tear-down are executed, we can use a `py.test`'s `yield_fixture`.
+This decorator can be used to combine setup and tear-down logic into a single, self-contained _fixture_ function.
+The name of the fixture function can then be provided as an argument to any tests which use the same fixture.
 
 
 ~~~ {.python}
-@with_setup(setup=f_setup, teardown=f_teardown)
-def test_f():
+
+from pytest import yield_fixture
+
+@yield_fixture
+def f_fixture():
+    # The setup code runs before the test
+    f_setup()
+
+    # This will transfer control to the test
+    yield
+
+    # Everything after the yield runs after the test
+    f_teardown()
+
+
+def test_f(f_fixture):
     exp = 42
     f()
     with open('yes.txt', 'r') as fhandle:
         obs = int(fhandle.read())
-    assert_equal(exp, obd)
+    assert exp == obd
 ~~~
 
-Note that if you have functions in your test module that are simply named
-`setup()` and `teardown()`, each of these are called automatically when the
-entire test module is loaded in and finished.
+In the above example, `f_setup` is always called before `test_f` executes, and `f_teardown` is called afterwards,
+even if `test_f` fails unexpectedly.  Note that there is generally no need to keep `f_setup` and `f_teardown` as
+separate functions: any code above the `yield` will be interpreted as setup, and any code afterward is considered
+tear-down.
