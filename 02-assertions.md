@@ -76,13 +76,11 @@ arise with floating point arithmetic.
 >
 > - My package, mynum, provides the number a. 
 > - Use the `assert` keyword to check whether the number a is greater than 2.
-> - Use the `assert` keyword to check whether a is equal to 2 to within 2 decimal places.
 > - Use the `assert` keyword to check that a is equal to 2 within an error of 0.003.
 > 
 > ~~~ {.python}
 > from mynum import a
 > # greater than 2 assertion here
-> # 2 decimal places assertion here
 > # 0.003 assertion here
 > ~~~
 
