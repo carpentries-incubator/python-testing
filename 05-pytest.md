@@ -117,10 +117,9 @@ will print summary information.
 > test_mean.py .....
 >
 > ========================== 5 passed in 2.68 seconds ===========================
+> ~~~
 
 As we write more code, we would write more tests, and pytest would produce
 more dots.  Each passing test is a small, satisfying reward for having written
 quality scientific software. Now that you know how to write tests, let's go
 into what can go wrong.
-
-
