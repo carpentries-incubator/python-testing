@@ -33,8 +33,8 @@ Before relying on a new experimental device, an experimental scientist always
 establishes its accuracy. A new detector is calibrated when the scientist
 observes its responses to to known input signals. The results of this
 calibration are compared against the _expected_ response. **An experimental
-scientist would never conduct an experiment with uncalibrated detectors - the
-that would be unscientific. So too, simulations and analysis with untested
+scientist would never conduct an experiment with uncalibrated detectors - that
+would be unscientific. So too, simulations and analysis with untested
 software do not constitute science.**
 
 > ## How Do You Know Your Code is Right? {.callout}
