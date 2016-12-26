@@ -5,6 +5,8 @@ DESIGN.html
 CONTRIBUTING.html
 CONDUCT.html
 *~
-*.pyc
-_site
 .DS_Store
+.ipynb_checkpoints
+.sass-cache
+__pycache__
+_site
