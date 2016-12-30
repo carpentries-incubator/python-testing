@@ -4,7 +4,7 @@ title: Testing
 subtitle: Basics of Testing
 minutes: 5
 ---
-> ## Learning Objectives {.objectives}
+}
 >
 > *   Understand the place of testing in a scientific workflow.
 > *   Understand that testing has many forms.
@@ -24,7 +24,7 @@ This is analogous to experiment design in the experimental science world:
   might be advisable. (Such a practice is called _test-driven development_, 
   which we will discuss in greater detail [later in the lesson](09-tdd.html).)
 
-> ## What Kinds of Tests Exist {.callout}
+}
 >
 > There are many ways to test software, such as:
 >

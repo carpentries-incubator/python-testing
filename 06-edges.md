@@ -4,7 +4,7 @@ title: Testing
 subtitle: Edge and Corner Cases
 minutes: 10
 ---
-> ## Learning Objectives {.objectives}
+}
 >
 > -   Understand that edge  cases are at the limit of the function's behavior
 > -   Write a test for an edge case
@@ -28,7 +28,7 @@ Anecdotally, it is important to test edges cases because this is where errors te
 arise. Qualitatively different behavior happens at boundaries. As such,
 they tend to have special code dedicated to them in the implementation.
 
-> ## Consider the Fibonacci Sequence {.callout}
+}
 >
 > Take a moment to recall everything you know about the Fibonacci sequence.
 >
@@ -44,20 +44,21 @@ they tend to have special code dedicated to them in the implementation.
 
 Consider the following simple Fibonacci function:
 
-~~~ {.python}
+~~~
 def fib(n):
     if n == 0 or n == 1:
         return 1
     else:
         return fib(n - 1) + fib(n - 2)
 ~~~
+{: .python}
 
 This function has two edge cases: zero and one. For these values of `n`, the
 `fib()` function does something special that does not apply to any other values.
 Such cases should be tested explicitly. A minimally sufficient test suite
 for this function would be:
 
-~~~ {.python}
+~~~
 from mod import fib
 
 def test_fib0():
@@ -75,6 +76,7 @@ def test_fib6():
     obs = fib(6)
     assert obs == 13)
 ~~~
+{: .python}
 
 Different functions will have different edge cases.
 Often, you need not test for cases that are outside the valid range, unless you
@@ -82,7 +84,7 @@ want to test that the function fails.  In the `fib()` function negative and
 noninteger values are not valid inputs. Tests for these classes of numbers serve you well if you want to make sure that the function fails as
 expected. Indeed, we learned in the assertions section that this is actually quite a good idea.
 
-> ## Test for Graceful Failure {.challenge}
+}
 >
 > The `fib()` function should probably return the Python built-in
 > `NotImplemented` value for negative and noninteger values.
@@ -102,7 +104,7 @@ If a function is parametrized by two linear and independent variables, a test
 that is at the extreme of both variables is in a corner. As a demonstration,
 consider the case of the function `(sin(x) / x) * (sin(y) / y)`, presented here:
 
-~~~ {.python}
+~~~
 import numpy as np
 
 def sinc2d(x, y):
@@ -115,6 +117,7 @@ def sinc2d(x, y):
     else:
         return (np.sin(x) / x) * (np.sin(y) / y)
 ~~~
+{: .python}
 
 The function `sin(x)/x` is called the `sinc()` function.  We know that at
 the point where `x = 0`, then
@@ -127,7 +130,7 @@ cases. If neither is zero, this is a regular internal point.
 A minimal test suite for this function would include a separate test for the
 each of the edge cases, and an internal point. For example:
 
-~~~ {.python}
+~~~
 import numpy as np
 
 from mod import sinc2d
@@ -147,8 +150,9 @@ def test_edge_y():
     obs = sinc2d(np.pi / 2.0, 0.0)
     assert obs == exp
 ~~~
+{: .python}
 
-> ## Write a Corner Case {.challenge}
+}
 >
 > The sinc2d example will also need a test for the corner case, where both x
 > and y are 0.0.

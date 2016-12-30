@@ -4,7 +4,7 @@ title: Testing
 subtitle: Unit Tests
 minutes: 10
 ---
-> ## Learning Objectives {.objectives}
+}
 > 
 > -   Understand that functions are the atomistic unit of software.
 > -   Understand that simpler units are easier to test than complex ones.
@@ -24,7 +24,7 @@ project and language to language.  A good guideline is that if the code cannot
 be made any simpler logically (you cannot split apart the addition operator) or
 practically (a function is self-contained and well defined), then it is a unit. 
 
-> ## Functions are Like Paragraphs {.callout}
+}
 >
 > Recall that humans can only hold a few ideas in our heads at once. Paragraphs
 > in books, for example, become unwieldy after a few lines. Functions, generally,
@@ -51,7 +51,7 @@ class. Ultimately, the test occurs when an assertion is made, comparing the
 observed and expected values. For example, let us test that our mean function 
 successfully calculates the known value for a simple list.
 
-~~~ {.python}
+~~~
 from mean import *
 
 def test_ints():
@@ -59,7 +59,8 @@ def test_ints():
     obs = mean(num_list)
     exp = 3
     assert obs == exp
-~~~ 
+~~~
+{: .python}
 
 The test above: 
 - sets up the input parameters (the simple list [1, 2, 3, 4, 5].
@@ -70,7 +71,7 @@ The test above:
 A unit test suite is made up of many tests just like this one. A single 
 implemented function may be tested in numerous ways. 
 
-> ## Write a File Full of Tests {.challenge}
+}
 >
 > 1. In a file called `test_mean.py`, implement the following code:
 > 

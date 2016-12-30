@@ -1,9 +1,10 @@
 ---
-layout: page
+layout: lesson
 title: Testing
+root: .
 ---
 
-> ## Prerequisites {.prereq}
+}
 >
 > In this lesson we use a python library called pytest.
 > Basic understanding of python variables and functions are a necessary
@@ -12,7 +13,7 @@ title: Testing
 > *but isn't mandatory*.
 
 
-> ## Getting ready {.getready}
+}
 >
 > Nothing to do: you're ready to go!
 
@@ -37,7 +38,7 @@ scientist would never conduct an experiment with uncalibrated detectors - the
 that would be unscientific. So too, simulations and analysis with untested
 software do not constitute science.**
 
-> ## How Do You Know Your Code is Right? {.callout}
+}
 >
 > **You can only know by testing it.** Software bugs are hiding in all
 > nontrivial software. Testing is the process by which those bugs are
@@ -53,7 +54,7 @@ incorrect with respect to whichever case failed.  After this lesson, you will
 know to not trust software when its tests do not _cover_ its claimed
 capabilities and when its tests do not pass.
 
-> ## But How Close is Close Enough? {.callout}
+}
 >
 > In the same way that your scientific domain has expectations concerning
 > experimental accuracy, it likely also has expectations concerning allowable
@@ -72,7 +73,7 @@ claims in a publication) will result.
 This is not to say that scientists have a monopoly on software testing, simply
 that software cannot be called _scientific_ unless it has been validated.
 
-> ## Why Untested Code is Legacy Code {.callout}
+}
 >
 > In *[Working Effectively with Legacy Code](http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/)*,
 > Michael Feathers defines legacy
@@ -90,7 +91,7 @@ been caught and a test has been written, that particular bug can never again
 re-enter the codebase unnoticed. So, whether motivated by principles or a
 desire to work more efficiently, all scientists can benefit from testing.
 
-> ## Effective Computation In Physics {.callout}
+}
 >
 > Note that this testing lesson was adapted from the Testing chapter in
 > *[Effective Computation In Physics](http://physics.codes)*

@@ -4,7 +4,7 @@ title: Testing
 subtitle: Integration and Regression Tests
 minutes: 10
 ---
-> ## Learning Objectives {.objectives}
+}
 >
 > *   Understand the purpose of integration and regression tests
 > *   Understand how to implement an integration test
@@ -17,7 +17,7 @@ the gears and cogs that make up the system. On their own, they can be of the hig
 quality. Unit tests verify that each gear is well made. However, the clock still
 needs to be put together. The gears need to fit with one another.
 
-> ## Telling The Time {.callout}
+}
 >
 > _Integration tests_ are the class of tests that verify that multiple moving
 > pieces and gears inside the clock work well together. Where unit tests
@@ -46,7 +46,7 @@ As a simple example, consider the three functions `a()`, `b()`,
 and `c()`.  The `a()` function adds one to a number, `b()` multiplies a number
 by two, and `c()` composes them.  These functions are defined as follows:
 
-~~~ {.python}
+~~~
 def a(x):
     return x + 1
 
@@ -56,6 +56,7 @@ def b(x):
 def c(x):
     return b(a(x))
 ~~~
+{: .python}
 
 The `a()` and `b()` functions can each be unit tested because they each do one thing.
 However, `c()` cannot be truly unit tested because all of the real work is farmed
@@ -65,7 +66,7 @@ out to `a()` and `b()`. Testing `c()` will be a test of whether `a()` and
 Integration tests still follow the pattern
 of comparing expected results to observed results. A sample `test_c()` is implemented here:
 
-~~~ {.python}
+~~~
 from mod import c
 
 def test_c():
@@ -73,6 +74,7 @@ def test_c():
     obs = c(2)
     assert obs == exp
 ~~~
+{: .python}
 
 Given the lack of clarity in what is defined as a code unit, what is considered an
 integration test is also a little fuzzy.  Integration
@@ -101,7 +103,7 @@ the expected result should be, regression tests look to the past for the
 expected behavior. The expected
 result is taken as what was previously computed for the same inputs.
 
-> ## The Past as Truth {.callout}
+}
 >
 > Regression tests assume that the past is "correct." They are great for
 > letting developers know when and how a code base has changed. They are not

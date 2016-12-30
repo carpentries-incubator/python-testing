@@ -5,7 +5,7 @@ subtitle: Exceptions
 minutes: 10
 ---
 
-> ## Learning Objectives {.objectives}
+}
 > 
 > *   Understand that exceptions are effectively specialized runtime tests
 > *   Learn when to use exceptions and what exceptions are available
@@ -17,13 +17,14 @@ error is encountered, an informative exception is 'thrown' or 'raised'.
 For example, instead of the assertion in the case before, an exception can be
 used.
 
-~~~ {.python}
+~~~
 def mean(num_list):
     if len(num_list) == 0 :
       raise Exception("The algebraic mean of an empty list is undefined. Please provide a list of numbers")
     else :
       return sum(num_list)/len(num_list)
 ~~~
+{: .python}
 
 Once an exception is raised, it will be passed upward in the program scope.
 An exception be used to trigger additional error messages or an alternative
@@ -35,7 +36,7 @@ global scope and halts execution.
 To add information or replace the message before it is passed upstream, the try-catch
 block can be used to catch-and-reraise the exception:
 
-~~~ {.python}
+~~~
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
@@ -43,24 +44,26 @@ def mean(num_list):
         msg = "The algebraic mean of an empty list is undefined. Please provide a list of numbers."
         raise ZeroDivisionError(detail.__str__() + "\n" +  msg)
 ~~~
+{: .python}
 
 Alternatively, the exception can simply be handled intelligently. If an
 alternative behavior is preferred, the exception can be disregarded and a
 responsive behavior can be implemented like so:
 
 
-~~~ {.python}
+~~~
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
     except ZeroDivisionError :
         return 0
 ~~~
+{: .python}
 
 If a single function might raise more than one type of exception, each can be
 caught and handled separately.
 
-~~~ {.python}
+~~~
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
@@ -70,14 +73,15 @@ def mean(num_list):
         msg = "The algebraic mean of an non-numerical list is undefined. Please provide a list of numbers."
         raise TypeError(detail.__str__() + "\n" +  msg)
 ~~~
+{: .python}
 
-> ## What Else Can Go Wrong? {.challenge}
+}
 >
 > 1. Think of some other type of exception that could be raised by the try 
 > block.
 > 2. Guard against it by adding an except clause.
 
-> ## Cause All of the Errors {.challenge}
+}
 > 
 > - Use the mean function in three different ways, so that you cause each
 > exceptional case.

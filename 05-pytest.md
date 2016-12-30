@@ -4,7 +4,7 @@ title: Testing
 subtitle: Running Tests with pytest
 minutes: 10
 ---
-> ## Learning Objectives {.objectives}
+}
 >
 > -   Understand how to run a test suite using the pytest framework
 > -   Understand how to read the output of a pytest test suite
@@ -16,7 +16,7 @@ all at once, just reporting which tests fail and which succeed.
 
 Thankfully, that exists. Recall our tests:
 
-~~~ {.python}
+~~~
 from mean import *
 
 def test_ints():
@@ -52,14 +52,16 @@ def test_complex():
     exp = NotImplemented
     assert obs == exp
 ~~~
+{: .python}
 
 Once these tests are written in a file called `test_mean.py`, the command
 `py.test` can be called from the directory containing the tests:
 
-~~~ {.bash}
+~~~
 $ py.test
 ~~~
-~~~ {.output}
+{: .bash}
+~~~
 collected 5 items
 
 test_mean.py ....F
@@ -79,6 +81,7 @@ E       assert (-9+1.6666666666666667j) == NotImplemented
 test_mean.py:34: AssertionError
 ===================== 1 failed, 4 passed in 2.71 seconds ======================
 ~~~
+{: .output}
 
 In the above case, the pytest package 'sniffed-out' the tests in the
 directory and ran them together to produce a report of the sum of the files and
@@ -103,7 +106,7 @@ failure (because the developers could not fix it promptly). After the dots, pyte
 will print summary information.
 
 
-> ## Fix The Failing Code {.challenge}
+}
 >
 > Without changing the tests, alter the mean.py file from the previous section until it passes.
 > When it passes, `py.test` will produce results like the following:

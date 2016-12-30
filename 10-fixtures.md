@@ -4,7 +4,7 @@ title: Testing
 subtitle: Fixtures
 minutes: 10
 ---
-> ## Learning Objectives {.objectives}
+}
 >
 > -   Understand how test fixtures can help write tests.
 
@@ -17,7 +17,7 @@ existed before you ran your test. After the test, you want to clean up after
 yourself before the next test comes along.  You could write the test, setup,
 and teardown functions as follows:
 
-~~~ {.python}
+~~~
 import os
 
 from mod import f
@@ -48,6 +48,7 @@ def test_f():
     # The last action of test_f() is to clean up after itself.
     f_teardown()
 ~~~
+{: .python}
 
 The above implementation of setup and teardown is usually fine.
 However, it does
@@ -70,7 +71,7 @@ and each needs to take a single argument: the test function being run
 (in this case we will not use the argument).
 
 
-~~~ {.python}
+~~~
 import os
 
 from mod import f
@@ -97,6 +98,7 @@ def test_f():
         obs = int(fhandle.read())
     assert obs == exp
 ~~~
+{: .python}
 
 The setup and teardown functions make our test simpler and the teardown
 function is guaranteed to be run even if an exception happens in our test.

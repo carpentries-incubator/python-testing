@@ -4,7 +4,7 @@ title: Testing
 subtitle: Test Driven Development
 minutes: 10
 ---
-> ## Learning Objectives {.objectives}
+}
 >
 > *   Learn about the benefits and drawbacks of Test Driven Development
 > *   Write a test before writing the code
@@ -21,7 +21,7 @@ needed, you write another test and then go back and modify the function.  You
 repeat this process of test-then-implement until the function is completely
 implemented for your current needs.
 
-> ## The Big Idea {.callout}
+}
 >
 > This design philosophy was most strongly put forth by Kent Beck in his book
 > _Test-Driven  Development: By Example_.
@@ -39,7 +39,7 @@ you start writing code, you should be considering how to test that code. The
 tests should be written and presented in tandem with the implementation. **Testing
 is too important to be an afterthought.**
 
-> ## You Do You {.callout}
+}
 >
 > Developers who practice strict TDD will tell you that it is the best thing since
 > sliced arrays. However, do what works for you. The choice whether to pursue
@@ -51,7 +51,7 @@ function, `std()`.
 To start, we write a test for computing the standard deviation from
 a list of numbers as follows:
 
-~~~ {.python}
+~~~
 from mod import std
 
 def test_std1():
@@ -59,15 +59,17 @@ def test_std1():
     exp = 1.0
     assert obs == exp
 ~~~
+{: .python}
 
 Next, we write the _minimal_ version of `std()` that will cause `test_std1()` to
 pass:
 
-~~~ {.python}
+~~~
 def std(vals):
     # surely this is cheating...
     return 1.0
 ~~~
+{: .python}
 
 As you can see, the minimal version simply returns the expected result for the
 sole case that we are testing.  If we only ever want to take the standard
@@ -76,7 +78,7 @@ implementation will work perfectly. If we want to branch out, then we probably
 need to write more robust code.  However, before we can write more code, we first
 need to add another test or two:
 
-~~~ {.python}
+~~~
 def test_std1():
     obs = std([0.0, 2.0])
     exp = 1.0
@@ -94,22 +96,24 @@ def test_std3():
     exp = 2.0
     assert_equal(obs, exp)
 ~~~
+{: .python}
 
 A simple function implementation that would make these tests pass could be as follows:
 
-~~~ {.python}
+~~~
 def std(vals):
     # a little better
     if len(vals) == 0: # Special case the empty list.
         return 0.0
     return vals[-1] / 2.0 # By being clever, we can get away without doing real work.
 ~~~
+{: .python}
 
 Are we done? No. Of course not. Even though the tests all pass, this is clearly
 still not a generic standard deviation function. To create a better
 implementation, TDD states that we again need to expand the test suite:
 
-~~~ {.python}
+~~~
 def test_std1():
     obs = std([0.0, 2.0])
     exp = 1.0
@@ -137,6 +141,7 @@ def test_std5():
     exp = 0.0
     assert_equal(obs, exp)
 ~~~
+{: .python}
 
 At this point, we may as well try to implement a generic standard deviation
 function. Recall:
@@ -147,7 +152,7 @@ function. Recall:
 approximations to the standard deviation than we would spend actually coding it.
 
 
-> ## Just Bite the Bullet {.challenge}
+}
 >
 > 1. Copy the five tests above into a file called test_std.py
 > 2. Open mod.py
