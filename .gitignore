@@ -4,6 +4,7 @@ FAQ.html
 DESIGN.html
 CONTRIBUTING.html
 CONDUCT.html
+*.orig
 *~
 .DS_Store
 .ipynb_checkpoints
