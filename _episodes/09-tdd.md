@@ -143,7 +143,7 @@ def test_std5():
 At this point, we may as well try to implement a generic standard deviation
 function. Recall:
 
-![Standard Deviation](img/std.png)
+![Standard Deviation](../img/std.png)
 
 We would spend more time trying to come up with clever
 approximations to the standard deviation than we would spend actually coding it.
