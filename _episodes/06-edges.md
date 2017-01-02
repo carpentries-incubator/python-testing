@@ -1,20 +1,21 @@
 ---
-layout: page
-title: Testing
-subtitle: Edge and Corner Cases
-minutes: 10
+title: Edge and Corner Cases
+teaching: 10
+exercises: 0
+questions:
+- "FIXME"
+objectives:
+- "Understand that edge  cases are at the limit of the function's behavior"
+- "Write a test for an edge case"
+- "Understand that corner cases are where two edge cases meet"
+- "Write a test for a corner case"
+keypoints:
+- "FIXME"
 ---
-}
->
-> -   Understand that edge  cases are at the limit of the function's behavior
-> -   Write a test for an edge case
-> -   Understand that corner cases are where two edge cases meet
-> -   Write a test for a corner case
 
 What we saw in the tests for the mean function are called  _interior_ tests.
 The precise points that we tested did not matter. The mean function should have
 behaved as expected when it is within the valid range.
-
 
 ## Edge Cases
 
@@ -28,8 +29,6 @@ Anecdotally, it is important to test edges cases because this is where errors te
 arise. Qualitatively different behavior happens at boundaries. As such,
 they tend to have special code dedicated to them in the implementation.
 
-}
->
 > Take a moment to recall everything you know about the Fibonacci sequence.
 >
 > The fibonacci sequence is valid for all positive integers. To believe that a
@@ -40,7 +39,6 @@ they tend to have special code dedicated to them in the implementation.
 > Indeed, what we should probably do is test a few values within the typical
 > scope of the function, and then test values at the limit of the function's
 > behavior.
-
 
 Consider the following simple Fibonacci function:
 
@@ -84,8 +82,6 @@ want to test that the function fails.  In the `fib()` function negative and
 noninteger values are not valid inputs. Tests for these classes of numbers serve you well if you want to make sure that the function fails as
 expected. Indeed, we learned in the assertions section that this is actually quite a good idea.
 
-}
->
 > The `fib()` function should probably return the Python built-in
 > `NotImplemented` value for negative and noninteger values.
 >
@@ -152,8 +148,6 @@ def test_edge_y():
 ~~~
 {: .python}
 
-}
->
 > The sinc2d example will also need a test for the corner case, where both x
 > and y are 0.0.
 >

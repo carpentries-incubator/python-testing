@@ -1,16 +1,18 @@
 ---
-layout: page
-title: Testing
-subtitle: Unit Tests
-minutes: 10
+title: Unit Tests
+teaching: 10
+exercises: 0
+questions:
+- "FIXME"
+objectives:
+- "Understand that functions are the atomistic unit of software."
+- "Understand that simpler units are easier to test than complex ones."
+- "Understand how to write a single unit test."
+- "Understand how to run a single unit test."
+- "Understand how test fixtures can help write tests."
+keypoints:
+- "FIXME"
 ---
-}
-> 
-> -   Understand that functions are the atomistic unit of software.
-> -   Understand that simpler units are easier to test than complex ones.
-> -   Understand how to write a single unit test.
-> -   Understand how to run a single unit test.
-> -   Understand how test fixtures can help write tests.
 
 Unit tests are so called because they exercise the functionality of the code by
 interrogating individual functions and methods. Functions and methods can often
@@ -24,8 +26,6 @@ project and language to language.  A good guideline is that if the code cannot
 be made any simpler logically (you cannot split apart the addition operator) or
 practically (a function is self-contained and well defined), then it is a unit. 
 
-}
->
 > Recall that humans can only hold a few ideas in our heads at once. Paragraphs
 > in books, for example, become unwieldy after a few lines. Functions, generally,
 > shouldn't be longer than paragraphs.
@@ -71,11 +71,9 @@ The test above:
 A unit test suite is made up of many tests just like this one. A single 
 implemented function may be tested in numerous ways. 
 
-}
->
 > 1. In a file called `test_mean.py`, implement the following code:
 > 
-> ~~~ {.python}
+> ~~~
 > from mean import *
 > 
 > def test_ints():
@@ -111,8 +109,8 @@ implemented function may be tested in numerous ways.
 >     exp = NotImplemented
 >     assert obs == exp
 > ~~~
+> {: .python}
 > 
-> 2. Use IPython to import the test_mean package and run each test.
-> 
+> 2. Use IPython to import the `test_mean` package and run each test.
 
 Well, **that** was tedious.

@@ -1,14 +1,15 @@
 ---
-layout: page
-title: Testing
-subtitle: Running Tests with pytest
-minutes: 10
+title: Running Tests with pytest
+teaching: 10
+exercises: 0
+questions:
+- "FIXME"
+objectives:
+- "Understand how to run a test suite using the pytest framework"
+- "Understand how to read the output of a pytest test suite"
+keypoints:
+- "FIXME"
 ---
-}
->
-> -   Understand how to run a test suite using the pytest framework
-> -   Understand how to read the output of a pytest test suite
-
 
 We created a suite of tests for our mean function, but it was annoying to run
 them one at a time. It would be a lot better if there were some way to run them
@@ -87,7 +88,6 @@ In the above case, the pytest package 'sniffed-out' the tests in the
 directory and ran them together to produce a report of the sum of the files and
 functions matching the regular expression `[Tt]est[-_]*`.
 
-
 The major boon a testing framework provides is exactly that, a utility to find and run the
 tests automatically. With pytest, this is the command-line tool called
 `py.test`.  When `py.test` is run, it will search all directories below where it was called,
@@ -105,22 +105,21 @@ skipped tests (because the test is not applicable on your system) or a `x` for a
 failure (because the developers could not fix it promptly). After the dots, pytest
 will print summary information.
 
-
-}
->
 > Without changing the tests, alter the mean.py file from the previous section until it passes.
 > When it passes, `py.test` will produce results like the following:
 >
-> ~~~ {.bash}
+> ~~~
 > $ py.test
 > ~~~
-> ~~~ {.output}
+> {: .bash}
+> ~~~
 > collected 5 items
 >
 > test_mean.py .....
 >
 > ========================== 5 passed in 2.68 seconds ===========================
 > ~~~
+> {: .output}
 
 As we write more code, we would write more tests, and pytest would produce
 more dots.  Each passing test is a small, satisfying reward for having written
