@@ -9,7 +9,12 @@ objectives:
 - "Assertions can halt execution if something unexpected happens."
 - "Assertions are the building blocks of tests."
 keypoints:
-- "FIXME"
+- "Assertions are one line tests embedded in code."
+- "The `assert` keyword is used to set an assertion."
+- "Assertions halt execution if the argument is false."
+- "Assertions do nothing if the argument is true."
+- "The `numpy.testing` module provides tools numeric testing."
+- "Assertions are the building blocks of tests."
 ---
 
 Assertions are the simplest type of test. They are used as a tool for bounding

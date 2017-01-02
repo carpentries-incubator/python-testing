@@ -8,7 +8,9 @@ objectives:
 - "Understand that exceptions are effectively specialized runtime tests"
 - "Learn when to use exceptions and what exceptions are available"
 keypoints:
-- "FIXME"
+- "Exceptions are effectively specialized runtime tests"
+- "Exceptions can be caught and handled with a try-except block"
+- "Many built-in Exception types are available"
 ---
 
 Exceptions are more sophisticated than assertions. They are the standard error 

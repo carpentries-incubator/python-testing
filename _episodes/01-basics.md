@@ -8,7 +8,12 @@ objectives:
 - "Understand the place of testing in a scientific workflow."
 - "Understand that testing has many forms."
 keypoints:
-- "FIXME"
+- "Tests compare that the result observed from running code is the same as what was expected ahead of time."
+- "Tests should be written at the same time as the code they are testing is written."
+- "Assertions and exceptions are like alarm systems embedded in the software, guarding against exceptional bahavior."
+- "Unit tests try to test the smallest pieces of code possible, usually functions and methods."
+- "Integration tests make sure that code units work together properly."
+- "Regression tests ensure that everything works the same today as it did yesterday."
 ---
 
 The first step toward getting the right answers from our programs is to assume

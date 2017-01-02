@@ -10,7 +10,9 @@ objectives:
 - "Understand that corner cases are where two edge cases meet"
 - "Write a test for a corner case"
 keypoints:
-- "FIXME"
+- "Functions often fail at the edge of their range of validity"
+- "Edge case tests query the limits of a function's behavior"
+- "Corner cases are where two edge cases meet"
 ---
 
 What we saw in the tests for the mean function are called  _interior_ tests.

@@ -7,7 +7,7 @@ questions:
 objectives:
 - Understand how test fixtures can help write tests.
 keypoints:
-- "FIXME"
+-   It may be necessary to set up "fixtures" composing the test environment.
 ---
 The above example didn't require much setup or teardown. Consider, however, the
 following example that could arise when comunicating with third-party programs.

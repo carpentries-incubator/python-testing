@@ -8,7 +8,11 @@ objectives:
 - "Understand how to run a test suite using the pytest framework"
 - "Understand how to read the output of a pytest test suite"
 keypoints:
-- "FIXME"
+- "The `py.test` command collects and runs tests starting with `Test` or `test_`."
+- "`.` means the test passed"
+- "`F` means the test failed or erred"
+- "`x` is a known failure"
+- "`s` is a purposefully skipped test"
 ---
 
 We created a suite of tests for our mean function, but it was annoying to run

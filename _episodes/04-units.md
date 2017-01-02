@@ -11,7 +11,11 @@ objectives:
 - "Understand how to run a single unit test."
 - "Understand how test fixtures can help write tests."
 keypoints:
-- "FIXME"
+- "Functions are the atomistic unit of software."
+- "Simpler units are easier to test than complex ones."
+- "A single unit test is a function containing assertions."
+- "Such a unit test is run just like any other function."
+- "Running tests one at a time is pretty tedious, so we will use a framework instead."
 ---
 
 Unit tests are so called because they exercise the functionality of the code by

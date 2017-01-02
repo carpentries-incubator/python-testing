@@ -8,7 +8,10 @@ objectives:
 - "Learn about the benefits and drawbacks of Test Driven Development."
 - "Write a test before writing the code."
 keypoints:
-- "FIXME"
+- "Test driven development is a common software development technique"
+- "By writing the tests first, the function requirements are very explicit"
+- "TDD is not for everyone"
+- "TDD requires vigilance for success (cheating leads to failure)"
 ---
 
 Test-driven Development (TDD) takes the workflow of writing code and writing

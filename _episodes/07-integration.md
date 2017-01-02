@@ -8,7 +8,8 @@ objectives:
 - "Understand the purpose of integration and regression tests"
 - "Understand how to implement an integration test"
 keypoints:
-- "FIXME"
+- "Integration tests interrogate the coopration of pieces of the software"
+- "Regression tests use past behavior as the expected result"
 ---
 
 ## Integration Tests
