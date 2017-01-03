@@ -1,13 +1,14 @@
 ---
-layout: page
-title: Testing
-subtitle: Fixtures
-minutes: 10
+title: Fixtures
+teaching: 10
+exercises: 0
+questions:
+- "FIXME"
+objectives:
+- Understand how test fixtures can help write tests.
+keypoints:
+-   It may be necessary to set up "fixtures" composing the test environment.
 ---
-}
->
-> -   Understand how test fixtures can help write tests.
-
 The above example didn't require much setup or teardown. Consider, however, the
 following example that could arise when comunicating with third-party programs.
 You have a function `f()` which will write a file named `yes.txt` to disk with
@@ -57,8 +58,9 @@ not guarantee that the
 unexpected error anywhere in the body of `f()` or `test_f()` will cause the
 test to abort before the teardown function is reached.
 
-These setup and teardown behaviors are needed when _test fixtures_ must be
-created.  A fixture is any environmental state or object that is required for the test to successfully run.
+These setup and teardown behaviors are needed when _test fixtures_
+must be created.  A fixture is any environmental state or object that
+is required for the test to successfully run.
 
 As above, a function that is executed before the test to prepare the fixture
 is called a _setup_ function. One that is executed to mop-up side effects
@@ -69,7 +71,6 @@ what happens in the test function.
 Those special names are `setup_function` and `teardown_function`,
 and each needs to take a single argument: the test function being run
 (in this case we will not use the argument).
-
 
 ~~~
 import os

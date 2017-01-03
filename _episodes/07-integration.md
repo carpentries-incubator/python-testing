@@ -1,14 +1,16 @@
 ---
-layout: page
-title: Testing
-subtitle: Integration and Regression Tests
-minutes: 10
+title: Integration and Regression Tests
+teaching: 10
+exercises: 0
+questions:
+- "FIXME"
+objectives:
+- "Understand the purpose of integration and regression tests"
+- "Understand how to implement an integration test"
+keypoints:
+- "Integration tests interrogate the coopration of pieces of the software"
+- "Regression tests use past behavior as the expected result"
 ---
-}
->
-> *   Understand the purpose of integration and regression tests
-> *   Understand how to implement an integration test
-
 
 ## Integration Tests
 
@@ -17,8 +19,6 @@ the gears and cogs that make up the system. On their own, they can be of the hig
 quality. Unit tests verify that each gear is well made. However, the clock still
 needs to be put together. The gears need to fit with one another.
 
-}
->
 > _Integration tests_ are the class of tests that verify that multiple moving
 > pieces and gears inside the clock work well together. Where unit tests
 > investigate the gears, integration tests look at the position of the hands to
@@ -41,7 +41,6 @@ seed values to a random number generator, but this is not always going to be pos
 It is better to have an imperfect integration test than no integration test
 at all.
 
-
 As a simple example, consider the three functions `a()`, `b()`,
 and `c()`.  The `a()` function adds one to a number, `b()` multiplies a number
 by two, and `c()` composes them.  These functions are defined as follows:
@@ -63,8 +62,8 @@ However, `c()` cannot be truly unit tested because all of the real work is farme
 out to `a()` and `b()`. Testing `c()` will be a test of whether `a()` and
 `b()` can be integrated together.
 
-Integration tests still follow the pattern
-of comparing expected results to observed results. A sample `test_c()` is implemented here:
+Integration tests still follow the pattern of comparing expected
+results to observed results. A sample `test_c()` is implemented here:
 
 ~~~
 from mod import c
@@ -103,8 +102,6 @@ the expected result should be, regression tests look to the past for the
 expected behavior. The expected
 result is taken as what was previously computed for the same inputs.
 
-}
->
 > Regression tests assume that the past is "correct." They are great for
 > letting developers know when and how a code base has changed. They are not
 > great for letting anyone know why the change occurred. The change between

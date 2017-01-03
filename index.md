@@ -4,31 +4,13 @@ title: Testing
 root: .
 ---
 
-}
->
-> In this lesson we use a python library called pytest.
-> Basic understanding of python variables and functions are a necessary
+> In this lesson we use a Python library called pytest.
+> Basic understanding of Python variables and functions are a necessary
 > prerequisite.
 > Some previous experience with the shell is expected,
 > *but isn't mandatory*.
 
-
-}
->
 > Nothing to do: you're ready to go!
-
-## Topics
-
-1.  [Basics of Testing](01-basics.html)
-2.  [Assertions](02-assertions.html)
-3.  [Exceptions](03-exceptions.html)
-4.  [Unit Tests](04-units.html)
-5.  [Running Tests with pytest](05-pytest.html)
-6.  [Edge and Corner Cases](06-edges.html)
-7.  [Integration and Regression Tests](07-integration.html)
-8.  [Continuous Integration](08-ci.html)
-9.  [Test Driven Development](09-tdd.html)
-10. [Fixtures](10-fixtures.html)
 
 Before relying on a new experimental device, an experimental scientist always
 establishes its accuracy. A new detector is calibrated when the scientist
@@ -38,8 +20,6 @@ scientist would never conduct an experiment with uncalibrated detectors - the
 that would be unscientific. So too, simulations and analysis with untested
 software do not constitute science.**
 
-}
->
 > **You can only know by testing it.** Software bugs are hiding in all
 > nontrivial software. Testing is the process by which those bugs are
 > systematically exterminated before they have a chance to cause a paper
@@ -54,8 +34,6 @@ incorrect with respect to whichever case failed.  After this lesson, you will
 know to not trust software when its tests do not _cover_ its claimed
 capabilities and when its tests do not pass.
 
-}
->
 > In the same way that your scientific domain has expectations concerning
 > experimental accuracy, it likely also has expectations concerning allowable
 > computational accuracy. These considerations should surely come into play
@@ -73,8 +51,6 @@ claims in a publication) will result.
 This is not to say that scientists have a monopoly on software testing, simply
 that software cannot be called _scientific_ unless it has been validated.
 
-}
->
 > In *[Working Effectively with Legacy Code](http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/)*,
 > Michael Feathers defines legacy
 > code as "any code without tests". This definition draws on the fact that
@@ -91,16 +67,7 @@ been caught and a test has been written, that particular bug can never again
 re-enter the codebase unnoticed. So, whether motivated by principles or a
 desire to work more efficiently, all scientists can benefit from testing.
 
-}
->
 > Note that this testing lesson was adapted from the Testing chapter in
 > *[Effective Computation In Physics](http://physics.codes)*
 > by Anthony Scopatz and Kathryn Huff.
 > It is often quoted directly.
-
-
-## Other Resources
-
-*   [Reference](reference.html)
-*   [Discussion](discussion.html)
-*   [Instructor's Guide](instructors.html)

@@ -1,13 +1,20 @@
 ---
-layout: page
-title: Testing
-subtitle: Basics of Testing
-minutes: 5
+title: Basics of Testing
+teaching: 5
+exercises: 0
+questions:
+- "FIXME"
+objectives:
+- "Understand the place of testing in a scientific workflow."
+- "Understand that testing has many forms."
+keypoints:
+- "Tests compare that the result observed from running code is the same as what was expected ahead of time."
+- "Tests should be written at the same time as the code they are testing is written."
+- "Assertions and exceptions are like alarm systems embedded in the software, guarding against exceptional bahavior."
+- "Unit tests try to test the smallest pieces of code possible, usually functions and methods."
+- "Integration tests make sure that code units work together properly."
+- "Regression tests ensure that everything works the same today as it did yesterday."
 ---
-}
->
-> *   Understand the place of testing in a scientific workflow.
-> *   Understand that testing has many forms.
 
 The first step toward getting the right answers from our programs is to assume
 that mistakes *will* happen and to guard against them.  This is called
@@ -24,8 +31,6 @@ This is analogous to experiment design in the experimental science world:
   might be advisable. (Such a practice is called _test-driven development_, 
   which we will discuss in greater detail [later in the lesson](09-tdd.html).)
 
-}
->
 > There are many ways to test software, such as:
 >
 > - Assertions

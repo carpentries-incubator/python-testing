@@ -1,14 +1,17 @@
 ---
-layout: page
-title: Testing
-subtitle: Exceptions
-minutes: 10
+title: Exceptions
+teaching: 10
+exercises: 0
+questions:
+- "FIXME"
+objectives:
+- "Understand that exceptions are effectively specialized runtime tests"
+- "Learn when to use exceptions and what exceptions are available"
+keypoints:
+- "Exceptions are effectively specialized runtime tests"
+- "Exceptions can be caught and handled with a try-except block"
+- "Many built-in Exception types are available"
 ---
-
-}
-> 
-> *   Understand that exceptions are effectively specialized runtime tests
-> *   Learn when to use exceptions and what exceptions are available
 
 Exceptions are more sophisticated than assertions. They are the standard error 
 messaging system in most modern programming languages.  Fundamentally, when an 
@@ -50,7 +53,6 @@ Alternatively, the exception can simply be handled intelligently. If an
 alternative behavior is preferred, the exception can be disregarded and a
 responsive behavior can be implemented like so:
 
-
 ~~~
 def mean(num_list):
     try:
@@ -75,14 +77,10 @@ def mean(num_list):
 ~~~
 {: .python}
 
-}
->
 > 1. Think of some other type of exception that could be raised by the try 
 > block.
 > 2. Guard against it by adding an except clause.
 
-}
-> 
 > - Use the mean function in three different ways, so that you cause each
 > exceptional case.
 
