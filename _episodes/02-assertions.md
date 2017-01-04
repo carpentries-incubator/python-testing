@@ -70,9 +70,13 @@ def mean(num_list):
 
 3. In the function, insert an assertion that checks whether the input is actually a list.
 
+> ## Hint
+>
 > Hint: Use the [isinstance function](https://docs.python.org/2/library/functions.html#isinstance).
 {: .callout}
 
+> ## Testing similarity between variables
+>
 > Assertions are also helpful for catching abnormal behaviors, such as those
 > that arise with floating point arithmetic. Using the assert keyword, how could
 > you test whether some value is almost the same as another value?

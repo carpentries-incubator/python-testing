@@ -75,14 +75,14 @@ The test above:
 - declares the expected result (calculated with our human brain).
 - and compares the two with an assertion.
 
-A unit test suite is made up of many tests just like this one. A single 
-implemented function may be tested in numerous ways. 
+A unit test suite is made up of many tests just like this one. A single
+implemented function may be tested in numerous ways.
 
 In a file called `test_mean.py`, implement the following code:
- 
+
 ~~~
 from mean import *
- 
+
 def test_ints():
     num_list = [1, 2, 3, 4, 5]
     obs = mean(num_list)
@@ -107,7 +107,7 @@ def test_long():
     obs = mean(range(1,big))
     exp = big/2.0
     assert obs == exp
- 
+
 def test_complex():
     # given that complex numbers are an unordered field
     # the arithmetic mean of complex numbers is meaningless
@@ -117,7 +117,7 @@ def test_complex():
     assert obs == exp
 ~~~
 {: .python}
- 
+
 Use IPython to import the `test_mean` package and run each test.
 
 Well, **that** was tedious.
