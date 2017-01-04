@@ -109,21 +109,22 @@ skipped tests (because the test is not applicable on your system) or a `x` for a
 failure (because the developers could not fix it promptly). After the dots, pytest
 will print summary information.
 
-> Without changing the tests, alter the mean.py file from the previous section until it passes.
-> When it passes, `py.test` will produce results like the following:
->
-> ~~~
-> $ py.test
-> ~~~
-> {: .bash}
-> ~~~
-> collected 5 items
->
-> test_mean.py .....
->
-> ========================== 5 passed in 2.68 seconds ===========================
-> ~~~
-> {: .output}
+Without changing the tests, alter the mean.py file from the previous section until it passes.
+When it passes, `py.test` will produce results like the following:
+
+~~~
+$ py.test
+~~~
+{: .bash}
+
+~~~
+collected 5 items
+
+test_mean.py .....
+
+========================== 5 passed in 2.68 seconds ===========================
+~~~
+{: .output}
 
 As we write more code, we would write more tests, and pytest would produce
 more dots.  Each passing test is a small, satisfying reward for having written

@@ -26,6 +26,8 @@ needed, you write another test and then go back and modify the function.  You
 repeat this process of test-then-implement until the function is completely
 implemented for your current needs.
 
+> ## Where it comes from
+>
 > This design philosophy was most strongly put forth by Kent Beck in his book
 > _Test-Driven  Development: By Example_.
 >
@@ -35,15 +37,19 @@ implemented for your current needs.
 > features. You do not spend any time implementing options and features on the off
 > chance that they will prove helpful later. You get what you need when you need it,
 > and no more. TDD is a very powerful idea, though it can be hard to follow religiously.
+{: .callout}
 
 The most important takeaway from test-driven development is that the moment
 you start writing code, you should be considering how to test that code. The
 tests should be written and presented in tandem with the implementation. **Testing
 is too important to be an afterthought.**
 
+> ## Who is using it?
+>
 > Developers who practice strict TDD will tell you that it is the best thing since
 > sliced arrays. However, do what works for you. The choice whether to pursue
 > classic TDD is a personal decision.
+{: .callout}
 
 The following example illustrates classic TDD for a standard deviation
 function, `std()`.
@@ -151,10 +157,10 @@ function. Recall:
 We would spend more time trying to come up with clever
 approximations to the standard deviation than we would spend actually coding it.
 
-> 1. Copy the five tests above into a file called test_std.py
-> 2. Open mod.py
-> 3. Add an implementation that actually calculates a standard deviation.
-> 4. Run the tests above. Did they pass?
+1. Copy the five tests above into a file called test_std.py
+2. Open mod.py
+3. Add an implementation that actually calculates a standard deviation.
+4. Run the tests above. Did they pass?
 
 It is important to note that we could improve this function by
 writing further tests.  For example, this `std()` ignores the situation where infinity

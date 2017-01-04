@@ -5,7 +5,7 @@ exercises: 0
 questions:
 - "FIXME"
 objectives:
-- "Understand that edge  cases are at the limit of the function's behavior"
+- "Understand that edge cases are at the limit of the function's behavior"
 - "Write a test for an edge case"
 - "Understand that corner cases are where two edge cases meet"
 - "Write a test for a corner case"
@@ -31,6 +31,8 @@ Anecdotally, it is important to test edges cases because this is where errors te
 arise. Qualitatively different behavior happens at boundaries. As such,
 they tend to have special code dedicated to them in the implementation.
 
+> ## Consider a Fibonacci sequence
+>
 > Take a moment to recall everything you know about the Fibonacci sequence.
 >
 > The fibonacci sequence is valid for all positive integers. To believe that a
@@ -41,6 +43,7 @@ they tend to have special code dedicated to them in the implementation.
 > Indeed, what we should probably do is test a few values within the typical
 > scope of the function, and then test values at the limit of the function's
 > behavior.
+{: .callout}
 
 Consider the following simple Fibonacci function:
 
@@ -84,14 +87,18 @@ want to test that the function fails.  In the `fib()` function negative and
 noninteger values are not valid inputs. Tests for these classes of numbers serve you well if you want to make sure that the function fails as
 expected. Indeed, we learned in the assertions section that this is actually quite a good idea.
 
+> ## Implement these points
+>
 > The `fib()` function should probably return the Python built-in
 > `NotImplemented` value for negative and noninteger values.
 >
-> 1. Create a file called `test_fib.py`
-> 2. Copy the three tests above into that file.
-> 3. Write **two new** tests that check for the expected return value
+>> 1. Create a file called `test_fib.py`
+>> 2. Copy the three tests above into that file.
+>> 3. Write **two new** tests that check for the expected return value
+>> {: .checklist}
 > (NotImplemented) in each case (for negative input and noninteger input
 > respectively).
+{: .callout}
 
 Edge cases are not where the story ends, though, as we will see next.
 
@@ -157,6 +164,7 @@ def test_edge_y():
 > 2. Add the edge and internal case tests (above) to a test_sinc2d.py file.
 > 3. Invent and implement a corner case test in that file.
 > 4. Run all of the tests using `py.test` on the command line.
+{: .checklist}
 
 Corner cases can be even trickier to find and debug than edge cases because of their
 increased complexity.  This complexity, however, makes them even more important to

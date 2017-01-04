@@ -19,6 +19,8 @@ the gears and cogs that make up the system. On their own, they can be of the hig
 quality. Unit tests verify that each gear is well made. However, the clock still
 needs to be put together. The gears need to fit with one another.
 
+> ## Further explanation
+>
 > _Integration tests_ are the class of tests that verify that multiple moving
 > pieces and gears inside the clock work well together. Where unit tests
 > investigate the gears, integration tests look at the position of the hands to
@@ -26,6 +28,7 @@ needs to be put together. The gears need to fit with one another.
 > whole or at its subsystems.  Integration tests typically function at a higher
 > level conceptually than unit tests.  Thus, writing integration tests also
 > happens at a higher level.
+{: .callout}
 
 Because they deal with gluing code together, there are typically fewer
 integration tests in a test suite than there are unit tests.  However, integration
@@ -76,11 +79,10 @@ def test_c():
 {: .python}
 
 Given the lack of clarity in what is defined as a code unit, what is considered an
-integration test is also a little fuzzy.  Integration
-tests can range from the extremely simple
-(like the one just shown) to the very complex.
-A good delimiter, though, is in opposition to the unit
-tests.  If a function or class only combines two or more unit-tested pieces of code, then you need an integration test. If a function implements new behavior
+integration test is also a little fuzzy.  Integration tests can range from the extremely
+simple (like the one just shown) to the very complex. A good delimiter, though, is in
+opposition to the unit tests.  If a function or class only combines two or more unit-tested
+pieces of code, then you need an integration test. If a function implements new behavior
 that is not otherwise tested, you need a unit test.
 
 The structure of integration tests is very similar to that of unit tests. There
@@ -102,11 +104,14 @@ the expected result should be, regression tests look to the past for the
 expected behavior. The expected
 result is taken as what was previously computed for the same inputs.
 
+> ## Further explanation
+>
 > Regression tests assume that the past is "correct." They are great for
 > letting developers know when and how a code base has changed. They are not
 > great for letting anyone know why the change occurred. The change between
 > what a code produces now and what it computed before is called a
 > _regression_.
+{: .callout}
 
 Like integration tests, regression tests tend to be high level. They often
 operate on an entire code base. They are particularly common and useful for

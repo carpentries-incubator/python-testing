@@ -59,22 +59,19 @@ Also, input checking may require decending a rabbit hole of exceptional cases.
 What happens when the input provided to the mean function is a string, rather
 than a list of numbers?
 
-> 1. Open an IPython Notebook
-> 2. Create the following function:
->
-> ~~~
-> def mean(num_list):
->   return sum(num_list)/len(num_list)
-> ~~~
-> {: .python}
->
-> 3. In the function, insert an assertion that checks whether the input is
-> actually a list.
->
-> Hint: Use the [isinstance function](https://docs.python.org/2/library/functions.html#isinstance).
+1. Open an IPython Notebook
+2. Create the following function:
 
-Assertions are also helpful for catching abnormal behaviors, such as those that
-arise with floating point arithmetic.
+~~~
+def mean(num_list):
+  return sum(num_list)/len(num_list)
+~~~
+{: .python}
+
+3. In the function, insert an assertion that checks whether the input is actually a list.
+
+> Hint: Use the [isinstance function](https://docs.python.org/2/library/functions.html#isinstance).
+{: .callout}
 
 > Assertions are also helpful for catching abnormal behaviors, such as those
 > that arise with floating point arithmetic. Using the assert keyword, how could
@@ -83,13 +80,14 @@ arise with floating point arithmetic.
 > - My package, mynum, provides the number a.
 > - Use the `assert` keyword to check whether the number a is greater than 2.
 > - Use the `assert` keyword to check that a is equal to 2 within an error of 0.003.
->
-> ~~~
-> from mynum import a
-> # greater than 2 assertion here
-> # 0.003 assertion here
-> ~~~
-> {: .python}
+{: .callout}
+
+~~~
+from mynum import a
+# greater than 2 assertion here
+# 0.003 assertion here
+~~~
+{: .python}
 
 ## NumPy
 

@@ -30,12 +30,15 @@ project and language to language.  A good guideline is that if the code cannot
 be made any simpler logically (you cannot split apart the addition operator) or
 practically (a function is self-contained and well defined), then it is a unit. 
 
+> ## Note to self
+>
 > Recall that humans can only hold a few ideas in our heads at once. Paragraphs
 > in books, for example, become unwieldy after a few lines. Functions, generally,
 > shouldn't be longer than paragraphs.
 > Robert C. Martin, the author of "Clean Code" said : "The first rule of
 > functions is that _they should be small_. The second rule of functions is that
 > _they should be smaller than that_." 
+{: .callout}
 
 The desire to unit test code often has the effect of encouraging both the
 code and the tests to be as small, well-defined, and modular as possible.  
@@ -75,8 +78,8 @@ The test above:
 A unit test suite is made up of many tests just like this one. A single 
 implemented function may be tested in numerous ways. 
 
-> 1. In a file called `test_mean.py`, implement the following code:
-> 
+In a file called `test_mean.py`, implement the following code:
+ 
 > ~~~
 > from mean import *
 > 
@@ -113,8 +116,8 @@ implemented function may be tested in numerous ways.
 >     exp = NotImplemented
 >     assert obs == exp
 > ~~~
-> {: .python}
-> 
-> 2. Use IPython to import the `test_mean` package and run each test.
+{: .python}
+ 
+Use IPython to import the `test_mean` package and run each test.
 
 Well, **that** was tedious.

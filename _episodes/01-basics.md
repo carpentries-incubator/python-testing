@@ -31,13 +31,13 @@ This is analogous to experiment design in the experimental science world:
   might be advisable. (Such a practice is called _test-driven development_, 
   which we will discuss in greater detail [later in the lesson](09-tdd.html).)
 
-> There are many ways to test software, such as:
->
-> - Assertions
-> - Exceptions
-> - Unit Tests
-> - Regresson Tests
-> - Integration Tests
+There are many ways to test software, such as:
+
+- Assertions
+- Exceptions
+- Unit Tests
+- Regresson Tests
+- Integration Tests
 
 *Exceptions and Assertions*: While writing code, `exceptions` and `assertions` 
 can be added to sound an alarm as runtime problems come up. These kinds of 
