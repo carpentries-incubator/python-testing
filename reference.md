@@ -25,10 +25,12 @@ except
 :   A command-line program that collects and runs unit tests.
 
 unit test
-:   Tests that investigate the behavior of units of code (such as functions, classes, or data structures).
+:   Tests that investigate the behavior of units of code (such as functions,
+classes, or data structures).
 
 regression test
-:   Tests that defend against new bugs, or regressions, which might appear due to new software and updates.
+:   Tests that defend against new bugs, or regressions, which might appear
+due to new software and updates.
 
 integration test
 :   Tests that check that various pieces of the software work together as expected.
