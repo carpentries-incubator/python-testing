@@ -1,6 +1,5 @@
 ---
 layout: lesson
-title: Testing
 root: .
 ---
 
@@ -63,7 +62,7 @@ that software cannot be called _scientific_ unless it has been validated.
 
 > ## Code without tests...doesn't exist!
 >
-> In *[Working Effectively with Legacy Code](http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/)*,
+> In *[Working Effectively with Legacy Code][feathers-legacy-code]*,
 > Michael Feathers defines legacy code as "any code without tests". This definition
 > draws on the fact that after its initial creation, tests provide
 > a powerful guide to other developers (and to your forgetful self, a few months
@@ -86,3 +85,5 @@ desire to work more efficiently, all scientists can benefit from testing.
 > by Anthony Scopatz and Kathryn Huff.
 > It is often quoted directly.
 {: .callout}
+
+[feathers-legacy-code]: http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/
