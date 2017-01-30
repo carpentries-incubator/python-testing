@@ -104,3 +104,61 @@ In addition, the setup and teardown functions will be automatically called for
 _every_ test in a given file so that each begins and ends with clean state.
 (Pytest has its own neat [fixture system](http://pytest.org/latest/fixture.html#fixture)
 that we won't cover here.)
+
+
+## Unittest
+
+The `unittest` module also provides this functionality for us with the `setUp` and `tearDown` methods that allow you to define instructions that will be executed before and after each test method (note the capitalisation of these names, which is important).
+
+~~~ {.python}
+import os
+import unittest
+
+def f():
+    files = os.listdir('.')
+    if 'no.txt' not in files:
+        with open('yes.txt', 'w') as yesfile:
+            yesfile.write('42')
+
+class TestMod(unittest.TestCase):
+    def setUp(self):
+        # The setUp() function tests ensure that neither the yes.txt nor the
+        # no.txt files exist.
+	# unittest will run this before each test case is run.
+        files = os.listdir('.')
+        if 'no.txt' in files:
+            os.remove('no.txt')
+        if 'yes.txt' in files:
+            os.remove('yes.txt')
+
+    def tearDown(self):
+        # The tearDown() function removes the yes.txt file, if it was created.
+	# unittest will run this after each test case
+        files = os.listdir('.')
+        if 'yes.txt' in files:
+            os.remove('yes.txt')
+
+    def test_f(self):
+        # The first action of test_f() is to make sure the file system is clean.
+        exp = 42
+        f()
+        with open('yes.txt', 'r') as fhandle:
+            obs = int(fhandle.read())
+        self.assertEqual(obs, exp)
+
+if __name__ == '__main__':
+    unittest.main()
+~~~
+
+~~~ {.bash}
+python test_setup_teardown.py
+~~~
+
+~~~ {.output}
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+
+~~~
