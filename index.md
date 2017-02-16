@@ -4,9 +4,9 @@ root: .
 ---
 
 In this lesson we use a Python library called pytest. 
-Basic understanding of Python variables and functions are a necessary
-prerequisite.
-Some previous experience with the shell is expected, *but isn't mandatory*.
+Basic understanding of Python variables and functions are a
+necessary prerequisite. Some previous experience with the shell
+is expected, *but isn't mandatory*.
 
 > ## Prerequisites
 >
@@ -15,13 +15,11 @@ Some previous experience with the shell is expected, *but isn't mandatory*.
 
 Before relying on a new experimental device, an experimental scientist always
 establishes its accuracy. A new detector is calibrated when the scientist
-observes its responses to to known input signals. The results of this
-calibration are compared against the _expected_ response.
-
-**An experimental scientist would never conduct an experiment with uncalibrated detectors - the
-that would be unscientific. So too, simulations and analysis with untested
+observes its responses to known input signals. The results of this
+calibration are compared against the _expected_ response. **An experimental
+scientist would never conduct an experiment with uncalibrated detectors - that
+would be unscientific. So too, simulations and analysis with untested
 software do not constitute science.**
-
 
 > ## You only know what you test
 >
