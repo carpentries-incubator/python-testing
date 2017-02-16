@@ -3,7 +3,7 @@ title: Fixtures
 teaching: 10
 exercises: 0
 questions:
-- "FIXME"
+- "How do I create and cleanup the data I need to test the code?"
 objectives:
 - Understand how test fixtures can help write tests.
 keypoints:
@@ -12,7 +12,7 @@ keypoints:
 The above example didn't require much setup or teardown. Consider, however, the
 following example that could arise when comunicating with third-party programs.
 You have a function `f()` which will write a file named `yes.txt` to disk with
-the value 42 but only if a file `no.txt` does not exist. To truly test the
+the value 42 but only if a file `no.txt` does not exist. To truly test that the
 function works, you would want to ensure that neither `yes.txt` nor `no.txt`
 existed before you ran your test. After the test, you want to clean up after
 yourself before the next test comes along.  You could write the test, setup,
@@ -52,11 +52,10 @@ def test_f():
 {: .python}
 
 The above implementation of setup and teardown is usually fine.
-However, it does
-not guarantee that the
-`f_setup()` and the `f_teardown()` functions will be called. This is becaue an
-unexpected error anywhere in the body of `f()` or `test_f()` will cause the
-test to abort before the teardown function is reached.
+However, it does not guarantee that the `f_setup()` and the `f_teardown()` 
+functions will be called. This is because an unexpected error anywhere in 
+the body of `f()` or `test_f()` will cause the test to abort before the 
+teardown function is reached.
 
 These setup and teardown behaviors are needed when _test fixtures_
 must be created.  A fixture is any environmental state or object that

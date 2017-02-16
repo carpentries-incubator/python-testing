@@ -3,7 +3,7 @@ title: Integration and Regression Tests
 teaching: 10
 exercises: 0
 questions:
-- "FIXME"
+- "What is beyond a unit test?"
 objectives:
 - "Understand the purpose of integration and regression tests"
 - "Understand how to implement an integration test"
@@ -32,9 +32,9 @@ needs to be put together. The gears need to fit with one another.
 
 Because they deal with gluing code together, there are typically fewer
 integration tests in a test suite than there are unit tests.  However, integration
-tests are
-no less important. Integration tests are essential for having adequate testing.
-They encompass all of the cases that you cannot hit through plain unit testing.
+tests are no less important. Integration tests are essential for having adequate
+testing. They encompass all of the cases that you cannot hit through plain unit
+testing.
 
 Sometimes, especially in probabilistic or stochastic codes, the precise behavior
 of an integration test cannot be determined beforehand.  That is OK. In these

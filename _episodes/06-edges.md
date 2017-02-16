@@ -3,7 +3,7 @@ title: Edge and Corner Cases
 teaching: 10
 exercises: 0
 questions:
-- "FIXME"
+- "How do I catch all the possible errors?"
 objectives:
 - "Understand that edge cases are at the limit of the function's behavior"
 - "Write a test for an edge case"

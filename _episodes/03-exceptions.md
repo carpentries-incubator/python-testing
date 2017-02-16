@@ -3,7 +3,7 @@ title: Exceptions
 teaching: 10
 exercises: 0
 questions:
-- "FIXME"
+- "How do I capture errors that I do not anticipate?"
 objectives:
 - "Understand that exceptions are effectively specialized runtime tests"
 - "Learn when to use exceptions and what exceptions are available"

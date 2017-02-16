@@ -10,7 +10,7 @@ objectives:
 keypoints:
 - "Tests compare that the result observed from running code is the same as what was expected ahead of time."
 - "Tests should be written at the same time as the code they are testing is written."
-- "Assertions and exceptions are like alarm systems embedded in the software, guarding against exceptional bahavior."
+- "Assertions and exceptions are li02ke alarm systems embedded in the software, guarding against exceptional bahavior."
 - "Unit tests try to test the smallest pieces of code possible, usually functions and methods."
 - "Integration tests make sure that code units work together properly."
 - "Regression tests ensure that everything works the same today as it did yesterday."

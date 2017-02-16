@@ -3,7 +3,7 @@ title: Running Tests with pytest
 teaching: 10
 exercises: 0
 questions:
-- "FIXME"
+- "How do I automate my tests?"
 objectives:
 - "Understand how to run a test suite using the pytest framework"
 - "Understand how to read the output of a pytest test suite"

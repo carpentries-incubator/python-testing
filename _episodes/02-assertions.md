@@ -3,7 +3,7 @@ title: Assertions
 teaching: 10
 exercises: 0
 questions:
-- "FIXME"
+- "How do I make sure the value I want is the value I receive?"
 objectives:
 - "Assertions are one line tests embedded in code."
 - "Assertions can halt execution if something unexpected happens."

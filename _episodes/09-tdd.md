@@ -3,7 +3,7 @@ title: Test Driven Development
 teaching: 10
 exercises: 0
 questions:
-- "FIXME"
+- "How do you make testing part of the code writing process?"
 objectives:
 - "Learn about the benefits and drawbacks of Test Driven Development."
 - "Write a test before writing the code."
