@@ -14,42 +14,54 @@ and a library is treated as being governed by a *contract*. A contract involves 
 
 * Pre-conditions: Things that must be true before calling the function.
 * Post-conditions: Things that are guaranteed to be true after the function returns.
-* Invariant-conditions: Things that are guaranteed not to change during the function's execution (e.g. side effects)
+* Invariant-conditions: Things that are guaranteed not to change during the function's execution
 
-**NOTE**: In Python's contracts, only pre- and post-conditions are handled.
+**Note**: In Python's contracts, only pre- and post-conditions are handled.
 
-To demonstrate the use of contracts, in the example here, we implement our own version of an integer square root
-function for perfect squares, called psqrt. We define a contract that indicates the caller is required to pass an
-integer value greater than or equal to zero. This is an example of a pre-condition. Next, the function will return
-an integer greater than or equal to zero. This is an example of a post-condition.
-The contract is defined using Python [decorator](https://www.python.org/dev/peps/pep-0318) notation.
+In the examples here, we use [PyContracts](https://andreacensi.github.io/contracts/index.html#) which use
+Python [decorator](https://www.python.org/dev/peps/pep-0318) notation. In addition, to simplify the examples,
+the following imports are assumed...
 
 ~~~ {.python}
 from math import sqrt
-from contracts import contract
-
-@contract(x='int,>=0',returns='int,>=0')
-def psqrt(x):
-    return int(sqrt(x))
-
-print "Square root of perfect square 4 = %d"%psqrt(4)
-~~~
-~~~ {.output}
-Square root of perfect square 4 = 2
+from contracts import contract, new_contract
 ~~~
 
-Here the caller and the function obey the contract and the function call proceeds as expected. Next, let's see what
-happens when we pass a negative value to the funciton.
+To demonstrate the use of contracts, in the example here, we implement our own version of an integer square root
+function for perfect squares, called psqrt. We define a contract that indicates the caller is required to pass an
+integer value greater than or equal to zero. This is an example of a pre-condition. Next, the function is required
+to return an integer greater than or equal to zero. This is an example of a post-condition.
 
 ~~~ {.python}
-print "Square root of perfect square -4 = %d"%psqrt(-4)
+@contract(x='int,>=0',returns='int,>=0')
+def psqrt(x):
+    retval = sqrt(x)
+    iretval = int(retval)
+    return iretval if iretval == retval else retval
 ~~~
+
+Now, lets see what happens when we use this function to compute square roots.
+
 ~~~ {.output}
+>>> pqsrt(4)
+2
+>>> psqrt(81)
+9
+~~~
+
+Values of 4 and 81 are both integers. So, in these cases the caller has obeyed the pre-conditions of the contract.
+In addition, because both 4 and 81 are perfect squares, the function correctly returns their integer square root.
+So, the funtion has obeyd the post-conditions of the contract.
+
+Now, lets see what happens when the caller failes to obey the pre-conditions of the contract by passing a negative
+number.
+
+~~~ {.output}
+>>> psqrt(-4)
 Traceback (most recent call last):
-  File "../foo.py", line 9, in <module>
-    print "Square root of perfect square -4 = %d"%psqrt(-4)
-  File "<decorator-gen-1>", line 2, in psqrt
-  File "/Library/Python/2.7/site-packages/PyContracts-1.7.15-py2.7.egg/contracts/main.py", line 253, in contracts_checker
+  File "<stdin>", line 1, in <module>
+  File "<decorator-gen-2>", line 2, in psqrt
+  File "/Library/Python/2.7/site-packages/PyContracts/contracts/main.py", line 253, in contracts_checker
     raise e
 contracts.interface.ContractNotRespected: Breach for argument 'x' to psqrt().
 Condition -4 >= 0 not respected
@@ -58,11 +70,33 @@ checking: int,>=0   for value: Instance of <type 'int'>: -4
 Variables bound in inner context:
 ~~~
 
-Here, an exception is raised and some additional details indicating which condition of the contract was violated.
+An exception is raised indicating a failure to obey the pre-condition for passing a value greather than or equal to zero.
+Next, lets see what happens when the function cannot obey the post-condition of the contract.
+
+~~~ {.output}
+>>> psqrt(83)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<decorator-gen-2>", line 2, in psqrt
+  File "/Library/Python/2.7/site-packages/PyContracts/contracts/main.py", line 264, in contracts_checker
+    raise e
+contracts.interface.ContractNotRespected: Breach for return value of psqrt().
+.
+.
+.
+checking: Int|np_scalar_int|np_scalar,array(int)      for value: Instance of <type 'float'>: 9.1104335791443   
+checking: $(Int|np_scalar_int|np_scalar,array(int))   for value: Instance of <type 'float'>: 9.1104335791443   
+checking: int                                         for value: Instance of <type 'float'>: 9.1104335791443   
+checking: int,>=0                                     for value: Instance of <type 'float'>: 9.1104335791443   
+Variables bound in inner context:
+~~~
+
+For the value of 83, although the caller obeyed the contract, the function does not
+return an integer value. It fails the post-condition and an exception is raised.
 
 ### Extending Contracts
 
-Sometimes, the simple syntax for defining contracts is not sufficient. In this case, contracts can be extended by
+Sometimes, the simple builtin syntax for defining contracts is not sufficient. In this case, contracts can be extended by
 defining a function that implements a new contract. For example, number theory tells us that all perfect squares
 end in a digit of 1,4,5,6, or 9 or end in an even number of zero digits. We can define a new contract that checks
 this condition
@@ -87,16 +121,15 @@ def psqrt2(x):
 
 Let's see what happens when we try to use this *psqrt2* function on a number that ends in an odd number of zeros.
 
-~~~ {.python}
-print "Perfect square root of 1000 = %d"%psqrt2(1000)
-~~~
-
 ~~~ {.output}
+>>> psqrt2(49)
+7
+>>> psqrt2(1000)
 Traceback (most recent call last):
   File "../foo.py", line 24, in <module>
     print "Perfect square root of 1000 = %d"%psqrt2(1000)
   File "<decorator-gen-3>", line 2, in psqrt2
-  File "/Library/Python/2.7/site-packages/PyContracts-1.7.15-py2.7.egg/contracts/main.py", line 253, in contracts_checker
+  File "/Library/Python/2.7/site-packages/PyContracts/contracts/main.py", line 253, in contracts_checker
     raise e
 contracts.interface.ContractNotRespected: Breach for argument 'x' to psqrt2().
 1000 doesn't end in 1,4,5,6 or 9 or even number of zeros
@@ -111,8 +144,10 @@ Variables bound in inner context:
 Depending on the situation, checking validity of a contract can be expensive. For example, suppose a function
 is designed to perform a binary search on a sorted list of numbers. A pre-condition for the operation is that
 the list it is given to search is sorted. If the list is large, checking that it is properly sorted is expensive.
-In other words, contracts can impact performance. This means it is desirable to have a way to disable contract
-checks. This can be accomplished either by setting an environment variable, DISABLE_CONTRACTS or by a call to
-contracts.disable_all() **before** any @contracts are processed by the Python interpreter.
+In other words, contracts can impact performance. For this reason, it is desirable for callers to have a way to
+disable contract checks to avoid always paying whatever performance costs they incur. This can be accomplished
+either by setting an environment variable, DISABLE_CONTRACTS or by a call to contracts.disable_all() **before**
+any @contracts are processed by the Python interpreter. This allows developers to keep the checks in place while
+they are developing code and then disable them once they are sure the code is working as expected.
 
 [Learn more about Design by Contract in Python](https://andreacensi.github.io/contracts/index.html#)
