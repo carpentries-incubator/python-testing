@@ -9,7 +9,7 @@ subtitle: Discussion
 ### Why doesn't Travis-CI run my tests?
 
 A common problem in the [Continuous Integration](./08-ci.html) part of this 
-lesson is that Travis-CI does not run the tests in the version control
+lesson is that Travis-CI does not run the tests in the version-controlled
 repository. One thing to watch out for is that Travis-CI is *very* picky about
 the format of the `.travis.yaml` file, but other problems are also possible.
 Some of these, and how they can be fixed, are outlined below.
@@ -33,4 +33,4 @@ This should trigger the tests to run again.
 * The tests don't run at all. One reason for this is that Travis has not "seen"
 changes pushed to GitHub, for example if the configuration files are pushed
 before Travis is linked to the GitHub account. Try to fix this by making a 
-minor change to a file, the committing and pushing the change.
+minor change to a file, then committing and pushing the change.
