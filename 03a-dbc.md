@@ -30,13 +30,13 @@ from contracts import contract, new_contract
 ~~~
 
 To demonstrate the use of contracts, in the example here, we implement our own version of an integer square root
-function for perfect squares, called `psqrt`. We define a contract that indicates the caller is required to pass an
-integer value greater than or equal to zero. This is an example of a pre-condition. Next, the function is required
-to return an integer greater than or equal to zero. This is an example of a post-condition.
+function for perfect squares, called `perfect_sqrt`. We define a contract that indicates the caller is required
+to pass an integer value greater than or equal to zero. This is an example of a pre-condition. Next, the function
+is required to return an integer greater than or equal to zero. This is an example of a post-condition.
 
 ~~~ {.python}
 @contract(x='int,>=0',returns='int,>=0')
-def psqrt(x):
+def perfect_sqrt(x):
     retval = sqrt(x)
     iretval = int(retval)
     return iretval if iretval == retval else retval
@@ -45,9 +45,9 @@ def psqrt(x):
 Now, lets see what happens when we use this function to compute square roots.
 
 ~~~ {.output}
->>> pqsrt(4)
+>>> perfect_sqrt(4)
 2
->>> psqrt(81)
+>>> perfect_sqrt(81)
 9
 ~~~
 
@@ -59,13 +59,13 @@ Now, lets see what happens when the caller fails to obey the pre-conditions of t
 number.
 
 ~~~ {.output}
->>> psqrt(-4)
+>>> perfect_sqrt(-4)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-  File "<decorator-gen-2>", line 2, in psqrt
+  File "<decorator-gen-2>", line 2, in perfect_sqrt
   File "/Library/Python/2.7/site-packages/PyContracts/contracts/main.py", line 253, in contracts_checker
     raise e
-contracts.interface.ContractNotRespected: Breach for argument 'x' to psqrt().
+contracts.interface.ContractNotRespected: Breach for argument 'x' to perfect_sqrt().
 Condition -4 >= 0 not respected
 checking: >=0       for value: Instance of <type 'int'>: -4   
 checking: int,>=0   for value: Instance of <type 'int'>: -4   
@@ -76,13 +76,13 @@ An exception is raised indicating a failure to obey the pre-condition for passin
 Next, lets see what happens when the function cannot obey the post-condition of the contract.
 
 ~~~ {.output}
->>> psqrt(83)
+>>> perfect_sqrt(83)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-  File "<decorator-gen-2>", line 2, in psqrt
+  File "<decorator-gen-2>", line 2, in perfect_sqrt
   File "/Library/Python/2.7/site-packages/PyContracts/contracts/main.py", line 264, in contracts_checker
     raise e
-contracts.interface.ContractNotRespected: Breach for return value of psqrt().
+contracts.interface.ContractNotRespected: Breach for return value of perfect_sqrt().
 .
 .
 .
