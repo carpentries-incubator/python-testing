@@ -20,8 +20,8 @@ title: Testing
 
 1.  [Basics of Testing](01-basics.html)
 2.  [Assertions](02-assertions.html)
-2a. [Design By Contract](02a-dbc.html)
 3.  [Exceptions](03-exceptions.html)
+3a. [Design By Contract](03a-dbc.html)
 4.  [Unit Tests](04-units.html)
 5.  [Running Tests with pytest](05-pytest.html)
 6.  [Edge and Corner Cases](06-edges.html)

@@ -34,22 +34,23 @@
 </div>
 <div class="panel-body">
 <ul>
-<li>Design by Contract is a way of using Assertions for interface specification.</li>
-<li>Design by Contract defines pre-, post- and invariant conditions a function and a caller agree to obey.</li>
+<li>Design by Contract is a way of using Assertions for <em>interface specification</em>.</li>
+<li>Pre-conditions are promises a you agree to obey when calling a function.</li>
+<li>Post-conditions are promises a function agrees to obey when returning to you.</li>
 </ul>
 </div>
 </section>
-<p>In <a href="https://en.wikipedia.org/wiki/Design_by_contract">Design by Contract</a>, the interaction between a caller and a library is treated as being governed by a <em>contract</em>. A contract involves three different types of requirements.</p>
+<p>In <a href="https://en.wikipedia.org/wiki/Design_by_contract">Design by Contract</a>, the interaction between an application and a library is treated as being governed by a <em>contract</em>. A contract typically involves three different types of requirements.</p>
 <ul>
 <li>Pre-conditions: Things that must be true before calling the function.</li>
 <li>Post-conditions: Things that are guaranteed to be true after the function returns.</li>
 <li>Invariant-conditions: Things that are guaranteed not to change during the function’s execution</li>
 </ul>
-<p><strong>Note</strong>: In Python’s contracts, only pre- and post-conditions are handled.</p>
-<p>In the examples here, we use <a href="https://andreacensi.github.io/contracts/index.html#">PyContracts</a> which use Python <a href="https://www.python.org/dev/peps/pep-0318">decorator</a> notation. In addition, to simplify the examples, the following imports are assumed…</p>
+<p><strong>Note</strong>: In Python contracts, only pre- and post-conditions are handled.</p>
+<p>In the examples here, we use <a href="https://andreacensi.github.io/contracts/index.html#">PyContracts</a> which uses Python <a href="https://www.python.org/dev/peps/pep-0318">decorator</a> notation. In addition, to simplify the examples, the following imports are assumed…</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> math <span class="im">import</span> sqrt
-<span class="im">from</span> contracts <span class="im">import</span> contract</code></pre></div>
-<p>To demonstrate the use of contracts, in the example here, we implement our own version of an integer square root function for perfect squares, called psqrt. We define a contract that indicates the caller is required to pass an integer value greater than or equal to zero. This is an example of a pre-condition. Next, the function is required to return an integer greater than or equal to zero. This is an example of a post-condition.</p>
+<span class="im">from</span> contracts <span class="im">import</span> contract, new_contract</code></pre></div>
+<p>To demonstrate the use of contracts, in the example here, we implement our own version of an integer square root function for perfect squares, called <code>psqrt</code>. We define a contract that indicates the caller is required to pass an integer value greater than or equal to zero. This is an example of a pre-condition. Next, the function is required to return an integer greater than or equal to zero. This is an example of a post-condition.</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="at">@contract</span>(x<span class="op">=</span><span class="st">&#39;int,&gt;=0&#39;</span>,returns<span class="op">=</span><span class="st">&#39;int,&gt;=0&#39;</span>)
 <span class="kw">def</span> psqrt(x):
     retval <span class="op">=</span> sqrt(x)
@@ -60,8 +61,8 @@
 2
 &gt;&gt;&gt; psqrt(81)
 9</code></pre>
-<p>Values of 4 and 81 are both integers. So, in these cases the caller has obeyed the pre-conditions of the contract. In addition, because both 4 and 81 are perfect squares, the function correctly returns their integer square root. So, the funtion has obeyd the post-conditions of the contract.</p>
-<p>Now, lets see what happens when the caller failes to obey the pre-conditions of the contract by passing a negative number.</p>
+<p>Values of 4 and 81 are both integers. So, in these cases the caller has obeyed the pre-conditions of the contract. In addition, because both 4 and 81 are perfect squares, the function correctly returns their integer square root. So, the funtion has obeyed the post-conditions of the contract.</p>
+<p>Now, lets see what happens when the caller fails to obey the pre-conditions of the contract by passing a negative number.</p>
 <pre class="output"><code>&gt;&gt;&gt; psqrt(-4)
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
@@ -91,36 +92,37 @@ checking: int,&gt;=0                                     for value: Instance of 
 Variables bound in inner context:</code></pre>
 <p>For the value of 83, although the caller obeyed the contract, the function does not return an integer value. It fails the post-condition and an exception is raised.</p>
 <h3 id="extending-contracts">Extending Contracts</h3>
-<p>Sometimes, the simple builtin syntax for defining contracts is not sufficient. In this case, contracts can be extended by defining a function that implements a new contract. For example, number theory tells us that all perfect squares end in a digit of 1,4,5,6, or 9 or end in an even number of zero digits. We can define a new contract that checks this condition</p>
+<p>Sometimes, the simple built-in syntax for defining contracts is not sufficient. In this case, contracts can be extended by defining a function that implements a new contract. For example, number theory tells us that all perfect squares end in a digit of 1,4,5,6, or 9 or end in an even number of zero digits. We can define a new contract that checks this condition</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="at">@new_contract</span>
-<span class="kw">def</span> endsOk(x):
+<span class="kw">def</span> ends_ok(x):
     ends14569 <span class="op">=</span> x<span class="op">%</span><span class="dv">10</span> <span class="kw">in</span> (<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">9</span>)
     ends00 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">round</span>((log(x,<span class="dv">10</span>)))) <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>
     <span class="cf">if</span> ends14569 <span class="kw">or</span> ends00:
         <span class="cf">return</span> <span class="va">True</span>
     <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;</span><span class="sc">%s</span><span class="st"> doesn&#39;t end in 1,4,5,6 or 9 or even number of zeros&quot;</span><span class="op">%</span>x)</code></pre></div>
-<p>We can then use this function, <em>endsOk</em>, in a contract specification</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="at">@contract</span>(x<span class="op">=</span><span class="st">&#39;int,endsOk,&gt;=0&#39;</span>,returns<span class="op">=</span><span class="st">&#39;int,&gt;=0&#39;</span>)
-<span class="kw">def</span> psqrt2(x):
+<p>We can then use this function, <code>ends_ok</code>, in a contract specification</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="at">@contract</span>(x<span class="op">=</span><span class="st">&#39;int,ends_ok,&gt;=0&#39;</span>,returns<span class="op">=</span><span class="st">&#39;int,&gt;=0&#39;</span>)
+<span class="kw">def</span> perfect_sqrt2(x):
     <span class="cf">return</span> <span class="bu">int</span>(sqrt(x))</code></pre></div>
-<p>Let’s see what happens when we try to use this <em>psqrt2</em> function on a number that ends in an odd number of zeros.</p>
-<pre class="output"><code>&gt;&gt;&gt; psqrt2(49)
+<p>Let’s see what happens when we try to use this <code>perfect_sqrt2</code> function on a number that ends in an odd number of zeros.</p>
+<pre class="output"><code>&gt;&gt;&gt; perfect_sqrt2(49)
 7
-&gt;&gt;&gt; psqrt2(1000)
+&gt;&gt;&gt; perfect_sqrt2(1000)
 Traceback (most recent call last):
   File &quot;../foo.py&quot;, line 24, in &lt;module&gt;
-    print &quot;Perfect square root of 1000 = %d&quot;%psqrt2(1000)
-  File &quot;&lt;decorator-gen-3&gt;&quot;, line 2, in psqrt2
+    print &quot;Perfect square root of 1000 = %d&quot;%perfect_sqrt2(1000)
+  File &quot;&lt;decorator-gen-3&gt;&quot;, line 2, in perfect_sqrt2
   File &quot;/Library/Python/2.7/site-packages/PyContracts/contracts/main.py&quot;, line 253, in contracts_checker
     raise e
-contracts.interface.ContractNotRespected: Breach for argument &#39;x&#39; to psqrt2().
+contracts.interface.ContractNotRespected: Breach for argument &#39;x&#39; to perfect_sqrt2().
 1000 doesn&#39;t end in 1,4,5,6 or 9 or even number of zeros
 checking: callable()       for value: Instance of &lt;type &#39;int&#39;&gt;: 1000   
-checking: endsOk           for value: Instance of &lt;type &#39;int&#39;&gt;: 1000   
-checking: int,endsOk,&gt;=0   for value: Instance of &lt;type &#39;int&#39;&gt;: 1000   
+checking: ends_ok          for value: Instance of &lt;type &#39;int&#39;&gt;: 1000   
+checking: int,ends_ok,&gt;=0  for value: Instance of &lt;type &#39;int&#39;&gt;: 1000   
 Variables bound in inner context:</code></pre>
 <h3 id="performance-considerations">Performance Considerations</h3>
-<p>Depending on the situation, checking validity of a contract can be expensive. For example, suppose a function is designed to perform a binary search on a sorted list of numbers. A pre-condition for the operation is that the list it is given to search is sorted. If the list is large, checking that it is properly sorted is expensive. In other words, contracts can impact performance. For this reason, it is desirable for callers to have a way to disable contract checks to avoid always paying whatever performance costs they incur. This can be accomplished either by setting an environment variable, DISABLE_CONTRACTS or by a call to contracts.disable_all() <strong>before</strong> any <span class="citation">@contracts</span> are processed by the Python interpreter. This allows developers to keep the checks in place while they are developing code and then disable them once they are sure the code is working as expected.</p>
+<p>Depending on the situation, checking validity of a contract can be expensive. For example, suppose a function is designed to perform a binary search on a sorted list of numbers. A pre-condition for the operation is that the list it is given to search is sorted. If the list is large, checking that it is properly sorted is expensive. In other words, contracts can negatively impact performance. For this reason, it is desirable for callers to have a way to disable contract checks to avoid always paying whatever performance costs they incur. This can be accomplished either by setting an environment variable, DISABLE_CONTRACTS or by a call to contracts.disable_all() <strong>before</strong> any <code>@contracts</code> statements are processed by the Python interpreter. This allows developers to keep the checks in place while they are developing code and then disable them once they are sure their code is working as expected.</p>
+<p>Contracts are most helpful in the process of <em>developing</em> code. So, it is often good practice to write contracts for functions <em>before</em> the function implementations. Later, when development is complete and performance becomes important, contracts can be disabled. In this way, contracts are handled much like assertions. They are useful in developing code and then disabled once development is complete.</p>
 <p><a href="https://andreacensi.github.io/contracts/index.html#">Learn more about Design by Contract in Python</a></p>
         </div>
       </div>
