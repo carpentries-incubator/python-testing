@@ -7,16 +7,16 @@ minutes: 15
 > ## Learning Objectives {.objectives}
 >
 > *   Design by Contract is a way of using Assertions for _interface specification_.
-> *   Pre-conditions are promises a you agree to obey when calling a function.
+> *   Pre-conditions are promises you agree to obey when calling a function.
 > *   Post-conditions are promises a function agrees to obey when returning to you.
 
 In [Design by Contract](https://en.wikipedia.org/wiki/Design_by_contract), the interaction between an
-application and a library is treated as being governed by a *contract*. A contract typically involves
-three different types of requirements.
+you or an application and a library is treated as being governed by a *contract*. A contract typically
+involves three different types of requirements.
 
 * Pre-conditions: Things that must be true before calling the function.
 * Post-conditions: Things that are guaranteed to be true after the function returns.
-* Invariant-conditions: Things that are guaranteed not to change during the function's execution
+* Invariant-conditions: Things that are guaranteed not to change during the function's execution.
 
 **Note**: In Python contracts, only pre- and post-conditions are handled.
 
