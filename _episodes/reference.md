@@ -1,6 +1,6 @@
 ---
 layout: reference
-title: Testing
+title: Key Points and Glossary
 subtitle: Reference
 ---
 ## Glossary
