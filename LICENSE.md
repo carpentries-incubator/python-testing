@@ -4,11 +4,12 @@ title: "Licenses"
 permalink: /license/
 ---
 ## Instructional Material
-All Software Carpentry and Data Carpentry instructional material ismade available under the [Creative Commons Attributionlicense][cc-by-human]. The following is a human-readable summary of(and not a substitute for) the [full legal text of the CC BY 4.0license][cc-by-legal].
+All Software Carpentry and Data Carpentry instructional material is made available under the [Creative Commons Attribution license][cc-by-human]. The following is a human-readable summary of(and not a substitute for) the [full legal text of the CC BY 4.0 license][cc-by-legal].
 
 You are free:
 
-* to **Share**---copy and redistribute the material in any medium or format* to **Adapt**---remix, transform, and build upon the materialfor any purpose, even commercially.
+* to **Share**---copy and redistribute the material in any medium or format
+* to **Adapt**---remix, transform, and build upon the material for any purpose, even commercially.
 
 The licensor cannot revoke these freedoms as long as you follow the license terms.
 
@@ -27,15 +28,15 @@ Notices:
 
 Except where otherwise noted, the example programs and other software provided by Software Carpentry and Data Carpentry are made available under the[OSI][osi]-approved[MIT license][mit-license].
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the"Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,distribute, sublicense, and/or sell copies of the Software, and topermit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall beincluded in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BELIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Trademark
 
-"Software Carpentry" and "Data Carpentry" and their respective logosare registered trademarks of [NumFOCUS][numfocus].
+"Software Carpentry" and "Data Carpentry" and their respective logos are registered trademarks of [NumFOCUS][numfocus].
 
 [cc-by-human]: https://creativecommons.org/licenses/by/4.0/
 [cc-by-legal]: https://creativecommons.org/licenses/by/4.0/legalcode
