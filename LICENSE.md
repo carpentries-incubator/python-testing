@@ -4,7 +4,7 @@ title: "Licenses"
 permalink: /license/
 ---
 ## Instructional Material
-All Software Carpentry and Data Carpentry instructional material is made available under the [Creative Commons Attribution license][cc-by-human]. The following is a human-readable summary of(and not a substitute for) the [full legal text of the CC BY 4.0 license][cc-by-legal].
+All Software Carpentry and Data Carpentry instructional material is made available under the [Creative Commons Attribution license][cc-by-human]. The following is a human-readable summary of (and not a substitute for) the [full legal text of the CC BY 4.0 license][cc-by-legal].
 
 You are free:
 
@@ -26,7 +26,7 @@ Notices:
 
 ## Software
 
-Except where otherwise noted, the example programs and other software provided by Software Carpentry and Data Carpentry are made available under the[OSI][osi]-approved[MIT license][mit-license].
+Except where otherwise noted, the example programs and other software provided by Software Carpentry and Data Carpentry are made available under the [OSI][osi]-approved [MIT license][mit-license].
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
