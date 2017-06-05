@@ -1,5 +1,5 @@
 #------------------------------------------------------------
-# Values for this lesson.
+1;2802;0c# Values for this lesson.
 #------------------------------------------------------------
 
 # Which carpentry is this ("swc" or "dc")?
@@ -9,8 +9,8 @@ carpentry: "swc"
 title: "Python Testing and Continuous Integration"
 
 # Contact email address.
-email: lessons@software-carpentry.org
-contact: lessons@software-carpentry.org 
+email: katyhuff@gmail.com
+contact: katyhuff@gmail.com
 
 #------------------------------------------------------------
 # Generic settings (should not need to change).
@@ -21,7 +21,7 @@ kind: "lesson"
 
 # Magic to make URLs resolve both locally and on GitHub.
 # See https://help.github.com/articles/repository-metadata-on-github-pages/.
-repository: <USERNAME>/<PROJECT>
+repository: katyhuff/python-testing
 
 # Sites.
 amy_site: "https://amy.software-carpentry.org/workshops"
