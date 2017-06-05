@@ -6,6 +6,7 @@ CONTRIBUTING.html
 CONDUCT.html
 *.orig
 *~
+*.pyc
 .DS_Store
 .ipynb_checkpoints
 .sass-cache
