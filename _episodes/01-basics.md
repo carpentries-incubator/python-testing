@@ -3,13 +3,13 @@ title: Basics of Testing
 teaching: 5
 exercises: 0
 questions:
-- "Why would you not want to test?"
+- "Why test?"
 objectives:
 - "Understand the place of testing in a scientific workflow."
 - "Understand that testing has many forms."
 keypoints:
-- "Tests compare that the result observed from running code is the same as what was expected ahead of time."
-- "Tests should be written at the same time as the code they are testing is written."
+- "Tests check whether the observed result, from running the code, is what was expected ahead of time."
+- "Tests should ideally be written before the code they are testing is written, however some tests must be written after the code is written."
 - "Assertions and exceptions are like alarm systems embedded in the software, guarding against exceptional bahavior."
 - "Unit tests try to test the smallest pieces of code possible, usually functions and methods."
 - "Integration tests make sure that code units work together properly."

@@ -3,7 +3,7 @@ title: Integration and Regression Tests
 teaching: 10
 exercises: 0
 questions:
-- "What is beyond a unit test?"
+- "How do we test more than a single unit of software?"
 objectives:
 - "Understand the purpose of integration and regression tests"
 - "Understand how to implement an integration test"
@@ -19,7 +19,7 @@ the gears and cogs that make up the system. On their own, they can be of the hig
 quality. Unit tests verify that each gear is well made. However, the clock still
 needs to be put together. The gears need to fit with one another.
 
-> ## Further explanation
+> ## Telling The Time
 >
 > _Integration tests_ are the class of tests that verify that multiple moving
 > pieces and gears inside the clock work well together. Where unit tests
@@ -104,7 +104,7 @@ the expected result should be, regression tests look to the past for the
 expected behavior. The expected
 result is taken as what was previously computed for the same inputs.
 
-> ## Further explanation
+> ## The Past as Truth
 >
 > Regression tests assume that the past is "correct." They are great for
 > letting developers know when and how a code base has changed. They are not

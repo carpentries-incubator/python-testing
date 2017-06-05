@@ -31,7 +31,7 @@ Anecdotally, it is important to test edges cases because this is where errors te
 arise. Qualitatively different behavior happens at boundaries. As such,
 they tend to have special code dedicated to them in the implementation.
 
-> ## Consider a Fibonacci sequence
+> ## Consider the Fibonacci sequence
 >
 > Take a moment to recall everything you know about the Fibonacci sequence.
 >
@@ -88,7 +88,7 @@ noninteger values are not valid inputs. Tests for these classes of numbers serve
 you well if you want to make sure that the function fails as expected. Indeed, we
 learned in the assertions section that this is actually quite a good idea.
 
-> ## Implement these points
+> ## Test for Graceful Failure
 >
 > The `fib()` function should probably return the Python built-in
 > `NotImplemented` value for negative and noninteger values.
@@ -158,7 +158,7 @@ def test_edge_y():
 ~~~
 {: .python}
 
-> ## Final steps
+> ## Write a Corner Case
 >
 > The sinc2d example will also need a test for the corner case, where both x
 > and y are 0.0.

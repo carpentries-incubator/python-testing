@@ -3,7 +3,7 @@ title: Unit Tests
 teaching: 10
 exercises: 0
 questions:
-- "How much is a unit of code?"
+- "What is a unit of code?"
 objectives:
 - "Understand that functions are the atomistic unit of software."
 - "Understand that simpler units are easier to test than complex ones."
@@ -30,7 +30,7 @@ project and language to language.  A good guideline is that if the code cannot
 be made any simpler logically (you cannot split apart the addition operator) or
 practically (a function is self-contained and well defined), then it is a unit. 
 
-> ## Note to self
+> ## Functions are Like Paragraphs
 >
 > Recall that humans can only hold a few ideas in our heads at once. Paragraphs
 > in books, for example, become unwieldy after a few lines. Functions, generally,

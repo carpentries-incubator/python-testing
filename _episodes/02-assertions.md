@@ -3,7 +3,7 @@ title: Assertions
 teaching: 10
 exercises: 0
 questions:
-- "How do I make sure the value I want is the value I receive?"
+- "How can we compare observed and expected values?"
 objectives:
 - "Assertions are one line tests embedded in code."
 - "Assertions can halt execution if something unexpected happens."
@@ -75,7 +75,7 @@ def mean(num_list):
 > Hint: Use the [isinstance function](https://docs.python.org/2/library/functions.html#isinstance).
 {: .callout}
 
-> ## Testing similarity between variables
+> ## Testing Near Equality
 >
 > Assertions are also helpful for catching abnormal behaviors, such as those
 > that arise with floating point arithmetic. Using the assert keyword, how could

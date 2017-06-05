@@ -3,7 +3,7 @@ title: Exceptions
 teaching: 10
 exercises: 0
 questions:
-- "How do I capture errors that I do not anticipate?"
+- "How do I handle unusual behavior while the code runs?"
 objectives:
 - "Understand that exceptions are effectively specialized runtime tests"
 - "Learn when to use exceptions and what exceptions are available"
@@ -79,7 +79,7 @@ def mean(num_list):
 ~~~
 {: .python}
 
-> ## Remember
+> ## What else could go wrong?
 >
 > 1. Think of some other type of exception that could be raised by the try 
 > block.

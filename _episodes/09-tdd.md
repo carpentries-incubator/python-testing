@@ -11,7 +11,7 @@ keypoints:
 - "Test driven development is a common software development technique"
 - "By writing the tests first, the function requirements are very explicit"
 - "TDD is not for everyone"
-- "TDD requires vigilance for success (cheating leads to failure)"
+- "TDD requires vigilance for success"
 ---
 
 Test-driven Development (TDD) takes the workflow of writing code and writing
@@ -26,7 +26,7 @@ needed, you write another test and then go back and modify the function.  You
 repeat this process of test-then-implement until the function is completely
 implemented for your current needs.
 
-> ## Where it comes from
+> ## The Big Idea
 >
 > This design philosophy was most strongly put forth by Kent Beck in his book
 > _Test-Driven  Development: By Example_.
@@ -44,7 +44,7 @@ you start writing code, you should be considering how to test that code. The
 tests should be written and presented in tandem with the implementation. **Testing
 is too important to be an afterthought.**
 
-> ## Who is using it?
+> ## You Do You
 >
 > Developers who practice strict TDD will tell you that it is the best thing since
 > sliced arrays. However, do what works for you. The choice whether to pursue
