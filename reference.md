@@ -5,7 +5,7 @@ subtitle: Reference
 ---
 ## Glossary
 
-{:auto_ids}
+
 assert
 :   A keyword that halts code execution when its argument is false.
 
