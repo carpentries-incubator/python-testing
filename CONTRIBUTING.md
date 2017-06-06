@@ -30,7 +30,8 @@ You also agree to abide by our
 ## Other Resources
 
 1.  This lesson is based on the template found at
-    [https://github.com/swcarpentry/lesson-template](https://github.com/swcarpentry/lesson-template).
+    [https://github.com/swcarpentry/lesson-template]
+    (https://github.com/swcarpentry/lesson-template).
     That repository has instructions on formatting and previewing lessons.
 
 2.  For a list of helpful commands run `make` in this directory.
