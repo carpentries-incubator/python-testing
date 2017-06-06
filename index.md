@@ -58,7 +58,7 @@ claims in a publication) will result.
 This is not to say that scientists have a monopoly on software testing, simply
 that software cannot be called _scientific_ unless it has been validated.
 
-> ## Code without tests...doesn't exist!
+> ## Code without tests... is legacy code!
 >
 > In *[Working Effectively with Legacy Code][feathers-legacy-code]*,
 > Michael Feathers defines legacy code as "any code without tests". This definition
