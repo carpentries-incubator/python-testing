@@ -59,7 +59,9 @@ def fib(n):
 This function has two edge cases: zero and one. For these values of `n`, the
 `fib()` function does something special that does not apply to any other values.
 Such cases should be tested explicitly. A minimally sufficient test suite
-for this function would be:
+for this function
+(assuming the `fib` function is in a file called `mod.py`)
+would be:
 
 ~~~
 from mod import fib
@@ -77,7 +79,7 @@ def test_fib1():
 def test_fib6():
     # test internal point
     obs = fib(6)
-    assert obs == 13)
+    assert obs == 13
 ~~~
 {: .python}
 
