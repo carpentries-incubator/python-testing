@@ -168,7 +168,7 @@ def test_edge_y():
 > 1. Insert the sinc2d function code (above) into a file called mod.py.
 > 2. Add the edge and internal case tests (above) to a test_sinc2d.py file.
 > 3. Invent and implement a corner case test in that file.
-> 4. Run all of the tests using `py.test` on the command line.
+> 4. Run all of the tests using `pytest` on the command line.
 {: .checklist}
 
 Corner cases can be even trickier to find and debug than edge cases because of their
