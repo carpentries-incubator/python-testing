@@ -126,6 +126,32 @@ test_mean.py .....
 ~~~
 {: .output}
 
+> ## Show what tests are executed
+>
+> Using `pytest -v` will result in `pytest` listing which tests are executed
+> and whether they pass or not:
+> ~~~
+> $ py.test
+> ~~~
+> {: .bash}
+>
+> ~~~
+> collected 5 items
+>
+> test_mean.py .....
+>
+> test_mean.py::test_ints PASSED
+> test_mean.py::test_zero PASSED
+> test_mean.py::test_double PASSED
+> test_mean.py::test_long PASSED
+> test_mean.py::test_complex PASSED
+>
+> ========================== 5 passed in 2.57 seconds ===========================
+> ~~~
+> {: .output}
+>
+{: .callout}
+
 As we write more code, we would write more tests, and pytest would produce
 more dots.  Each passing test is a small, satisfying reward for having written
 quality scientific software. Now that you know how to write tests, let's go
