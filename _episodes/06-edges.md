@@ -50,7 +50,7 @@ Consider the following simple Fibonacci function:
 ~~~
 def fib(n):
     if n == 0 or n == 1:
-        return 1
+        return n
     else:
         return fib(n - 1) + fib(n - 2)
 ~~~
@@ -79,7 +79,7 @@ def test_fib1():
 def test_fib6():
     # test internal point
     obs = fib(6)
-    assert obs == 13
+    assert obs == 8
 ~~~
 {: .python}
 
