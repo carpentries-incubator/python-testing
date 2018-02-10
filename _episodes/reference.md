@@ -24,7 +24,7 @@ integration test
 `pytest`
 :   A Python package with testing utilities.
 
-`py.test`
+`pytest`
 :   A command-line program that collects and runs unit tests.
 
 regression test
