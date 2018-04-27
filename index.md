@@ -3,16 +3,6 @@ layout: lesson
 root: .
 ---
 
-In this lesson we use a Python library called pytest. 
-Basic understanding of Python variables and functions are a
-necessary prerequisite. Some previous experience with the shell
-is expected, *but isn't mandatory*.
-
-> ## Prerequisites
->
-> Nothing to do: you're ready to go!
-{: .prereq}
-
 Before relying on a new experimental device, an experimental scientist always
 establishes its accuracy. A new detector is calibrated when the scientist
 observes its responses to known input signals. The results of this
@@ -75,6 +65,18 @@ Furthermore, tests help you to never fix a bug a second time. Once a bug has
 been caught and a test has been written, that particular bug can never again
 re-enter the codebase unnoticed. So, whether motivated by principles or a
 desire to work more efficiently, all scientists can benefit from testing.
+
+
+> ## Prerequisites
+>
+> You should have a basic understanding of Python variables and functions are a
+> necessary prerequisite. Some previous experience with the shell and git
+> is expected. If you have done an Software Carpentry course with Python, Shell
+> and Git, then you are suffiecently prepared for this course.
+>
+> You are *not* expected to be familiar with pytest (the Python library we will
+> be using), nor with the new Python concepts we will cover. 
+{: .prereq}
 
 > ## Where these lessons are from
 >
