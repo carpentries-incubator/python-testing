@@ -9,8 +9,11 @@ carpentry: "swc"
 title: "Python Testing and Continuous Integration"
 
 # Contact email address.
-email: katyhuff@gmail.com
-contact: katyhuff@gmail.com
+#email: katyhuff@gmail.com
+#contact: katyhuff@gmail.com
+email: james.tocknell@mq.edu.au
+contact: james.tocknell@mq.edu.au
+
 
 #------------------------------------------------------------
 # Generic settings (should not need to change).
@@ -21,7 +24,8 @@ kind: "lesson"
 
 # Magic to make URLs resolve both locally and on GitHub.
 # See https://help.github.com/articles/repository-metadata-on-github-pages/.
-repository: katyhuff/python-testing
+#repository: katyhuff/python-testing
+repository: MQ-software-carpentry/python-testing
 
 # Sites.
 amy_site: "https://amy.software-carpentry.org/workshops"
