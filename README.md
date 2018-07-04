@@ -7,8 +7,7 @@ Much of this lesson came from the book *[Effective Computation in Physics](http:
 > ## Note
 >
 > Please see
-> [https://github.com/swcarpentry/lesson-template]
-> (https://github.com/swcarpentry/lesson-template)
+> [GitHub.com/Carpentries/lesson-example](https://github.com/carpentries/lesson-example)
 > for instructions on formatting, building, and submitting lessons,
 > or run `make` in this directory for a list of helpful commands.
 
