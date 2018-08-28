@@ -9,7 +9,7 @@ objectives:
 - "Learn to define simple and complicated contracts."
 - "Learn about pre-, post- and invariant- conditions of a contract."
 keypoints:
-- "Design by Contract is a way of using Assertions for interface specification."an
+- "Design by Contract is a way of using Assertions for interface specification."
 - "Pre-conditions are promises you agree to obey when calling a function."
 - "Post-conditions are promises a function agrees to obey returning to you."
 ---
