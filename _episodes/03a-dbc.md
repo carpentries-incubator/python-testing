@@ -22,11 +22,10 @@ function typically involves three different types of requirements.
 * Post-conditions: Things that are guaranteed to be true after a function finishes its work.
 * Invariant-conditions: Things that are guaranteed not to change as a function does its work.
 
-**Note**: In Python contracts, only pre- and post-conditions are handled.
-
 In the examples here, we use [PyContracts](https://andreacensi.github.io/contracts/index.html#) which uses
-Python [decorator](https://www.python.org/dev/peps/pep-0318) notation. In addition, to simplify the examples,
-the following imports are assumed...
+Python [decorator](https://www.python.org/dev/peps/pep-0318) notation. **Note**: In the current implementation
+of PyContracts, only pre- and post-conditions are implemented. Invariants, if needed, may be handled using
+ordinary assertions. Finally, to simplify the examples here, the following imports are assumed...
 
 ~~~ {.python}
 from math import sqrt
@@ -148,13 +147,16 @@ Variables bound in inner context:
 
 ### Performance Considerations
 
-Depending on the situation, checking validity of a contract can be expensive. For example, suppose a function
-is designed to perform a binary search on a sorted list of numbers. A pre-condition for the operation is that
-the list it is given to search is sorted. If the list is large, checking that it is properly sorted is expensive.
+Depending on the situation, checking validity of a contract can be expensive relative to the _real_ work
+the function is supposed to perform. For example, suppose a function is designed to perform a binary search
+on a sorted list of numbers. A reasonable pre-condition for the operation is that the list it is given to
+search is indeed sorted. If the list is large, checking that it is properly sorted is even more expensive
+than performing a binary search.
+
 In other words, contracts can negatively impact performance. For this reason, it is desirable for callers to
-have a way to disable contract checks to avoid always paying whatever performance costs they incur. This can
-be accomplished either by setting an environment variable, DISABLE_CONTRACTS or by a call to
-contracts.disable_all() **before** any `@contracts` statements are processed by the Python interpreter.
+have a way to disable contract checks to avoid always paying whatever performance costs they incur. In PyContracts,
+this can be accomplished either by setting an environment variable, `DISABLE_CONTRACTS` or by a call to
+`contracts.disable_all()` **before** any `@contracts` statements are processed by the Python interpreter.
 This allows developers to keep the checks in place while they are developing code and then disable them once
 they are sure their code is working as expected.
 
