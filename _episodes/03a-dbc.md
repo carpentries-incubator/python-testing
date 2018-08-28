@@ -12,6 +12,7 @@ keypoints:
 - "Design by Contract is a way of using Assertions for interface specification."
 - "Pre-conditions are promises you agree to obey when calling a function."
 - "Post-conditions are promises a function agrees to obey returning to you."
+author: markcmiller86
 ---
 
 In [Design by Contract](https://en.wikipedia.org/wiki/Design_by_contract), the interaction between 
