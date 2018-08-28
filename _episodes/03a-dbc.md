@@ -103,9 +103,10 @@ return an integer value. It fails the post-condition and an exception is raised.
 ### Extending Contracts
 
 Sometimes, the simple built-in syntax for defining contracts is not sufficient. In this case, contracts can
-be extended by defining a function that implements a new contract. For example, number theory tells us that
-all perfect squares end in a digit of 1,4,5,6, or 9 or end in an even number of zero digits. We can define
-a new contract that checks this condition
+be extended by defining a function that implements a new contract. For example,
+[number theory tells us](http://mathworld.wolfram.com/SquareNumber.html) that all perfect squares end in a
+digit of 1,4,5,6, or 9 or end in an even number of zero digits. We can define a new contract that checks
+these conditions.
 
 ~~~ {.python}
 @new_contract
