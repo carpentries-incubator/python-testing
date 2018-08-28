@@ -8,7 +8,7 @@ objectives:
 - "Understand how to run a test suite using the pytest framework"
 - "Understand how to read the output of a pytest test suite"
 keypoints:
-- "The `py.test` command collects and runs tests starting with `Test` or `test_`."
+- "The `pytest` command collects and runs tests starting with `Test` or `test_`."
 - "`.` means the test passed"
 - "`F` means the test failed or erred"
 - "`x` is a known failure"
@@ -60,10 +60,10 @@ def test_complex():
 {: .python}
 
 Once these tests are written in a file called `test_mean.py`, the command
-`py.test` can be called from the directory containing the tests:
+`pytest` can be called from the directory containing the tests (note that you'll have to use `py.test` for older versions of the `pytest` package):
 
 ~~~
-$ py.test
+$ pytest
 ~~~
 {: .bash}
 ~~~
@@ -94,14 +94,14 @@ functions matching the regular expression `[Tt]est[-_]*`.
 
 The major boon a testing framework provides is exactly that, a utility to find and run the
 tests automatically. With pytest, this is the command-line tool called
-`py.test`.  When `py.test` is run, it will search all directories below where it was called,
+`pytest`.  When `pytest` is run, it will search all directories below where it was called,
 find all of the Python files in these directories whose names
 start or end with `test`, import them, and run all of the functions and classes
 whose names start with `test` or `Test`.
 This automatic registration of test code saves tons of human time and allows us to
 focus on what is important: writing more tests.
 
-When you run `py.test`, it will print a dot (`.`) on the screen for every test
+When you run `pytest`, it will print a dot (`.`) on the screen for every test
 that passes,
 an `F` for every test that fails or where there was an unexpected error.
 In rarer situations you may also see an `s` indicating a
@@ -110,10 +110,10 @@ failure (because the developers could not fix it promptly). After the dots, pyte
 will print summary information.
 
 Without changing the tests, alter the mean.py file from the previous section until it passes.
-When it passes, `py.test` will produce results like the following:
+When it passes, `pytest` will produce results like the following:
 
 ~~~
-$ py.test
+$ pytest
 ~~~
 {: .bash}
 
@@ -125,6 +125,32 @@ test_mean.py .....
 ========================== 5 passed in 2.68 seconds ===========================
 ~~~
 {: .output}
+
+> ## Show what tests are executed
+>
+> Using `pytest -v` will result in `pytest` listing which tests are executed
+> and whether they pass or not:
+> ~~~
+> $ py.test
+> ~~~
+> {: .bash}
+>
+> ~~~
+> collected 5 items
+>
+> test_mean.py .....
+>
+> test_mean.py::test_ints PASSED
+> test_mean.py::test_zero PASSED
+> test_mean.py::test_double PASSED
+> test_mean.py::test_long PASSED
+> test_mean.py::test_complex PASSED
+>
+> ========================== 5 passed in 2.57 seconds ===========================
+> ~~~
+> {: .output}
+>
+{: .callout}
 
 As we write more code, we would write more tests, and pytest would produce
 more dots.  Each passing test is a small, satisfying reward for having written

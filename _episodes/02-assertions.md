@@ -59,7 +59,7 @@ Also, input checking may require decending a rabbit hole of exceptional cases.
 What happens when the input provided to the mean function is a string, rather
 than a list of numbers?
 
-1. Open an IPython Notebook
+1. Open a [Jupyter Notebook](https://jupyter.org/)
 2. Create the following function:
 
 ~~~

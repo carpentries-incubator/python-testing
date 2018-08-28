@@ -10,7 +10,7 @@ questions:
 
 ### Why doesn't Travis-CI run my tests?
 
-A common problem in the [Continuous Integration](./08-ci.html) part of this 
+A common problem in the [Continuous Integration](./08-ci.html) part of this
 lesson is that Travis-CI does not run the tests in the version-controlled
 repository. One thing to watch out for is that Travis-CI is *very* picky about
 the format of the `.travis.yaml` file, but other problems are also possible.
@@ -34,5 +34,9 @@ This should trigger the tests to run again.
 
 * The tests don't run at all. One reason for this is that Travis has not "seen"
 changes pushed to GitHub, for example if the configuration files are pushed
-before Travis is linked to the GitHub account. Try to fix this by making a 
+before Travis is linked to the GitHub account. Try to fix this by making a
 minor change to a file, then committing and pushing the change.
+
+### Why does the build end with a error mentioning `rake`?
+
+The build ends with `The command "rake" exited with 1.`. A malformed `.travis.yml` has been seen as the cause of this. Even a missing space between the `-` and the following `"` can result in a problem with this file.

@@ -50,7 +50,7 @@ Consider the following simple Fibonacci function:
 ~~~
 def fib(n):
     if n == 0 or n == 1:
-        return 1
+        return n
     else:
         return fib(n - 1) + fib(n - 2)
 ~~~
@@ -59,7 +59,9 @@ def fib(n):
 This function has two edge cases: zero and one. For these values of `n`, the
 `fib()` function does something special that does not apply to any other values.
 Such cases should be tested explicitly. A minimally sufficient test suite
-for this function would be:
+for this function
+(assuming the `fib` function is in a file called `mod.py`)
+would be:
 
 ~~~
 from mod import fib
@@ -77,7 +79,7 @@ def test_fib1():
 def test_fib6():
     # test internal point
     obs = fib(6)
-    assert obs == 13)
+    assert obs == 8
 ~~~
 {: .python}
 
@@ -166,7 +168,7 @@ def test_edge_y():
 > 1. Insert the sinc2d function code (above) into a file called mod.py.
 > 2. Add the edge and internal case tests (above) to a test_sinc2d.py file.
 > 3. Invent and implement a corner case test in that file.
-> 4. Run all of the tests using `py.test` on the command line.
+> 4. Run all of the tests using `pytest` on the command line.
 {: .checklist}
 
 Corner cases can be even trickier to find and debug than edge cases because of their
