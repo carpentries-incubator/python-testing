@@ -68,3 +68,9 @@ exclude:
 
 # Turn off built-in syntax highlighting.
 highlighter: false
+
+# Stuff for better search
+plugins:
+  - jekyll-seo-tag
+
+description: "Fork of KH's Python Testing Site which includes Design By Contract Episode"
