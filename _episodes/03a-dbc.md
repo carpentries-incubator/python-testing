@@ -29,7 +29,7 @@ of PyContracts, only pre- and post-conditions are implemented. Invariants, if ne
 ordinary assertions. Finally, to simplify the examples here, the following imports are assumed...
 
 ~~~ {.python}
-from math import sqrt
+from math import sqrt, log
 from contracts import contract, new_contract
 ~~~
 
