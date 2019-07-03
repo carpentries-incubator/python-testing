@@ -137,6 +137,18 @@ def test_complex():
 ~~~
 {: .python}
 
-Use Jupyter Notebook to import the `test_mean` package and run each test.
+Use Jupyter Notebook to import the `test_mean` package and run each test like this:
+
+~~~
+from test_mean import *
+
+test_ints()
+test_zero()
+test_double()
+test_long()
+test_complex()  ## Please note that this one might fail. You'll get an error message showing which tests failed
+~~~
+{: .python}
+
 
 Well, **that** was tedious.
