@@ -60,7 +60,7 @@ def test_complex():
 {: .python}
 
 Once these tests are written in a file called `test_mean.py`, the command
-`pytest` can be called from the directory containing the tests (note that you'll have to use `py.test` for older versions of the `pytest` package):
+`pytest` can be run on the terminal or command line from the directory containing the tests (note that you'll have to use `py.test` for older versions of the `pytest` package):
 
 ~~~
 $ pytest
@@ -92,7 +92,7 @@ In the above case, the pytest package 'sniffed-out' the tests in the
 directory and ran them together to produce a report of the sum of the files and
 functions matching the regular expression `[Tt]est[-_]*`.
 
-The major boon a testing framework provides is exactly that, a utility to find and run the
+The major benefit a testing framework provides is exactly that, a utility to find and run the
 tests automatically. With pytest, this is the command-line tool called
 `pytest`.  When `pytest` is run, it will search all directories below where it was called,
 find all of the Python files in these directories whose names
