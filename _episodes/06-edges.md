@@ -69,7 +69,7 @@ from mod import fib
 def test_fib0():
     # test edge 0
     obs = fib(0)
-    assert obs == 1
+    assert obs == 0
 
 def test_fib1():
     # test edge 1
