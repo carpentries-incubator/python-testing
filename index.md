@@ -46,8 +46,8 @@ capabilities and when its tests do not pass.
 > when you evaluate the acceptability of your own or someone else's software.
 {: .callout}
 
-In most other programming endeavors, if code is fundamentally wrong
-- even for years at a time - the impact of this error can be relatively small.
+In most other programming endeavors, if code is fundamentally wrong - even
+for years at a time - the impact of this error can be relatively small.
 Perhaps a website goes down, or a game crashes, or a days worth of writing is
 lost to a bug in your word processor. Scientific code, on the other hand,
 controls planes, weapons systems, satellites, agriculture, and most importantly
