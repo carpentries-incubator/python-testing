@@ -22,7 +22,7 @@ Unit tests are so called because they exercise the functionality of the code by
 interrogating individual functions and methods. Functions and methods can often
 be considered the atomic units of software because they are indivisible.
 However, what is considered to be the smallest code _unit_ is subjective. The
-body of a function can be long are short, and shorter functions are arguably
+body of a function can be long or short, and shorter functions are arguably
 more unit-like than long ones.
 
 Thus what reasonably constitutes a code unit typically varies from project to
@@ -58,6 +58,25 @@ class. Ultimately, the test occurs when an assertion is made, comparing the
 observed and expected values. For example, let us test that our mean function 
 successfully calculates the known value for a simple list.
 
+Before running the next code, save your `mean` function to a file called mean.py in the working directory.
+
+You can use this code to save to file:
+
+~~~
+def mean(num_list):
+    try:
+        return sum(num_list)/len(num_list)
+    except ZeroDivisionError :
+        return 0
+    except TypeError as detail :
+        msg = "The algebraic mean of an non-numerical list is undefined.\
+               Please provide a list of numbers."
+        raise TypeError(detail.__str__() + "\n" +  msg)
+~~~
+{: .python}
+
+Now, back in your Jupyter Notebook run the following code:
+
 ~~~
 from mean import *
 
@@ -70,9 +89,9 @@ def test_ints():
 {: .python}
 
 The test above: 
-- sets up the input parameters (the simple list [1, 2, 3, 4, 5].
-- collects the observed result
-- declares the expected result (calculated with our human brain).
+- sets up the input parameters (the simple list [1, 2, 3, 4, 5]);
+- collects the observed result;
+- declares the expected result (calculated with our human brain);
 - and compares the two with an assertion.
 
 A unit test suite is made up of many tests just like this one. A single
@@ -118,6 +137,18 @@ def test_complex():
 ~~~
 {: .python}
 
-Use IPython to import the `test_mean` package and run each test.
+Use Jupyter Notebook to import the `test_mean` package and run each test like this:
+
+~~~
+from test_mean import *
+
+test_ints()
+test_zero()
+test_double()
+test_long()
+test_complex()  ## Please note that this one might fail. You'll get an error message showing which tests failed
+~~~
+{: .python}
+
 
 Well, **that** was tedious.
