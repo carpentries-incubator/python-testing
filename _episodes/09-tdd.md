@@ -44,6 +44,33 @@ you start writing code, you should be considering how to test that code. The
 tests should be written and presented in tandem with the implementation. **Testing
 is too important to be an afterthought.**
 
+### Diagnostic Unit Testing
+
+Test-driven development is a powerful tool to both prevent incipient bugs and to identify bugs as they occur.  We distinguish different aspects of the programming flaw based on their observational mode:
+
+-   A _failure_ refers to the observably incorrect behavior of a program.  This can include segmentation faults, erroneous output, and erratic results.
+
+-   A _fault_ refers to a discrepancy in code that results in a failure.
+
+-   An _error_ is the mistake in human judgment or implementation that caused the fault.  Note that many errors are _latent_ or _masked_.
+
+    -   A _latent_ error is one which will arise under conditions which have not yet been tested.
+
+    -   A _masked_ error is one whose effect is concealed by another aspect of the program, either another error or an aggregating feature.
+
+-   We casually refer to all of these as _bugs_.
+
+-   An _exception_ is a manifestation of unexpected behavior which can give rise to a failure, but some languages—notably Python—use exceptions in normal processing as well.
+
+Testing is designed to manifest _failures_ so that _faults_ and _errors_ can be identified and corrected.
+
+So what does _unit testing_ have to do with this?  As a philosophy, test-driven development intends to specify program behavior before program composition, which means that you *immediately know* if a program is correct.  At least, that is, to the standard to which you composed your unit tests.  Good unit tests will check for both latent and manifest bugs.  Masked errors tend to be much more difficult to tease out since they can rely on interactions of components which aren't present in the testing harness.
+
+By specifying a desired behavior before composing a software feature, test-driven development (TDD):
+
+1.  Clarifies what we intend a feature to accomplish;
+2.  Provides a reference against which an implementation can be compared.
+
 > ## You Do You
 >
 > Developers who practice strict TDD will tell you that it is the best thing since

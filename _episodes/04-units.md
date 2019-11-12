@@ -58,9 +58,9 @@ class. Ultimately, the test occurs when an assertion is made, comparing the
 observed and expected values. For example, let us test that our mean function 
 successfully calculates the known value for a simple list.
 
-Before running the next code, save your `mean` function to a file called mean.py in the working directory.
+Before running the next code, save your `mean` function to a file called `mean.py` in the working directory.
 
-You can use this code to save to file:
+You can use this code for your function:
 
 ~~~
 def mean(num_list):
@@ -152,3 +152,61 @@ test_complex()  ## Please note that this one might fail. You'll get an error mes
 
 
 Well, **that** was tedious.
+
+> ## Unit Tests v. Assertion Fences
+> - Are unit tests a replacement of assertion fences?
+{: .callout}
+
+Broadly, we can divide unit tests into _positive_ tests, those which should succeed or handle a case correctly; and _negative_ tests, those which should fail or reject a condition.
+
+The following code has examples of both positive and negative tests.
+
+~~~
+def test_absolute():
+    # Test integer behavior
+    assert absolute( 5 ) == 5
+    assert absolute( 0 ) == 0
+    assert absolute( -5 ) == 5
+
+    # Test float behavior
+    assert absolute( 5.0 ) == 5.0
+    assert absolute( 0.0 ) == 0.0
+    assert absolute( -5.0 ) == 5.0
+~~~
+{: .python}
+
+> ## Positive Unit Testing
+>
+> Python implements complex numbers as `complex`, with the form
+>
+>     0 + 1j      # imaginary unit, sqrt(-1)
+>     1 + 0j      # one, 1
+>     1 + 1j      # 1 + 1i
+>
+> Note particularly the use of $j$ for the more common $i$.
+>
+> Suppose that a function `absolute` is available.  Add a test case to `test_absolute` which verifies that `absolute` correctly handles $|1+1j| = \sqrt{2}$.
+{: .callout}
+
+Negative unit tests are designed to make a function or module fail. This can include fuzzing or ill-formed input.
+
+Consider again an absolute value function. The negative unit tests for `absolute` should:
+
+- Verify an exception is raised for nonnumeric input.
+- Verify correct exceptions are raised for various kinds of input.
+
+> ## Negative Unit Testing
+>
+> Python implements complex numbers as `complex`, with the form
+>
+>    0 + 1j      # imaginary unit, sqrt(-1)
+>    1 + 0j      # one, 1
+>    1 + 1j      # 1 + 1i
+>
+> Note particularly the use of $j$ for the more common $i$.
+>
+> Suppose that a function `absolute` is available, but it _does not handle `complex` input_.  Add a test case to `test_absolute` which verifies that `absolute` correctly handles $|1+1j| = \sqrt{2}$.  In this case, that means that `absolute` should raise a `TypeError`.
+>
+> Furthermore, consider adding tests to ensure that string input and `list` input fail.  What kind of exception should be raised and handled?
+
+
