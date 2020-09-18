@@ -81,15 +81,28 @@ def mean(num_list):
 > that arise with floating point arithmetic. Using the assert keyword, how could
 > you test whether some value is almost the same as another value?
 >
-> - My package, mynum, provides the number a.
-> - Use the `assert` keyword to check whether the number a is greater than 2.
-> - Use the `assert` keyword to check that a is equal to 2 within an error of 0.003.
+> - A program provides the number `a`.
+> - Use the `assert` keyword to check whether the number `a` is greater than 2.
+> - Use the `assert` keyword to check that `a` is equal to 2 within an error of 0.003.
 {: .callout}
 
 ~~~
-from mynum import a
+a = 2.002
 # greater than 2 assertion here
 # 0.003 assertion here
+~~~
+{: .python}
+
+We can think of assertions as fences set up to keep undesirable output out of our function.  Fences are barriers employed to block program execution if the state isn't adequate to the intended task.  Assertion fences are crude but effective ways to check input.
+
+>Consider the following function.
+>
+>If one were to include a fence as the first line of this function, what would be an appropriate fence to avoid a ZeroDivisionError?
+{: .callout}
+
+~~~
+def mean( num_list ):
+    return sum( num_list ) / len( num_list )
 ~~~
 {: .python}
 

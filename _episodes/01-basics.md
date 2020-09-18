@@ -21,6 +21,13 @@ that mistakes *will* happen and to guard against them.  This is called
 **defensive programming** and the most common way to do it is to add alarms and
 tests into our code so that it checks itself.
 
+Why bother?  We need to have confidence in how our code executes even if we do not plan to share it further.  Software testing allows us to make sure that:
+
+- the program actually meets our design requirements
+- the program responds in expected ways to various inputs (including invalid inputs)
+- the program is usable (has a well-defined interface, etc.)
+- the program works on the target platform(s)
+
 **Testing** should be a seamless part of scientific software development process.
 This is analogous to experiment design in the experimental science world:
 
