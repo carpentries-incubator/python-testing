@@ -13,7 +13,7 @@ keypoints:
 - "The `assert` keyword is used to set an assertion."
 - "Assertions halt execution if the argument is false."
 - "Assertions do nothing if the argument is true."
-- "The `numpy.testing` module provides tools numeric testing."
+- "The `numpy.testing` module provides tools for numeric testing."
 - "Assertions are the building blocks of tests."
 ---
 
