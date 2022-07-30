@@ -28,23 +28,25 @@ Python [decorator](https://www.python.org/dev/peps/pep-0318) notation. **Note**:
 of PyContracts, only pre- and post-conditions are implemented. Invariants, if needed, may be handled using
 ordinary assertions. Finally, to simplify the examples here, the following imports are assumed...
 
-~~~ {.python}
+~~~ 
 from math import sqrt, log
 from contracts import contract, new_contract
 ~~~
+{: .python}
 
 To demonstrate the use of contracts, in the example here, we implement our own version of an integer square root
 function for perfect squares, called `perfect_sqrt`. We define a contract that indicates the caller is required
 to pass an integer value greater than or equal to zero. This is an example of a pre-condition. Next, the function
 is required to return an integer greater than or equal to zero. This is an example of a post-condition.
 
-~~~ {.python}
+~~~ 
 @contract(x='int,>=0',returns='int,>=0')
 def perfect_sqrt(x):
     retval = sqrt(x)
     iretval = int(retval)
     return iretval if iretval == retval else retval
 ~~~
+{: .python}
 
 Now, lets see what happens when we use this function to compute square roots.
 
@@ -108,7 +110,7 @@ be extended by defining a function that implements a new contract. For example,
 digit of 1,4,5,6, or 9 or end in an even number of zero digits. We can define a new contract that checks
 these conditions.
 
-~~~ {.python}
+~~~ 
 @new_contract
 def ends_ok(x):
     ends14569 = x%10 in (1,4,5,6,9)
@@ -117,14 +119,18 @@ def ends_ok(x):
         return True
     raise ValueError("%s doesn't end in 1,4,5,6 or 9 or even number of zeros"%x)
 ~~~
+{: .python}
+
 
 We can then use this function, `ends_ok`, in a contract specification
 
-~~~ {.python}
+~~~ 
 @contract(x='int,ends_ok,>=0',returns='int,>=0')
 def perfect_sqrt2(x):
     return int(sqrt(x))
 ~~~
+{: .python}
+
 
 Let's see what happens when we try to use this `perfect_sqrt2` function on a number that ends in an
 odd number of zeros.
